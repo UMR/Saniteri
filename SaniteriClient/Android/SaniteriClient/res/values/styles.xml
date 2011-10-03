@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="NormalText">
+		<item name="android:textSize">36sp</item>
+		<item name="android:textColor">#00aa00</item>
+	</style>
+	<style name="LargeText">
+		<item name="android:textSize">30sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">#DE6C00</item>
+	</style>
+	<style name="MainMenuText">
+		<item name="android:textSize">25sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">#FFFFFF</item>
+	</style>
+	<style name="ButtonText">
+		<item name="android:textSize">22sp</item>	
+	
+	</style>
+</resources>
