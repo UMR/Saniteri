@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:gravity="center" android:background="@color/red_color">
-	<Button android:layout_width="150dip" android:id="@+id/btnOpen"
-		android:layout_height="40dip" android:text="Open" android:textAppearance="@style/ButtonText"  android:layout_margin="5dp" android:background="@drawable/button_selector"></Button>
-	<Button android:layout_width="150dip" android:id="@+id/btnClose"
-		android:layout_height="40dip" android:text="Close" android:textAppearance="@style/ButtonText" android:background="@drawable/button_selector" ></Button>
+	android:layout_height="fill_parent" android:gravity="center"
+	android:background="@color/red_color">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:gravity="center" >
+		<Spinner android:id="@+id/ddlUnitNumber"  android:layout_width="480dip"	android:layout_height="45dip" android:prompt="@string/promt_ddlUnitNumber"   android:layout_gravity="center">
+		</Spinner>
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:gravity="center">
+		<Button android:layout_width="150dip" android:id="@+id/btnOpen"
+			android:layout_height="40dip" android:text="Open"
+			style="@style/ButtonText" android:background="@drawable/button_selector"
+			android:layout_margin="5dp"></Button>
+		<Button android:layout_width="150dip" android:id="@+id/btnClose"
+			android:layout_height="40dip" android:text="Close"
+			style="@style/ButtonText" android:background="@drawable/button_selector"></Button>
+
+	</LinearLayout>
 </LinearLayout>
 		

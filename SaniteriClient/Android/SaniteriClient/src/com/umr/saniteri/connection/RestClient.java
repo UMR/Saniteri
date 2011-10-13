@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,10 +15,17 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
+import android.R.string;
+import android.util.Log;
 
 public class RestClient {
 
@@ -92,15 +98,27 @@ public class RestClient {
 		}
 		case POST: {
 			HttpPost request = new HttpPost(url);
-
 			for (NameValuePair h : headers) {
 				request.addHeader(h.getName(), h.getValue());
 			}
-
 			if (!params.isEmpty()) {
-				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+				JSONObject jsonObject = new JSONObject();
+				for (NameValuePair p : params) {
+					jsonObject.put(p.getName(), p.getValue());
+				}
+
+				StringEntity stringEntity = new StringEntity(jsonObject
+						.toString());
+				// stringEntity.setContentEncoding(new BasicHeader(
+				// HTTP.CONTENT_TYPE, "application/json"));
+				stringEntity.setContentEncoding(HTTP.UTF_8);
+
+				request.setEntity(stringEntity);
+				// request.setEntity(new UrlEncodedFormEntity(params,
+				// HTTP.UTF_8));
 			}
 
+			Log.d("RestClient", EntityUtils.toString(request.getEntity()));
 			executeRequest(request, url);
 			break;
 		}
@@ -109,7 +127,7 @@ public class RestClient {
 
 	private void executeRequest(HttpUriRequest request, String url) {
 		HttpClient client = new DefaultHttpClient();
-
+		
 		HttpResponse httpResponse;
 
 		try {
@@ -125,7 +143,6 @@ public class RestClient {
 
 				InputStream instream = entity.getContent();
 				response = convertStreamToString(instream);
-
 				instream.close();
 			}
 
