@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SaniteriEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SaniteriEntitiesStoreContainer">
+          <EntitySet Name="can_inventory" EntityType="SaniteriEntities.Store.can_inventory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="can_maintenance" EntityType="SaniteriEntities.Store.can_maintenance" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="can_transaction_log" EntityType="SaniteriEntities.Store.can_transaction_log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="can_users" EntityType="SaniteriEntities.Store.can_users" store:Type="Tables" store:Schema="dbo" store:Name="can_users">
+            <DefiningQuery>SELECT 
+      [can_users].[id] AS [id], 
+      [can_users].[user_id] AS [user_id], 
+      [can_users].[first_name] AS [first_name], 
+      [can_users].[last_name] AS [last_name], 
+      [can_users].[title] AS [title]
+      FROM [dbo].[can_users] AS [can_users]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_can_maintenance_can_inventory" Association="SaniteriEntities.Store.FK_can_maintenance_can_inventory">
+            <End Role="can_inventory" EntitySet="can_inventory" />
+            <End Role="can_maintenance" EntitySet="can_maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_can_transaction_log_can_inventory" Association="SaniteriEntities.Store.FK_can_transaction_log_can_inventory">
+            <End Role="can_inventory" EntitySet="can_inventory" />
+            <End Role="can_transaction_log" EntitySet="can_transaction_log" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="can_inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="production_date" Type="date" />
+          <Property Name="in_service_date" Type="date" />
+          <Property Name="street" Type="varchar" MaxLength="50" />
+          <Property Name="additional" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="zip" Type="varchar" MaxLength="50" />
+          <Property Name="floor" Type="varchar" MaxLength="50" />
+          <Property Name="room" Type="varchar" MaxLength="50" />
+          <Property Name="custom_1" Type="varchar" MaxLength="50" />
+          <Property Name="custom_2" Type="varchar" MaxLength="50" />
+          <Property Name="custom_3" Type="varchar" MaxLength="50" />
+          <Property Name="ip_address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="can_maintenance">
+          <Key>
+            <PropertyRef Name="can_id" />
+            <PropertyRef Name="service_date" />
+          </Key>
+          <Property Name="can_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="service_date" Type="date" Nullable="false" />
+          <Property Name="service_performed" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="can_transaction_log">
+          <Key>
+            <PropertyRef Name="can_id" />
+            <PropertyRef Name="event_time_stamp" />
+          </Key>
+          <Property Name="can_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="event_time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="event_type" Type="smallint" />
+          <Property Name="event_description" Type="varchar" MaxLength="50" />
+          <Property Name="event_data" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'saniteri_main.dbo.can_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="can_users">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_can_maintenance_can_inventory">
+          <End Role="can_inventory" Type="SaniteriEntities.Store.can_inventory" Multiplicity="1" />
+          <End Role="can_maintenance" Type="SaniteriEntities.Store.can_maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="can_inventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="can_maintenance">
+              <PropertyRef Name="can_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_can_transaction_log_can_inventory">
+          <End Role="can_inventory" Type="SaniteriEntities.Store.can_inventory" Multiplicity="1" />
+          <End Role="can_transaction_log" Type="SaniteriEntities.Store.can_transaction_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="can_inventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="can_transaction_log">
+              <PropertyRef Name="can_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaniteriEntities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SaniteriModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="can_inventory" EntityType="SaniteriEntities.can_inventory" />
+          <EntitySet Name="can_maintenance" EntityType="SaniteriEntities.can_maintenance" />
+          <EntitySet Name="can_transaction_log" EntityType="SaniteriEntities.can_transaction_log" />
+          <EntitySet Name="can_users" EntityType="SaniteriEntities.can_users" />
+          <AssociationSet Name="FK_can_maintenance_can_inventory" Association="SaniteriEntities.FK_can_maintenance_can_inventory">
+            <End Role="can_inventory" EntitySet="can_inventory" />
+            <End Role="can_maintenance" EntitySet="can_maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_can_transaction_log_can_inventory" Association="SaniteriEntities.FK_can_transaction_log_can_inventory">
+            <End Role="can_inventory" EntitySet="can_inventory" />
+            <End Role="can_transaction_log" EntitySet="can_transaction_log" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="can_inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="production_date" Type="DateTime" />
+          <Property Name="in_service_date" Type="DateTime" />
+          <Property Name="street" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="additional" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="state" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="zip" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="floor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="room" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="custom_1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="custom_2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="custom_3" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ip_address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="can_maintenance" Relationship="SaniteriEntities.FK_can_maintenance_can_inventory" FromRole="can_inventory" ToRole="can_maintenance" />
+          <NavigationProperty Name="can_transaction_log" Relationship="SaniteriEntities.FK_can_transaction_log_can_inventory" FromRole="can_inventory" ToRole="can_transaction_log" />
+        </EntityType>
+        <EntityType Name="can_maintenance">
+          <Key>
+            <PropertyRef Name="can_id" />
+            <PropertyRef Name="service_date" />
+          </Key>
+          <Property Name="can_id" Type="Guid" Nullable="false" />
+          <Property Name="service_date" Type="DateTime" Nullable="false" />
+          <Property Name="service_performed" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="can_inventory" Relationship="SaniteriEntities.FK_can_maintenance_can_inventory" FromRole="can_maintenance" ToRole="can_inventory" />
+        </EntityType>
+        <EntityType Name="can_transaction_log">
+          <Key>
+            <PropertyRef Name="can_id" />
+            <PropertyRef Name="event_time_stamp" />
+          </Key>
+          <Property Name="can_id" Type="Guid" Nullable="false" />
+          <Property Name="event_time_stamp" Type="DateTime" Nullable="false" />
+          <Property Name="event_type" Type="Int16" />
+          <Property Name="event_description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="event_data" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="can_inventory" Relationship="SaniteriEntities.FK_can_transaction_log_can_inventory" FromRole="can_transaction_log" ToRole="can_inventory" />
+        </EntityType>
+        <EntityType Name="can_users">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="user_id" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_can_maintenance_can_inventory">
+          <End Role="can_inventory" Type="SaniteriEntities.can_inventory" Multiplicity="1" />
+          <End Role="can_maintenance" Type="SaniteriEntities.can_maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="can_inventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="can_maintenance">
+              <PropertyRef Name="can_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_can_transaction_log_can_inventory">
+          <End Role="can_inventory" Type="SaniteriEntities.can_inventory" Multiplicity="1" />
+          <End Role="can_transaction_log" Type="SaniteriEntities.can_transaction_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="can_inventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="can_transaction_log">
+              <PropertyRef Name="can_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SaniteriEntitiesStoreContainer" CdmEntityContainer="SaniteriModelEntities">
+          <EntitySetMapping Name="can_inventory"><EntityTypeMapping TypeName="SaniteriEntities.can_inventory"><MappingFragment StoreEntitySet="can_inventory">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="production_date" ColumnName="production_date" />
+            <ScalarProperty Name="in_service_date" ColumnName="in_service_date" />
+            <ScalarProperty Name="street" ColumnName="street" />
+            <ScalarProperty Name="additional" ColumnName="additional" />
+            <ScalarProperty Name="city" ColumnName="city" />
+            <ScalarProperty Name="state" ColumnName="state" />
+            <ScalarProperty Name="zip" ColumnName="zip" />
+            <ScalarProperty Name="floor" ColumnName="floor" />
+            <ScalarProperty Name="room" ColumnName="room" />
+            <ScalarProperty Name="custom_1" ColumnName="custom_1" />
+            <ScalarProperty Name="custom_2" ColumnName="custom_2" />
+            <ScalarProperty Name="custom_3" ColumnName="custom_3" />
+            <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="can_maintenance"><EntityTypeMapping TypeName="SaniteriEntities.can_maintenance"><MappingFragment StoreEntitySet="can_maintenance">
+            <ScalarProperty Name="can_id" ColumnName="can_id" />
+            <ScalarProperty Name="service_date" ColumnName="service_date" />
+            <ScalarProperty Name="service_performed" ColumnName="service_performed" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="can_transaction_log"><EntityTypeMapping TypeName="SaniteriEntities.can_transaction_log"><MappingFragment StoreEntitySet="can_transaction_log">
+            <ScalarProperty Name="can_id" ColumnName="can_id" />
+            <ScalarProperty Name="event_time_stamp" ColumnName="event_time_stamp" />
+            <ScalarProperty Name="event_type" ColumnName="event_type" />
+            <ScalarProperty Name="event_description" ColumnName="event_description" />
+            <ScalarProperty Name="event_data" ColumnName="event_data" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="can_users"><EntityTypeMapping TypeName="SaniteriEntities.can_users"><MappingFragment StoreEntitySet="can_users">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="user_id" ColumnName="user_id" />
+            <ScalarProperty Name="first_name" ColumnName="first_name" />
+            <ScalarProperty Name="last_name" ColumnName="last_name" />
+            <ScalarProperty Name="title" ColumnName="title" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SaniteriDataModel">
+        <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="1.375" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="1" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_transaction_log" Width="1.5" PointX="3" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_users" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <AssociationConnector Association="SaniteriEntities.FK_can_maintenance_can_inventory" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.0814925130208337" />
+          <ConnectorPoint PointX="3" PointY="2.0814925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="SaniteriEntities.FK_can_transaction_log_can_inventory" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5478011067708328" />
+          <ConnectorPoint PointX="3" PointY="4.5478011067708328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
