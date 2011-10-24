@@ -50,12 +50,6 @@ namespace UMR.Saniteri.Data
 
         public static SaniteriModelEntities GetMainEntities()
         {
-            MainServerName = Properties.Settings.Default.MainServerName;
-            MainDBName = Properties.Settings.Default.MainDBName;
-            MainIntegratedSecurity = Properties.Settings.Default.MainIntegratedSecurity;
-            MainUserName = Properties.Settings.Default.MainUserName;
-            MainPassword = Properties.Settings.Default.MainPassword;
-
             EntityConnection ec = new EntityConnection(GetCurrentMainDBConnectionStr());
             return new SaniteriModelEntities(ec);
         }

@@ -11,7 +11,7 @@
     <DockPanel LastChildFill="False">
         <Border DockPanel.Dock="Top" Margin="0,0,0,5" Padding="10,0,0,0" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" Height="50">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <search:SearchBox Margin="0,1,0,0"  Height="25" Width="220" IsEnabled="{Binding IsEnable}" command="{Binding searchCommand}" labelText="Search"/>
+                <search:SearchBox Margin="0,1,0,0" Height="25" Width="220" IsEnabled="{Binding IsEnable}" command="{Binding searchCommand}" labelText="Search"/>
             </StackPanel>
         </Border>
         <toolkit:DataGrid DockPanel.Dock="Top" Height="146" MaxHeight="275" x:Name="dataGrd" 
@@ -31,12 +31,11 @@
                 <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=street}" Header="Strees"/>
                 <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=city}" Header="City"/>
                 <toolkit:DataGridTextColumn Width="100" Binding="{Binding Path=state}" Header="State"/>
-                <toolkit:DataGridTextColumn Width="75" Binding="{Binding Path=zip}" Header="Zip Code"/>
-                <toolkit:DataGridTextColumn Width="65" Binding="{Binding Path=floor}" Header="Floor No"/>
-                <toolkit:DataGridTextColumn Width="65" Binding="{Binding Path=room}" Header="Room No"/>
+                <toolkit:DataGridTextColumn Width="75"  Binding="{Binding Path=zip}" Header="Zip Code"/>
+                <toolkit:DataGridTextColumn Width="65"  Binding="{Binding Path=floor}" Header="Floor No"/>
+                <toolkit:DataGridTextColumn Width="65"  Binding="{Binding Path=room}" Header="Room No"/>
                 <toolkit:DataGridTextColumn Width="150" Binding="{Binding Path=production_date}" Header="Production Date"/>
-                <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=in_service_date}" Header="In Service Date"/>
-
+                <toolkit:DataGridTextColumn Width="*"   Binding="{Binding Path=in_service_date}" Header="In Service Date"/>
             </toolkit:DataGrid.Columns>
         </toolkit:DataGrid>
         <Border DockPanel.Dock="Top" Padding="5,5,5,15" Margin="0,15,0,0" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" Height="Auto">

@@ -25,7 +25,7 @@ namespace UMR.Saniteri.Data.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FORTRESS64")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".")]
         public string MainServerName {
             get {
                 return ((string)(this["MainServerName"]));

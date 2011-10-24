@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UMR.Saniteri.Data")]
+[assembly: AssemblyTitle("UMR.Saniteri.CommunicationService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UMR.Saniteri.Data")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("UMR.Saniteri.CommunicationService")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("18b1a477-6fb2-451c-ad8a-eead5df67c95")]
+[assembly: Guid("1035e193-bd31-4287-8ee4-766f7ce4c4af")]
 
 // Version information for an assembly consists of the following four values:
 //

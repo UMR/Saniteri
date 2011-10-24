@@ -75,11 +75,16 @@ namespace UMR.Saniteri
             switch (_viewName)
             {
                 case "CanConfig":
-                    CanConfigViewModel hm = new CanConfigViewModel();
+                    var hm = new CanConfigViewModel();
                     hm.OnDirty += new EventHandler(hm_OnDirty);
                     container.Content = hm;
                     break;
+                case "transactionLog":
+                    var logView = new CanLogViewModel();
+                    container.Content = logView;
+                    break;
                 default:
+                    container.Content = null;
                     break;
             }
         }

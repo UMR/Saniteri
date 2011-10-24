@@ -91,10 +91,10 @@
                 <Style TargetType="toolkit:DataGridRow">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#BBEBFD" />
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#CCDAFF" />
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="true">
                             <Setter Property="BorderThickness" Value="1"/>
@@ -466,4 +466,53 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+    <SolidColorBrush x:Key="controlBorderBrush" Color="#3C7FB1"/>
+    <SolidColorBrush x:Key="controlBorderNormalBrush" Color="#707070"/>
+
+    <LinearGradientBrush x:Key="messageBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#FFFFD7" Offset="0.0"/>
+        <GradientStop Color="#FFFFB2" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="messageBorder" Color="#DCDC41"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+
+    <LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#DCEBFC" Offset="0" />
+        <GradientStop Color="#C1DBFC" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="{x:Static SystemColors.ControlBrushKey}" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#F3F3F3" Offset="0"/>
+        <GradientStop Color="#EBEBEB" Offset="0.5"/>
+        <GradientStop Color="#DDDDDD" Offset="0.5"/>
+        <GradientStop Color="#C4CCD9" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="stripesBrush" EndPoint="140.6,74.4" StartPoint="138.4,72.8" MappingMode="Absolute" SpreadMethod="Repeat">
+        <GradientStop Color="#00000000" Offset="0"/>
+        <GradientStop Color="#FF98D8FF" Offset="0.073"/>
+        <GradientStop Color="#00000000" Offset="0.156"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="FocusBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#E5C365" Offset="0.0"/>
+        <GradientStop Color="#E5C365" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="cellStyle" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Focusable" Value="false"/>
+    </Style>
+
+    <Style TargetType="toolkit:DataGridCell">
+        <Setter Property="Focusable" Value="false"/>
+    </Style>
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+
 </ResourceDictionary>

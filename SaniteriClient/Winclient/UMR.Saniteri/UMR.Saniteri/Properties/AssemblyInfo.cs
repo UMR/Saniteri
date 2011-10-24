@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("UMR.Saniteri")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("UMR")]
 [assembly: AssemblyProduct("UMR.Saniteri")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

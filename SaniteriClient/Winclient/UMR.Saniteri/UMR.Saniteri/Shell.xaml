@@ -27,11 +27,11 @@
         </Menu>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <cControl:CustomToolBarButton x:Name="btnHome" Tag="Home" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Home" EnabledButtonImage="\Resources\Images\house.png" DisabledButtonImage="\Resources\Images\house.png" ToolTip="Home"/>
+                <cControl:CustomToolBarButton x:Name="btnHome" Tag="Home" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Home" EnabledButtonImage="\Resources\Images\house.png" DisabledButtonImage="\Resources\Images\house.png" ToolTip="Home" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnCanConfig" Tag="CanConfig" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Can" EnabledButtonImage="\Resources\Images\coins.png" DisabledButtonImage="\Resources\Images\coins.png" ToolTip="Can Configuration" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
-                <cControl:CustomToolBarButton x:Name="btnLogs" Tag="transactionLog" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Logs" EnabledButtonImage="\Resources\Images\database_table.png" DisabledButtonImage="\Resources\Images\database_table.png" ToolTip="Transaction and Maintanance Log Details"/>
+                <cControl:CustomToolBarButton x:Name="btnLogs" Tag="transactionLog" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Logs" EnabledButtonImage="\Resources\Images\database_table.png" DisabledButtonImage="\Resources\Images\database_table.png" ToolTip="Transaction and Maintanance Log Details" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnAbout" Tag="about" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="About" EnabledButtonImage="\Resources\Images\book_open.png" DisabledButtonImage="\Resources\Images\book_open.png" ToolTip="About"/>
                 <Separator Focusable="False" />
