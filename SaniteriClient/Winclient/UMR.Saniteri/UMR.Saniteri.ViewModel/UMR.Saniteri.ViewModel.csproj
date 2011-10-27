@@ -54,6 +54,10 @@
       <Project>{F08EA7BB-54DF-4ED0-9658-412663FF5785}</Project>
       <Name>UMR.Saniteri.Command</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UMR.Saniteri.Common\UMR.Saniteri.Common.csproj">
+      <Project>{03F41C72-E32D-4680-AF24-1B7A1407A17B}</Project>
+      <Name>UMR.Saniteri.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UMR.Saniteri.Data\UMR.Saniteri.Data.csproj">
       <Project>{9CE70A1A-94D6-4965-A0DB-BCD82AE6323E}</Project>
       <Name>UMR.Saniteri.Data</Name>

@@ -18,8 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_command_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_command", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_command), true)]
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_EventsLog_can_EventCodes", "can_eventcodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_eventcodes), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_maintenance_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_maintenance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_maintenance), true)]
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_transaction_log_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_Status_can_StatusCode", "can_statuscode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_statuscode), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
 
 #endregion
 
@@ -74,6 +78,38 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<can_command> can_command
+        {
+            get
+            {
+                if ((_can_command == null))
+                {
+                    _can_command = base.CreateObjectSet<can_command>("can_command");
+                }
+                return _can_command;
+            }
+        }
+        private ObjectSet<can_command> _can_command;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<can_eventcodes> can_eventcodes
+        {
+            get
+            {
+                if ((_can_eventcodes == null))
+                {
+                    _can_eventcodes = base.CreateObjectSet<can_eventcodes>("can_eventcodes");
+                }
+                return _can_eventcodes;
+            }
+        }
+        private ObjectSet<can_eventcodes> _can_eventcodes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<can_inventory> can_inventory
         {
             get
@@ -106,6 +142,38 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<can_status> can_status
+        {
+            get
+            {
+                if ((_can_status == null))
+                {
+                    _can_status = base.CreateObjectSet<can_status>("can_status");
+                }
+                return _can_status;
+            }
+        }
+        private ObjectSet<can_status> _can_status;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<can_statuscode> can_statuscode
+        {
+            get
+            {
+                if ((_can_statuscode == null))
+                {
+                    _can_statuscode = base.CreateObjectSet<can_statuscode>("can_statuscode");
+                }
+                return _can_statuscode;
+            }
+        }
+        private ObjectSet<can_statuscode> _can_statuscode;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<can_transaction_log> can_transaction_log
         {
             get
@@ -134,9 +202,41 @@ namespace UMR.Saniteri.Data
             }
         }
         private ObjectSet<can_users> _can_users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vw_can_GetAllCanId> vw_can_GetAllCanId
+        {
+            get
+            {
+                if ((_vw_can_GetAllCanId == null))
+                {
+                    _vw_can_GetAllCanId = base.CreateObjectSet<vw_can_GetAllCanId>("vw_can_GetAllCanId");
+                }
+                return _vw_can_GetAllCanId;
+            }
+        }
+        private ObjectSet<vw_can_GetAllCanId> _vw_can_GetAllCanId;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the can_command EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTocan_command(can_command can_command)
+        {
+            base.AddObject("can_command", can_command);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the can_eventcodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTocan_eventcodes(can_eventcodes can_eventcodes)
+        {
+            base.AddObject("can_eventcodes", can_eventcodes);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the can_inventory EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -155,6 +255,22 @@ namespace UMR.Saniteri.Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the can_status EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTocan_status(can_status can_status)
+        {
+            base.AddObject("can_status", can_status);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the can_statuscode EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTocan_statuscode(can_statuscode can_statuscode)
+        {
+            base.AddObject("can_statuscode", can_statuscode);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the can_transaction_log EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTocan_transaction_log(can_transaction_log can_transaction_log)
@@ -169,6 +285,14 @@ namespace UMR.Saniteri.Data
         {
             base.AddObject("can_users", can_users);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vw_can_GetAllCanId EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovw_can_GetAllCanId(vw_can_GetAllCanId vw_can_GetAllCanId)
+        {
+            base.AddObject("vw_can_GetAllCanId", vw_can_GetAllCanId);
+        }
 
         #endregion
     }
@@ -177,6 +301,284 @@ namespace UMR.Saniteri.Data
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_command")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class can_command : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new can_command object.
+        /// </summary>
+        /// <param name="command_id">Initial value of the command_id property.</param>
+        /// <param name="can_id">Initial value of the can_id property.</param>
+        /// <param name="can_lid_status">Initial value of the can_lid_status property.</param>
+        /// <param name="command_timestamp">Initial value of the command_timestamp property.</param>
+        public static can_command Createcan_command(global::System.Guid command_id, global::System.Guid can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
+        {
+            can_command can_command = new can_command();
+            can_command.command_id = command_id;
+            can_command.can_id = can_id;
+            can_command.can_lid_status = can_lid_status;
+            can_command.command_timestamp = command_timestamp;
+            return can_command;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid command_id
+        {
+            get
+            {
+                return _command_id;
+            }
+            set
+            {
+                if (_command_id != value)
+                {
+                    Oncommand_idChanging(value);
+                    ReportPropertyChanging("command_id");
+                    _command_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("command_id");
+                    Oncommand_idChanged();
+                }
+            }
+        }
+        private global::System.Guid _command_id;
+        partial void Oncommand_idChanging(global::System.Guid value);
+        partial void Oncommand_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid can_id
+        {
+            get
+            {
+                return _can_id;
+            }
+            set
+            {
+                Oncan_idChanging(value);
+                ReportPropertyChanging("can_id");
+                _can_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("can_id");
+                Oncan_idChanged();
+            }
+        }
+        private global::System.Guid _can_id;
+        partial void Oncan_idChanging(global::System.Guid value);
+        partial void Oncan_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte can_lid_status
+        {
+            get
+            {
+                return _can_lid_status;
+            }
+            set
+            {
+                Oncan_lid_statusChanging(value);
+                ReportPropertyChanging("can_lid_status");
+                _can_lid_status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("can_lid_status");
+                Oncan_lid_statusChanged();
+            }
+        }
+        private global::System.Byte _can_lid_status;
+        partial void Oncan_lid_statusChanging(global::System.Byte value);
+        partial void Oncan_lid_statusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime command_timestamp
+        {
+            get
+            {
+                return _command_timestamp;
+            }
+            set
+            {
+                Oncommand_timestampChanging(value);
+                ReportPropertyChanging("command_timestamp");
+                _command_timestamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("command_timestamp");
+                Oncommand_timestampChanged();
+            }
+        }
+        private global::System.DateTime _command_timestamp;
+        partial void Oncommand_timestampChanging(global::System.DateTime value);
+        partial void Oncommand_timestampChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_command_can_inventory", "can_inventory")]
+        public can_inventory can_inventory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_command_can_inventory", "can_inventory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_command_can_inventory", "can_inventory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_inventory> can_inventoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_command_can_inventory", "can_inventory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_inventory>("SaniteriEntities.FK_can_command_can_inventory", "can_inventory", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_eventcodes")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class can_eventcodes : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new can_eventcodes object.
+        /// </summary>
+        /// <param name="event_type">Initial value of the event_type property.</param>
+        public static can_eventcodes Createcan_eventcodes(global::System.Int32 event_type)
+        {
+            can_eventcodes can_eventcodes = new can_eventcodes();
+            can_eventcodes.event_type = event_type;
+            return can_eventcodes;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 event_type
+        {
+            get
+            {
+                return _event_type;
+            }
+            set
+            {
+                if (_event_type != value)
+                {
+                    Onevent_typeChanging(value);
+                    ReportPropertyChanging("event_type");
+                    _event_type = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("event_type");
+                    Onevent_typeChanged();
+                }
+            }
+        }
+        private global::System.Int32 _event_type;
+        partial void Onevent_typeChanging(global::System.Int32 value);
+        partial void Onevent_typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_EventsLog_can_EventCodes", "can_transaction_log")]
+        public EntityCollection<can_transaction_log> can_transaction_log
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_transaction_log>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_transaction_log");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_transaction_log>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_transaction_log", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -191,11 +593,11 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// Create a new can_inventory object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        public static can_inventory Createcan_inventory(global::System.Guid id)
+        /// <param name="can_id">Initial value of the can_id property.</param>
+        public static can_inventory Createcan_inventory(global::System.Guid can_id)
         {
             can_inventory can_inventory = new can_inventory();
-            can_inventory.id = id;
+            can_inventory.can_id = can_id;
             return can_inventory;
         }
 
@@ -207,27 +609,27 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid id
+        public global::System.Guid can_id
         {
             get
             {
-                return _id;
+                return _can_id;
             }
             set
             {
-                if (_id != value)
+                if (_can_id != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    Oncan_idChanging(value);
+                    ReportPropertyChanging("can_id");
+                    _can_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("can_id");
+                    Oncan_idChanged();
                 }
             }
         }
-        private global::System.Guid _id;
-        partial void OnidChanging(global::System.Guid value);
-        partial void OnidChanged();
+        private global::System.Guid _can_id;
+        partial void Oncan_idChanging(global::System.Guid value);
+        partial void Oncan_idChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -551,6 +953,28 @@ namespace UMR.Saniteri.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_command_can_inventory", "can_command")]
+        public EntityCollection<can_command> can_command
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_command>("SaniteriEntities.FK_can_command_can_inventory", "can_command");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_command>("SaniteriEntities.FK_can_command_can_inventory", "can_command", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_maintenance_can_inventory", "can_maintenance")]
         public EntityCollection<can_maintenance> can_maintenance
         {
@@ -563,6 +987,28 @@ namespace UMR.Saniteri.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_maintenance>("SaniteriEntities.FK_can_maintenance_can_inventory", "can_maintenance", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_status")]
+        public EntityCollection<can_status> can_status
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_inventory", "can_status");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_inventory", "can_status", value);
                 }
             }
         }
@@ -744,6 +1190,342 @@ namespace UMR.Saniteri.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_status")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class can_status : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new can_status object.
+        /// </summary>
+        /// <param name="seqno">Initial value of the seqno property.</param>
+        /// <param name="can_id">Initial value of the can_id property.</param>
+        public static can_status Createcan_status(global::System.Guid seqno, global::System.Guid can_id)
+        {
+            can_status can_status = new can_status();
+            can_status.seqno = seqno;
+            can_status.can_id = can_id;
+            return can_status;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid seqno
+        {
+            get
+            {
+                return _seqno;
+            }
+            set
+            {
+                if (_seqno != value)
+                {
+                    OnseqnoChanging(value);
+                    ReportPropertyChanging("seqno");
+                    _seqno = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("seqno");
+                    OnseqnoChanged();
+                }
+            }
+        }
+        private global::System.Guid _seqno;
+        partial void OnseqnoChanging(global::System.Guid value);
+        partial void OnseqnoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid can_id
+        {
+            get
+            {
+                return _can_id;
+            }
+            set
+            {
+                Oncan_idChanging(value);
+                ReportPropertyChanging("can_id");
+                _can_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("can_id");
+                Oncan_idChanged();
+            }
+        }
+        private global::System.Guid _can_id;
+        partial void Oncan_idChanging(global::System.Guid value);
+        partial void Oncan_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> status_type
+        {
+            get
+            {
+                return _status_type;
+            }
+            set
+            {
+                Onstatus_typeChanging(value);
+                ReportPropertyChanging("status_type");
+                _status_type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("status_type");
+                Onstatus_typeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _status_type;
+        partial void Onstatus_typeChanging(Nullable<global::System.Int32> value);
+        partial void Onstatus_typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> edate
+        {
+            get
+            {
+                return _edate;
+            }
+            set
+            {
+                OnedateChanging(value);
+                ReportPropertyChanging("edate");
+                _edate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("edate");
+                OnedateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _edate;
+        partial void OnedateChanging(Nullable<global::System.DateTime> value);
+        partial void OnedateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String status_description
+        {
+            get
+            {
+                return _status_description;
+            }
+            set
+            {
+                Onstatus_descriptionChanging(value);
+                ReportPropertyChanging("status_description");
+                _status_description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("status_description");
+                Onstatus_descriptionChanged();
+            }
+        }
+        private global::System.String _status_description;
+        partial void Onstatus_descriptionChanging(global::System.String value);
+        partial void Onstatus_descriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_inventory")]
+        public can_inventory can_inventory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_inventory> can_inventoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_StatusCode", "can_statuscode")]
+        public can_statuscode can_statuscode
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_statuscode>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_statuscode").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_statuscode>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_statuscode").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_statuscode> can_statuscodeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_statuscode>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_statuscode");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_statuscode>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_statuscode", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_statuscode")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class can_statuscode : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new can_statuscode object.
+        /// </summary>
+        /// <param name="status_type">Initial value of the status_type property.</param>
+        public static can_statuscode Createcan_statuscode(global::System.Int32 status_type)
+        {
+            can_statuscode can_statuscode = new can_statuscode();
+            can_statuscode.status_type = status_type;
+            return can_statuscode;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 status_type
+        {
+            get
+            {
+                return _status_type;
+            }
+            set
+            {
+                if (_status_type != value)
+                {
+                    Onstatus_typeChanging(value);
+                    ReportPropertyChanging("status_type");
+                    _status_type = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("status_type");
+                    Onstatus_typeChanged();
+                }
+            }
+        }
+        private global::System.Int32 _status_type;
+        partial void Onstatus_typeChanging(global::System.Int32 value);
+        partial void Onstatus_typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_StatusCode", "can_status")]
+        public EntityCollection<can_status> can_status
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_status");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_StatusCode", "can_status", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_transaction_log")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -754,11 +1536,13 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// Create a new can_transaction_log object.
         /// </summary>
+        /// <param name="seqno">Initial value of the seqno property.</param>
         /// <param name="can_id">Initial value of the can_id property.</param>
         /// <param name="event_time_stamp">Initial value of the event_time_stamp property.</param>
-        public static can_transaction_log Createcan_transaction_log(global::System.Guid can_id, global::System.DateTime event_time_stamp)
+        public static can_transaction_log Createcan_transaction_log(global::System.Guid seqno, global::System.Guid can_id, global::System.DateTime event_time_stamp)
         {
             can_transaction_log can_transaction_log = new can_transaction_log();
+            can_transaction_log.seqno = seqno;
             can_transaction_log.can_id = can_id;
             can_transaction_log.event_time_stamp = event_time_stamp;
             return can_transaction_log;
@@ -772,6 +1556,33 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Guid seqno
+        {
+            get
+            {
+                return _seqno;
+            }
+            set
+            {
+                if (_seqno != value)
+                {
+                    OnseqnoChanging(value);
+                    ReportPropertyChanging("seqno");
+                    _seqno = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("seqno");
+                    OnseqnoChanged();
+                }
+            }
+        }
+        private global::System.Guid _seqno;
+        partial void OnseqnoChanging(global::System.Guid value);
+        partial void OnseqnoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Guid can_id
         {
             get
@@ -780,14 +1591,11 @@ namespace UMR.Saniteri.Data
             }
             set
             {
-                if (_can_id != value)
-                {
-                    Oncan_idChanging(value);
-                    ReportPropertyChanging("can_id");
-                    _can_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("can_id");
-                    Oncan_idChanged();
-                }
+                Oncan_idChanging(value);
+                ReportPropertyChanging("can_id");
+                _can_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("can_id");
+                Oncan_idChanged();
             }
         }
         private global::System.Guid _can_id;
@@ -797,7 +1605,7 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime event_time_stamp
         {
@@ -807,14 +1615,11 @@ namespace UMR.Saniteri.Data
             }
             set
             {
-                if (_event_time_stamp != value)
-                {
-                    Onevent_time_stampChanging(value);
-                    ReportPropertyChanging("event_time_stamp");
-                    _event_time_stamp = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("event_time_stamp");
-                    Onevent_time_stampChanged();
-                }
+                Onevent_time_stampChanging(value);
+                ReportPropertyChanging("event_time_stamp");
+                _event_time_stamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("event_time_stamp");
+                Onevent_time_stampChanged();
             }
         }
         private global::System.DateTime _event_time_stamp;
@@ -826,7 +1631,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int16> event_type
+        public Nullable<global::System.Int32> event_type
         {
             get
             {
@@ -841,8 +1646,8 @@ namespace UMR.Saniteri.Data
                 Onevent_typeChanged();
             }
         }
-        private Nullable<global::System.Int16> _event_type;
-        partial void Onevent_typeChanging(Nullable<global::System.Int16> value);
+        private Nullable<global::System.Int32> _event_type;
+        partial void Onevent_typeChanging(Nullable<global::System.Int32> value);
         partial void Onevent_typeChanged();
     
         /// <summary>
@@ -892,10 +1697,96 @@ namespace UMR.Saniteri.Data
         private global::System.String _event_data;
         partial void Onevent_dataChanging(global::System.String value);
         partial void Onevent_dataChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> tag_id
+        {
+            get
+            {
+                return _tag_id;
+            }
+            set
+            {
+                Ontag_idChanging(value);
+                ReportPropertyChanging("tag_id");
+                _tag_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("tag_id");
+                Ontag_idChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _tag_id;
+        partial void Ontag_idChanging(Nullable<global::System.Int64> value);
+        partial void Ontag_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_EventsLog_can_EventCodes", "can_eventcodes")]
+        public can_eventcodes can_eventcodes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_eventcodes>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_eventcodes").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_eventcodes>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_eventcodes").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_eventcodes> can_eventcodesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_eventcodes>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_eventcodes");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_eventcodes>("SaniteriEntities.FK_can_EventsLog_can_EventCodes", "can_eventcodes", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1089,6 +1980,61 @@ namespace UMR.Saniteri.Data
         private global::System.String _title;
         partial void OntitleChanging(global::System.String value);
         partial void OntitleChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="vw_can_GetAllCanId")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vw_can_GetAllCanId : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new vw_can_GetAllCanId object.
+        /// </summary>
+        /// <param name="can_id">Initial value of the can_id property.</param>
+        public static vw_can_GetAllCanId Createvw_can_GetAllCanId(global::System.Guid can_id)
+        {
+            vw_can_GetAllCanId vw_can_GetAllCanId = new vw_can_GetAllCanId();
+            vw_can_GetAllCanId.can_id = can_id;
+            return vw_can_GetAllCanId;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid can_id
+        {
+            get
+            {
+                return _can_id;
+            }
+            set
+            {
+                if (_can_id != value)
+                {
+                    Oncan_idChanging(value);
+                    ReportPropertyChanging("can_id");
+                    _can_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("can_id");
+                    Oncan_idChanged();
+                }
+            }
+        }
+        private global::System.Guid _can_id;
+        partial void Oncan_idChanging(global::System.Guid value);
+        partial void Oncan_idChanged();
 
         #endregion
     

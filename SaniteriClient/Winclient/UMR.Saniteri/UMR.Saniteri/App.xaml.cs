@@ -8,6 +8,7 @@ using System.Diagnostics;
 using UMR.Saniteri.DataFactory;
 using UMR.Saniteri.Data;
 using UMR.Saniteri;
+using UMR.Saniteri.Common;
 
 namespace UMR.Saniteri
 {
@@ -22,6 +23,16 @@ namespace UMR.Saniteri
             base.OnStartup(e);
             InitializeConnectionInfo();
             checkDatabase();
+            InitializeDialogManager();
+        }
+
+        private void InitializeDialogManager()
+        {
+            // messagebox
+           DialogManager.popup = (Action<string>)(msg => MessageBox.Show(msg));
+            // confirm box
+           DialogManager.confirm = (Func<string, string, bool>)((msg, capt) =>
+                MessageBox.Show(msg, capt, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes);
         }
 
         private void InitializeConnectionInfo()

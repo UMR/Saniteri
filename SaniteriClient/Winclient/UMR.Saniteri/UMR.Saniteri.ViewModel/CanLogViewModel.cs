@@ -98,9 +98,9 @@ namespace UMR.Saniteri.ViewModel
                     _selectedCan = value;
                     using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
                     {
-                        CanConfig = context.can_inventory.Where(r => r.id == value.id).FirstOrDefault<can_inventory>();
-                        CanEventsList = context.can_transaction_log.Where(r => r.can_id == value.id).ToList<can_transaction_log>();
-                        CanMaintenanceList = context.can_maintenance.Where(r => r.can_id == value.id).ToList<can_maintenance>();
+                        CanConfig = context.can_inventory.Where(r => r.can_id == value.can_id).FirstOrDefault<can_inventory>();
+                        CanEventsList = context.can_transaction_log.Where(r => r.can_id == value.can_id).ToList<can_transaction_log>();
+                        CanMaintenanceList = context.can_maintenance.Where(r => r.can_id == value.can_id).ToList<can_maintenance>();
                     }
                 }
             }
@@ -126,8 +126,8 @@ namespace UMR.Saniteri.ViewModel
                         || r.zip.Contains(searchData))).ToList();
                     if (CanConfigList.Count > 0 && CanConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
                     {
-                        var id = CanConfigList[_selectedIndex].id;
-                        CanConfig = context.can_inventory.Where(r => r.id == id).FirstOrDefault<can_inventory>();
+                        var id = CanConfigList[_selectedIndex].can_id;
+                        CanConfig = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
                         return true;
                     }
                     else

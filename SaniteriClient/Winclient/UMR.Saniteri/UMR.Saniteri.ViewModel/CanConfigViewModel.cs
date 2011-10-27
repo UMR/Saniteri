@@ -6,6 +6,7 @@ using System.ComponentModel;
 using UMR.Saniteri.Data;
 using UMR.Saniteri.Command;
 using System.Windows.Input;
+using UMR.Saniteri.Common;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -48,8 +49,8 @@ namespace UMR.Saniteri.ViewModel
                 CanConfigList = context.can_inventory.ToList();
                 if (CanConfigList.Count > 0 && CanConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
                 {
-                    var id = CanConfigList[_selectedIndex].id;
-                    CanConfig = context.can_inventory.Where(r => r.id == id).FirstOrDefault<can_inventory>();
+                    var id = CanConfigList[_selectedIndex].can_id;
+                    CanConfig = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
                 }
             }
             IsEnable = true;
@@ -143,23 +144,25 @@ namespace UMR.Saniteri.ViewModel
 
         private void DeleteCommand()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            if (DialogManager.confirm("Do you really want to delete?", "Delete Confirmation"))
             {
-                var id = _canConfig.id;
-                var tmpCan = context.can_inventory.Where(r => r.id == id).FirstOrDefault<can_inventory>();
-                context.DeleteObject(tmpCan);
-               var result = context.SaveChanges();
-               if (result > 0)
-               {
-                   result = selectedIndex;
-                   _selectedIndex = -1;
-                   LoadInDetails();
-                   CanConfig.SetButtonState(true);
-                   selectedIndex = result > 1 ? result - 1 : 0;
-                   if (CanConfigList.Count <= 0)
-                       CanConfig = new can_inventory();
-               }
-
+                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                {
+                    var id = _canConfig.can_id;
+                    var tmpCan = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
+                    context.DeleteObject(tmpCan);
+                    var result = context.SaveChanges();
+                    if (result > 0)
+                    {
+                        result = selectedIndex;
+                        _selectedIndex = -1;
+                        LoadInDetails();
+                        CanConfig.SetButtonState(true);
+                        selectedIndex = result > 1 ? result - 1 : 0;
+                        if (CanConfigList.Count <= 0)
+                            CanConfig = new can_inventory();
+                    }
+                }
             }
         }
 
@@ -179,15 +182,15 @@ namespace UMR.Saniteri.ViewModel
         {
             using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
             {
-                if (CanConfig.id == Guid.Empty)
+                if (CanConfig.can_id == Guid.Empty)
                 {
-                    CanConfig.id = Guid.NewGuid();
+                    CanConfig.can_id = Guid.NewGuid();
                     context.AddTocan_inventory(CanConfig);
                 }
                 else
                 {
-                    var id = _canConfig.id;
-                    var tmpCan = context.can_inventory.Where(r => r.id == id).FirstOrDefault<can_inventory>();
+                    var id = _canConfig.can_id;
+                    var tmpCan = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
                     context.Detach(tmpCan);
                     context.Attach(_canConfig);
                     context.ObjectStateManager.ChangeObjectState(_canConfig, System.Data.EntityState.Modified);
@@ -246,7 +249,7 @@ namespace UMR.Saniteri.ViewModel
                     _selectedCustomer = value;
                     using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
                     {
-                        CanConfig = context.can_inventory.Where(r => r.id == value.id).FirstOrDefault<can_inventory>();
+                        CanConfig = context.can_inventory.Where(r => r.can_id == value.can_id).FirstOrDefault<can_inventory>();
                         CanConfig.SetButtonState(true);
                     }
                 }
@@ -273,8 +276,8 @@ namespace UMR.Saniteri.ViewModel
                         || r.zip.Contains(searchData))).ToList();
                     if (CanConfigList.Count > 0 && CanConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
                     {
-                        var id = CanConfigList[_selectedIndex].id;
-                        CanConfig = context.can_inventory.Where(r => r.id == id).FirstOrDefault<can_inventory>();
+                        var id = CanConfigList[_selectedIndex].can_id;
+                        CanConfig = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
                         return true;
                     }
                     else

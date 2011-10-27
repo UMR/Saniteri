@@ -26,7 +26,7 @@
                 command:CommandBehavior.CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}"
                 ItemsSource="{Binding CanConfigList, UpdateSourceTrigger=PropertyChanged}">
             <toolkit:DataGrid.Columns>
-                <toolkit:DataGridTextColumn Width="230" Binding="{Binding Path=id}" Header="Can ID"/>
+                <toolkit:DataGridTextColumn Width="230" Binding="{Binding Path=can_id}" Header="Can ID"/>
                 <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=ip_address}" Header="IP Address"/>
                 <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=street}" Header="Strees"/>
                 <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=city}" Header="City"/>
