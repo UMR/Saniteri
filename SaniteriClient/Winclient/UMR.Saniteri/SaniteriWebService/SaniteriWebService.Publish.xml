@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\ruddin\Desktop\WebService" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="D:\Local\SaniteriWebService\SaniteriWebService\" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/SaniteriWebService.pdb" publishTime="10/27/2011 12:03:11" />
+    <file relUrl="bin/System.ServiceModel.Activation.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/System.ServiceModel.Web.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/System.ServiceModel.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="Web.config" publishTime="10/27/2011 12:03:11" />
+    <file relUrl="bin/System.Web.Services.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/System.Web.Extensions.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/System.Web.Entity.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="Global.asax" publishTime="10/26/2011 12:28:27" />
+    <file relUrl="bin/SaniteriWebService.dll" publishTime="10/27/2011 12:03:11" />
+  </publishProfile>
+</publishData>
