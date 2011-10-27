@@ -22,11 +22,6 @@
       [can_users].[title] AS [title]
       FROM [dbo].[can_users] AS [can_users]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_can_GetAllCanId" EntityType="SaniteriEntities.Store.vw_can_GetAllCanId" store:Type="Views" store:Schema="dbo" store:Name="vw_can_GetAllCanId">
-            <DefiningQuery>SELECT 
-      [vw_can_GetAllCanId].[can_id] AS [can_id]
-      FROM [dbo].[vw_can_GetAllCanId] AS [vw_can_GetAllCanId]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_can_command_can_inventory" Association="SaniteriEntities.Store.FK_can_command_can_inventory">
             <End Role="can_inventory" EntitySet="can_inventory" />
             <End Role="can_command" EntitySet="can_command" />
@@ -140,15 +135,6 @@
           <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="title" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'saniteri_main.dbo.vw_can_GetAllCanId' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="vw_can_GetAllCanId">
-          <Key>
-            <PropertyRef Name="can_id" />
-          </Key>
-          <Property Name="can_id" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <Association Name="FK_can_command_can_inventory">
           <End Role="can_inventory" Type="SaniteriEntities.Store.can_inventory" Multiplicity="1" />
           <End Role="can_command" Type="SaniteriEntities.Store.can_command" Multiplicity="*" />
@@ -234,7 +220,6 @@
           <EntitySet Name="can_statuscode" EntityType="SaniteriEntities.can_statuscode" />
           <EntitySet Name="can_transaction_log" EntityType="SaniteriEntities.can_transaction_log" />
           <EntitySet Name="can_users" EntityType="SaniteriEntities.can_users" />
-          <EntitySet Name="vw_can_GetAllCanId" EntityType="SaniteriEntities.vw_can_GetAllCanId" />
           <AssociationSet Name="FK_can_command_can_inventory" Association="SaniteriEntities.FK_can_command_can_inventory">
             <End Role="can_inventory" EntitySet="can_inventory" />
             <End Role="can_command" EntitySet="can_command" />
@@ -356,12 +341,6 @@
           <Property Type="String" Name="first_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="last_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="title" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="vw_can_GetAllCanId">
-          <Key>
-            <PropertyRef Name="can_id" />
-          </Key>
-          <Property Type="Guid" Name="can_id" Nullable="false" />
         </EntityType>
         <Association Name="FK_can_command_can_inventory">
           <End Type="SaniteriEntities.can_inventory" Role="can_inventory" Multiplicity="1" />
@@ -532,13 +511,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_can_GetAllCanId">
-            <EntityTypeMapping TypeName="SaniteriEntities.vw_can_GetAllCanId">
-              <MappingFragment StoreEntitySet="vw_can_GetAllCanId">
-                <ScalarProperty Name="can_id" ColumnName="can_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -568,7 +540,6 @@
         <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="10.25" Height="1.595683593749996" />
         <EntityTypeShape EntityType="SaniteriEntities.can_transaction_log" Width="1.5" PointX="6" PointY="1.625" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_users" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="SaniteriEntities.vw_can_GetAllCanId" Width="1.5" PointX="8.75" PointY="0.75" Height="1.2110807291666674" />
         <AssociationConnector Association="SaniteriEntities.FK_can_command_can_inventory" >
           <ConnectorPoint PointX="2.25" PointY="5.8026432291666694" />
           <ConnectorPoint PointX="3" PointY="5.8026432291666694" />

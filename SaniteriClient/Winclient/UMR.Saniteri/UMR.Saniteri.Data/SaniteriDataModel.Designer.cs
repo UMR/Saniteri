@@ -202,22 +202,6 @@ namespace UMR.Saniteri.Data
             }
         }
         private ObjectSet<can_users> _can_users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<vw_can_GetAllCanId> vw_can_GetAllCanId
-        {
-            get
-            {
-                if ((_vw_can_GetAllCanId == null))
-                {
-                    _vw_can_GetAllCanId = base.CreateObjectSet<vw_can_GetAllCanId>("vw_can_GetAllCanId");
-                }
-                return _vw_can_GetAllCanId;
-            }
-        }
-        private ObjectSet<vw_can_GetAllCanId> _vw_can_GetAllCanId;
 
         #endregion
         #region AddTo Methods
@@ -284,14 +268,6 @@ namespace UMR.Saniteri.Data
         public void AddTocan_users(can_users can_users)
         {
             base.AddObject("can_users", can_users);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the vw_can_GetAllCanId EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTovw_can_GetAllCanId(vw_can_GetAllCanId vw_can_GetAllCanId)
-        {
-            base.AddObject("vw_can_GetAllCanId", vw_can_GetAllCanId);
         }
 
         #endregion
@@ -1980,61 +1956,6 @@ namespace UMR.Saniteri.Data
         private global::System.String _title;
         partial void OntitleChanging(global::System.String value);
         partial void OntitleChanged();
-
-        #endregion
-    
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="vw_can_GetAllCanId")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class vw_can_GetAllCanId : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new vw_can_GetAllCanId object.
-        /// </summary>
-        /// <param name="can_id">Initial value of the can_id property.</param>
-        public static vw_can_GetAllCanId Createvw_can_GetAllCanId(global::System.Guid can_id)
-        {
-            vw_can_GetAllCanId vw_can_GetAllCanId = new vw_can_GetAllCanId();
-            vw_can_GetAllCanId.can_id = can_id;
-            return vw_can_GetAllCanId;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid can_id
-        {
-            get
-            {
-                return _can_id;
-            }
-            set
-            {
-                if (_can_id != value)
-                {
-                    Oncan_idChanging(value);
-                    ReportPropertyChanging("can_id");
-                    _can_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("can_id");
-                    Oncan_idChanged();
-                }
-            }
-        }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
-        partial void Oncan_idChanged();
 
         #endregion
     
