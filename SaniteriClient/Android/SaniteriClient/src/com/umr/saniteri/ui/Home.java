@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.umr.saniteri.connection.RestClient;
 import com.umr.saniteri.connection.RestClient.RequestMethod;
 import com.umr.saniteri.lib.CanListDataAdapter;
@@ -117,12 +118,8 @@ public class Home extends TabActivity {
 				restClient = new RestClient("http://" + ipAddressForWebService
 						+ getString(R.string.url_InsertCanCommand));
 				restClient.AddHeader("Content-Type", "application/json");
-				restClient.AddParam("commandId", id.toString());
 				restClient.AddParam("canId", selectedUnitNumber);
 				restClient.AddParam("canLidStatus", "1");
-				dateTime = new Date();
-				restClient.AddParam("commandTimeStamp", DateFormat
-						.getInstance().format(dateTime));
 				try {
 					restClient.Execute(RequestMethod.POST);
 
@@ -151,12 +148,8 @@ public class Home extends TabActivity {
 				restClient = new RestClient("http://" + ipAddressForWebService
 						+ getString(R.string.url_InsertCanCommand));
 				restClient.AddHeader("Content-Type", "application/json");
-				restClient.AddParam("commandId", id.toString());
 				restClient.AddParam("canId", selectedUnitNumber);
 				restClient.AddParam("canLidStatus", "0");
-				dateTime = new Date();
-				restClient.AddParam("commandTimeStamp", DateFormat
-						.getInstance().format(dateTime));
 
 				try {
 					restClient.Execute(RequestMethod.POST);
@@ -310,28 +303,28 @@ public class Home extends TabActivity {
 				JSONObject canConfigJsonObject = new JSONObject(
 						canconfigResponse);
 
-				if (canConfigJsonObject.getString("CanId") != null) {
+				if (canConfigJsonObject.getString("CanId") != "null") {
 					canConfig.put("CanId", canConfigJsonObject
 							.getString("CanId"));
 				} else {
 					canConfig.put("CanId", "N/A");
 				}
 
-				if (canConfigJsonObject.getString("IpAddress") != null) {
+				if (canConfigJsonObject.getString("IpAddress") != "null") {
 					canConfig.put("CanIpAddress", canConfigJsonObject
 							.getString("IpAddress"));
 				} else {
 					canConfig.put("CanIpAddress", "N/A");
 				}
 
-				if (canConfigJsonObject.getString("Floor") != null) {
+				if (canConfigJsonObject.getString("Floor") != "null") {
 					canConfig.put("FloorNo", canConfigJsonObject
 							.getString("Floor"));
 				} else {
 					canConfig.put("FloorNo", "N/A");
 				}
 
-				if (canConfigJsonObject.getString("Room") != null)
+				if (canConfigJsonObject.getString("Room") != "null")
 
 				{
 					canConfig.put("RoomNo", canConfigJsonObject
