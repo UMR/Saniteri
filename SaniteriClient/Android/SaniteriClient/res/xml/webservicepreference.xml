@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+     <EditTextPreference  android:dialogTitle="IP Address for Web Service"
+                             android:dialogMessage="IP Address for Web Service"                            
+                             android:key="IpAddressForWebService"
+                             android:title="IP Address for Web Service"
+                             android:summary="Set IP Address for Web Service"
+                             android:defaultValue="172.16.205.56"/>   
+</PreferenceScreen>

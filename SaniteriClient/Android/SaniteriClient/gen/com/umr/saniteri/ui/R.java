@@ -11,45 +11,74 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int black_color=0x7f040000;
-        public static final int blue_color=0x7f040005;
-        public static final int dark_gray_color=0x7f040008;
-        public static final int dark_green_color=0x7f040004;
-        public static final int default_color=0x7f04000b;
-        public static final int golden_color=0x7f04000a;
-        public static final int gray_color=0x7f040007;
-        public static final int green_color=0x7f040002;
-        public static final int light_green_color=0x7f040003;
-        public static final int offwhite_color=0x7f04000e;
-        public static final int red_color=0x7f040001;
-        public static final int transparent_black=0x7f04000c;
-        public static final int transparent_color=0x7f040009;
-        public static final int transparent_gray=0x7f04000d;
-        public static final int white_color=0x7f040006;
+        public static final int black_color=0x7f050000;
+        public static final int blue_color=0x7f050005;
+        public static final int dark_gray_color=0x7f050008;
+        public static final int dark_green_color=0x7f050004;
+        public static final int default_color=0x7f05000b;
+        public static final int golden_color=0x7f05000a;
+        public static final int gray_color=0x7f050007;
+        public static final int green_color=0x7f050002;
+        public static final int light_green_color=0x7f050003;
+        public static final int light_orange_color=0x7f050010;
+        public static final int offwhite_color=0x7f05000e;
+        public static final int orange_color=0x7f05000f;
+        public static final int red_color=0x7f050001;
+        public static final int transparent_black=0x7f05000c;
+        public static final int transparent_color=0x7f050009;
+        public static final int transparent_gray=0x7f05000d;
+        public static final int white_color=0x7f050006;
     }
     public static final class drawable {
         public static final int button_background_normal=0x7f020000;
         public static final int button_background_pressed=0x7f020001;
         public static final int button_selector=0x7f020002;
         public static final int icon=0x7f020003;
+        public static final int listitemstyle=0x7f020004;
+        public static final int unitnumberliststyle=0x7f020005;
     }
     public static final class id {
-        public static final int btnClose=0x7f070002;
-        public static final int btnOpen=0x7f070001;
-        public static final int ddlUnitNumber=0x7f070000;
+        public static final int LayoutCanConfig=0x7f090007;
+        public static final int LayoutCanStatus=0x7f090006;
+        public static final int LayoutHome=0x7f090003;
+        public static final int btnClose=0x7f090005;
+        public static final int btnOpen=0x7f090004;
+        public static final int layoutUnitNumbers=0x7f090001;
+        public static final int lblCanId=0x7f090008;
+        public static final int lblCanIpAddress=0x7f090009;
+        public static final int lblFloorNo=0x7f09000b;
+        public static final int lblRoomNo=0x7f09000a;
+        public static final int lblUnitNumberInList=0x7f090000;
+        public static final int lvUnitNumbers=0x7f090002;
+        public static final int menuitem_IpAddressForWebService=0x7f09000c;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int canlistitem=0x7f030000;
+        public static final int main=0x7f030001;
+    }
+    public static final class menu {
+        public static final int menu=0x7f080000;
     }
     public static final class string {
-        public static final int app_name=0x7f050001;
-        public static final int hello=0x7f050000;
-        public static final int promt_ddlUnitNumber=0x7f050002;
+        public static final int app_name=0x7f060001;
+        public static final int hello=0x7f060000;
+        public static final int label_UnitNumberList=0x7f060003;
+        public static final int promt_ddlUnitNumber=0x7f060002;
+        public static final int url_GetAllCanId=0x7f060004;
+        public static final int url_GetInventoryInfo=0x7f060006;
+        public static final int url_InsertCanCommand=0x7f060005;
     }
     public static final class style {
-        public static final int ButtonText=0x7f060003;
-        public static final int LargeText=0x7f060001;
-        public static final int MainMenuText=0x7f060002;
-        public static final int NormalText=0x7f060000;
+        public static final int ButtonText=0x7f070003;
+        public static final int CanConfigLabelStyle=0x7f070007;
+        public static final int LargeText=0x7f070001;
+        public static final int ListHeaderStyle=0x7f070006;
+        public static final int ListItemText=0x7f070004;
+        public static final int ListStyle=0x7f070005;
+        public static final int MainMenuText=0x7f070002;
+        public static final int NormalText=0x7f070000;
+    }
+    public static final class xml {
+        public static final int webservicepreference=0x7f040000;
     }
 }

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="wrap_content" android:layout_width="wrap_content">
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
 	<LinearLayout android:layout_height="fill_parent"
-		android:layout_width="120dip" android:id="@+id/layoutUnitNumbers"
+		android:layout_width="200dip" android:id="@+id/layoutUnitNumbers"
 		android:orientation="vertical" android:background="@drawable/unitnumberliststyle">
 		<TextView android:layout_width="fill_parent"
 			android:layout_height="65dip" android:text="@string/label_UnitNumberList"
-			android:textSize="15sp" android:textStyle="bold" android:textColor="#ffffff"
-			android:gravity="center">
+			style="@style/ListHeaderStyle">
 		</TextView>
 		<ListView android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@+id/lvUnitNumbers"
-			android:divider="@color/gray_color" android:dividerHeight="2dip"></ListView>
-
+			android:clickable="true" android:divider="@color/gray_color"
+			android:dividerHeight="2dip"></ListView>
 	</LinearLayout>
 
 	<TabHost android:layout_width="fill_parent"
@@ -20,19 +19,16 @@
 		android:layout_toRightOf="@id/layoutUnitNumbers">
 		<FrameLayout android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@android:id/tabcontent">
-
 			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:orientation="vertical"
 				android:gravity="center" android:id="@+id/LayoutHome">
-				<Button android:layout_width="120dip" android:id="@+id/btnOpen"
-					android:layout_height="35dip" android:text="Open" android:textSize="17sp"
-					android:textColor="#ffffff" android:background="@drawable/button_selector"
-					android:layout_margin="4dp"></Button>
-				<Button android:layout_width="120dip" android:id="@+id/btnClose"
-					android:layout_height="35dip" android:text="Close"
-					android:textSize="17sp" android:textColor="#ffffff"
+				<Button android:layout_width="150dip" android:id="@+id/btnOpen"
+					android:layout_height="40dip" android:text="Open" style="@style/ButtonText"
 					android:background="@drawable/button_selector"
-					android:layout_margin="4dp"></Button>
+					android:layout_margin="5dp"></Button>
+				<Button android:layout_width="150dip" android:id="@+id/btnClose"
+					android:layout_height="40dip" android:text="Close" style="@style/ButtonText"
+					android:background="@drawable/button_selector"></Button>
 
 			</LinearLayout>
 
@@ -45,53 +41,53 @@
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanConfig"
 				android:orientation="vertical" android:gravity="center">
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="45dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
+					android:layout_height="42dip" android:layout_margin="5dp">
+					<TextView android:layout_width="140dip"
 						android:layout_height="35dip" android:text="Id"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
+					<TextView android:layout_width="250dip"
 						android:layout_height="40dip" android:id="@+id/lblCanId"
-						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:editable="false" android:background="@color/white_color"
+						android:textColor="@color/black_color" android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
+					android:layout_height="35dip" android:layout_margin="5dp">
+					<TextView android:layout_width="140dip"
 						android:layout_height="35dip" android:text="Ip Address"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
+					<TextView android:layout_width="250dip"
 						android:layout_height="35dip" android:id="@+id/lblCanIpAddress"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
+					android:layout_height="35dip" android:layout_margin="5dp">
+					<TextView android:layout_width="140dip"
 						android:layout_height="35dip" android:text="Room No"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
+					<TextView android:layout_width="250dip"
 						android:layout_height="35dip" android:id="@+id/lblRoomNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
+					android:layout_height="35dip" android:layout_margin="5dp">
+					<TextView android:layout_width="140dip"
 						android:layout_height="35dip" android:text="Floor No"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
+					<TextView android:layout_width="250dip"
 						android:layout_height="35dip" android:id="@+id/lblFloorNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
 			</LinearLayout>
 
 		</FrameLayout>
 		<TabWidget android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:id="@android:id/tabs" />
+			android:layout_height="wrap_content" android:id="@android:id/tabs"/>
 	</TabHost>
 </RelativeLayout>

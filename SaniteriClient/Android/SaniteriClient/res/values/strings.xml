@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Home!</string>
-    <string name="app_name">SaniTeri</string>
-    <string name="promt_ddlUnitNumber">Select Unit Number</string>
+	<string name="hello">Hello World, Home!</string>
+	<string name="app_name">SaniTeri</string>
+	<string name="promt_ddlUnitNumber">Select Unit Number</string>
+	<string name="label_UnitNumberList">Unit Numbers</string>
+	<string name="url_GetAllCanId">/SaniTeri/SaniteriWebService/GetAllCanId
+	</string>
+	<string name="url_InsertCanCommand">/SaniTeri/SaniteriWebService/InsertCanCommand
+	</string>
+	<string name="url_GetInventoryInfo">/SaniTeri/SaniteriWebService/GetInventoryInfo?Id=
+	</string>
 </resources>
