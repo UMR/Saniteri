@@ -88,17 +88,17 @@ namespace SaniteriWebService.DAL
         }
 
 
-        public static Boolean InsertCanCommand(Guid commandId, Guid canId, int canLidStatus, DateTime commandTimeStamp)
+        public static Boolean InsertCanCommand(Guid canId, int canLidStatus)
         {
             try
             {
                 using (var context = DBManager.GetMainEntities())
                 {
                     var newCommand = new can_command();
-                    newCommand.command_id = commandId;
+                    newCommand.command_id = Guid.NewGuid();
                     newCommand.can_id = canId;
                     newCommand.can_lid_status = Convert.ToByte(canLidStatus);
-                    newCommand.command_timestamp = commandTimeStamp;
+                    newCommand.command_timestamp = DateTime.Now;
                     context.can_command.AddObject(newCommand);
                     context.SaveChanges();
                     return true;

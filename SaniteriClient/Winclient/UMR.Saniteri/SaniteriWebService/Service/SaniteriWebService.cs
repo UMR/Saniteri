@@ -100,7 +100,7 @@ namespace SaniteriWebService
         {
             try
             {
-                if (SaniteriDAL.InsertCanCommand(Guid.Parse(commandId), Guid.Parse(canId), Convert.ToInt32(canLidStatus), DateTime.Parse(commandTimeStamp.Replace("/", "-"))))
+                if (SaniteriDAL.InsertCanCommand(Guid.Parse(canId), Convert.ToInt32(canLidStatus)))
                 {
                     return true;
                 }
