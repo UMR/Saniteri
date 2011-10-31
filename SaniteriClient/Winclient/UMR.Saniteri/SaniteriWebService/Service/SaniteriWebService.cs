@@ -119,5 +119,26 @@ namespace SaniteriWebService
             }
 
         }
+
+
+        [WebGet(UriTemplate = "GetCanStatus?CanId={canId}&EventTime={eDate}", ResponseFormat = WebMessageFormat.Json)]
+        public CanStatus GetCanStatus(String canId, String eDate)
+        {
+            CanStatus canStatus = new CanStatus();
+            try
+            {
+                canStatus = SaniteriDAL.GetCanStatus(Guid.Parse(canId),DateTime.Parse(eDate));
+                return canStatus;
+            }
+
+            catch (Exception e)
+            {
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.UnsupportedMediaType;
+                response.StatusDescription = e.Message;
+                return null;
+            }
+        }
+
     }
 }

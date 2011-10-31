@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="http://localhost/SaniteriWebService" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="D:\Local\SaniteriWebService\SaniteriWebService\" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="bin/SaniteriWebService.pdb" publishTime="10/28/2011 15:50:17" />
-    <file relUrl="bin/UMR.Saniteri.Data.dll" publishTime="10/28/2011 15:50:05" />
-    <file relUrl="Web.config" publishTime="10/28/2011 15:50:18" />
-    <file relUrl="bin/UMR.Saniteri.Data.pdb" publishTime="10/28/2011 15:50:05" />
+    <file relUrl="bin/SaniteriWebService.pdb" publishTime="10/31/2011 15:56:17" />
+    <file relUrl="bin/UMR.Saniteri.Data.dll" publishTime="10/31/2011 15:56:16" />
+    <file relUrl="bin/UMR.Saniteri.Data.pdb" publishTime="10/31/2011 15:56:16" />
+    <file relUrl="Web.config" publishTime="10/31/2011 15:56:41" />
     <file relUrl="Global.asax" publishTime="10/28/2011 15:08:20" />
-    <file relUrl="bin/SaniteriWebService.dll" publishTime="10/28/2011 15:50:18" />
+    <file relUrl="bin/SaniteriWebService.dll" publishTime="10/31/2011 15:56:17" />
   </publishProfile>
 </publishData>

@@ -121,5 +121,25 @@ namespace SaniteriWebService.DAL
             }
             return listOfAllCanId;           
         }
+
+
+        public static CanStatus  GetCanStatus(Guid canId,DateTime eDate)
+        {           
+            CanStatus canStatus = new CanStatus();
+            using (var context = DBManager.GetMainEntities())
+            {
+                var _canStatus = context.can_status.Where(c=>c.can_id==canId&&c.edate==eDate).FirstOrDefault();
+                if (_canStatus == null) return null;
+
+                canStatus.CanId = _canStatus.can_id;
+                canStatus.StatusType = _canStatus.status_type;
+                canStatus.eDate = _canStatus.edate;
+                canStatus.StatusDescription = _canStatus.status_description;
+
+                return canStatus;
+            }
+        
+        }
+
     }
 }
