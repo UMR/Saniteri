@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMR.Saniteri.CommunicationS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaniteriWebService", "SaniteriWebService\SaniteriWebService.csproj", "{BD4E85F6-29F1-48DA-9059-33509C850843}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SaniteriWebservice.Setup", "SaniteriWebservice.Setup\SaniteriWebservice.Setup.vdproj", "{C6477278-BCEE-42D8-8A06-AC951906E4DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{BD4E85F6-29F1-48DA-9059-33509C850843}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BD4E85F6-29F1-48DA-9059-33509C850843}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BD4E85F6-29F1-48DA-9059-33509C850843}.Release|x86.ActiveCfg = Release|Any CPU
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|Any CPU.ActiveCfg = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|Any CPU.Build.0 = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|Mixed Platforms.Build.0 = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|x86.ActiveCfg = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Debug|x86.Build.0 = Debug
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|Any CPU.ActiveCfg = Release
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|Any CPU.Build.0 = Release
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|Mixed Platforms.ActiveCfg = Release
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|Mixed Platforms.Build.0 = Release
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|x86.ActiveCfg = Release
+		{C6477278-BCEE-42D8-8A06-AC951906E4DB}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
