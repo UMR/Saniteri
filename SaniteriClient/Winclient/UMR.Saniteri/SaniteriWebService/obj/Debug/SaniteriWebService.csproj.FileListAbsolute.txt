@@ -1,0 +1,7 @@
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\bin\SaniteriWebService.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\bin\SaniteriWebService.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\bin\UMR.Saniteri.Data.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\bin\UMR.Saniteri.Data.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\obj\Debug\ResolveAssemblyReference.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\obj\Debug\SaniteriWebService.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\SaniteriWebService\obj\Debug\SaniteriWebService.pdb

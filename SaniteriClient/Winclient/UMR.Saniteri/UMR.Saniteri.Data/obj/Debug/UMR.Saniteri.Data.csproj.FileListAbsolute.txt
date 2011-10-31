@@ -1,0 +1,6 @@
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\bin\Debug\UMR.Saniteri.Data.dll.config
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\bin\Debug\UMR.Saniteri.Data.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\bin\Debug\UMR.Saniteri.Data.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\obj\Debug\ResolveAssemblyReference.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\obj\Debug\UMR.Saniteri.Data.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.Data\obj\Debug\UMR.Saniteri.Data.pdb

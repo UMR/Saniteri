@@ -1,0 +1,10 @@
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\bin\Debug\UMR.Saniteri.SearchBox.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\bin\Debug\UMR.Saniteri.SearchBox.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\ResolveAssemblyReference.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\UMR.Saniteri.SearchBox_MarkupCompile.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\UMR.Saniteri.SearchBox_MarkupCompile.lref
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\Themes\Generic.baml
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\UMR.Saniteri.SearchBox.g.resources
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\UMR.Saniteri.SearchBox.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.SearchBox\obj\Debug\UMR.Saniteri.SearchBox.pdb

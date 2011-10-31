@@ -1,0 +1,11 @@
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.ViewModel.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.ViewModel.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Command.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Common.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Data.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Command.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Common.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\bin\Debug\UMR.Saniteri.Data.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\obj\Debug\ResolveAssemblyReference.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\obj\Debug\UMR.Saniteri.ViewModel.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.ViewModel\obj\Debug\UMR.Saniteri.ViewModel.pdb

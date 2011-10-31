@@ -1,0 +1,8 @@
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\bin\Debug\UMR.Saniteri.DataFactory.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\bin\Debug\UMR.Saniteri.DataFactory.pdb
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\ResolveAssemblyReference.cache
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\UMR.Saniteri.DataFactory.Properties.Resources.resources
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\GenerateResource.read.1.tlog
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\GenerateResource.write.1.tlog
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\UMR.Saniteri.DataFactory.dll
+E:\UMR\Saniteri\SaniteriClient\Winclient\UMR.Saniteri\UMR.Saniteri.DataFactory\obj\Debug\UMR.Saniteri.DataFactory.pdb
