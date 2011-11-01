@@ -7,7 +7,7 @@ namespace SaniteriWebService.DTO
 {
     public class MaintenanceDTO
     {
-        public Guid CanId { get; set; }
+        public Int64 CanId { get; set; }
         public DateTime ServiceDate { get; set; }
         public String ServicePerformed { get; set; }
     }

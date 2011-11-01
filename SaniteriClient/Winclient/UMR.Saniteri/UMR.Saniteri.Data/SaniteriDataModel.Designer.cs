@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_command_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_command", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_command), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_EventsLog_can_EventCodes", "can_eventcodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_eventcodes), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_maintenance_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_maintenance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_maintenance), true)]
-[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_status_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_transaction_log_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_Status_can_StatusCode", "can_statuscode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_statuscode), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
 
@@ -295,7 +295,7 @@ namespace UMR.Saniteri.Data
         /// <param name="can_id">Initial value of the can_id property.</param>
         /// <param name="can_lid_status">Initial value of the can_lid_status property.</param>
         /// <param name="command_timestamp">Initial value of the command_timestamp property.</param>
-        public static can_command Createcan_command(global::System.Guid command_id, global::System.Guid can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
+        public static can_command Createcan_command(global::System.Guid command_id, global::System.Int64 can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
         {
             can_command can_command = new can_command();
             can_command.command_id = command_id;
@@ -340,7 +340,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid can_id
+        public global::System.Int64 can_id
         {
             get
             {
@@ -355,8 +355,8 @@ namespace UMR.Saniteri.Data
                 Oncan_idChanged();
             }
         }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
     
         /// <summary>
@@ -570,7 +570,7 @@ namespace UMR.Saniteri.Data
         /// Create a new can_inventory object.
         /// </summary>
         /// <param name="can_id">Initial value of the can_id property.</param>
-        public static can_inventory Createcan_inventory(global::System.Guid can_id)
+        public static can_inventory Createcan_inventory(global::System.Int64 can_id)
         {
             can_inventory can_inventory = new can_inventory();
             can_inventory.can_id = can_id;
@@ -585,7 +585,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid can_id
+        public global::System.Int64 can_id
         {
             get
             {
@@ -603,8 +603,8 @@ namespace UMR.Saniteri.Data
                 }
             }
         }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
     
         /// <summary>
@@ -973,18 +973,18 @@ namespace UMR.Saniteri.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_status")]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_status_can_inventory", "can_status")]
         public EntityCollection<can_status> can_status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_inventory", "can_status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<can_status>("SaniteriEntities.FK_can_status_can_inventory", "can_status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_status>("SaniteriEntities.FK_can_Status_can_inventory", "can_status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_status>("SaniteriEntities.FK_can_status_can_inventory", "can_status", value);
                 }
             }
         }
@@ -1029,7 +1029,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         /// <param name="can_id">Initial value of the can_id property.</param>
         /// <param name="service_date">Initial value of the service_date property.</param>
-        public static can_maintenance Createcan_maintenance(global::System.Guid can_id, global::System.DateTime service_date)
+        public static can_maintenance Createcan_maintenance(global::System.Int64 can_id, global::System.DateTime service_date)
         {
             can_maintenance can_maintenance = new can_maintenance();
             can_maintenance.can_id = can_id;
@@ -1045,7 +1045,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid can_id
+        public global::System.Int64 can_id
         {
             get
             {
@@ -1063,8 +1063,8 @@ namespace UMR.Saniteri.Data
                 }
             }
         }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
     
         /// <summary>
@@ -1178,7 +1178,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         /// <param name="seqno">Initial value of the seqno property.</param>
         /// <param name="can_id">Initial value of the can_id property.</param>
-        public static can_status Createcan_status(global::System.Guid seqno, global::System.Guid can_id)
+        public static can_status Createcan_status(global::System.Guid seqno, global::System.Int64 can_id)
         {
             can_status can_status = new can_status();
             can_status.seqno = seqno;
@@ -1221,7 +1221,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid can_id
+        public global::System.Int64 can_id
         {
             get
             {
@@ -1236,8 +1236,8 @@ namespace UMR.Saniteri.Data
                 Oncan_idChanged();
             }
         }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
     
         /// <summary>
@@ -1322,16 +1322,16 @@ namespace UMR.Saniteri.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_Status_can_inventory", "can_inventory")]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_status_can_inventory", "can_inventory")]
         public can_inventory can_inventory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_status_can_inventory", "can_inventory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_status_can_inventory", "can_inventory").Value = value;
             }
         }
         /// <summary>
@@ -1343,13 +1343,13 @@ namespace UMR.Saniteri.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_status_can_inventory", "can_inventory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_inventory>("SaniteriEntities.FK_can_Status_can_inventory", "can_inventory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_inventory>("SaniteriEntities.FK_can_status_can_inventory", "can_inventory", value);
                 }
             }
         }
@@ -1515,7 +1515,7 @@ namespace UMR.Saniteri.Data
         /// <param name="seqno">Initial value of the seqno property.</param>
         /// <param name="can_id">Initial value of the can_id property.</param>
         /// <param name="event_time_stamp">Initial value of the event_time_stamp property.</param>
-        public static can_transaction_log Createcan_transaction_log(global::System.Guid seqno, global::System.Guid can_id, global::System.DateTime event_time_stamp)
+        public static can_transaction_log Createcan_transaction_log(global::System.Guid seqno, global::System.Int64 can_id, global::System.DateTime event_time_stamp)
         {
             can_transaction_log can_transaction_log = new can_transaction_log();
             can_transaction_log.seqno = seqno;
@@ -1559,7 +1559,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid can_id
+        public global::System.Int64 can_id
         {
             get
             {
@@ -1574,8 +1574,8 @@ namespace UMR.Saniteri.Data
                 Oncan_idChanged();
             }
         }
-        private global::System.Guid _can_id;
-        partial void Oncan_idChanging(global::System.Guid value);
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
     
         /// <summary>

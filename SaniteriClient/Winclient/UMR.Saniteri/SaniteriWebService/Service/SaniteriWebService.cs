@@ -27,7 +27,7 @@ namespace SaniteriWebService
         {
             try
             {
-                MaintenanceDTO maintenanceDTO = SaniteriDAL.GetMaintenanceInfo(Guid.Parse(canId), DateTime.Parse(serviceDate));
+                MaintenanceDTO maintenanceDTO = SaniteriDAL.GetMaintenanceInfo(Int64.Parse(canId), DateTime.Parse(serviceDate));
                 return maintenanceDTO;
             }
             catch (Exception e)
@@ -45,7 +45,7 @@ namespace SaniteriWebService
         {
             try
             {
-                TransactionLogDTO transactionLogDTO = SaniteriDAL.GetTransactionLog(Guid.Parse(canId), DateTime.Parse(eventTimeStamp));
+                TransactionLogDTO transactionLogDTO = SaniteriDAL.GetTransactionLog(Int64.Parse(canId), DateTime.Parse(eventTimeStamp));
                 return transactionLogDTO;
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace SaniteriWebService
         {
             try
             {
-                InventoryDTO inventoryDTO = SaniteriDAL.GetInventoryInfo(Guid.Parse(id));
+                InventoryDTO inventoryDTO = SaniteriDAL.GetInventoryInfo(Int64.Parse(id));
                 return inventoryDTO;
             }
             catch (Exception e)
@@ -100,7 +100,7 @@ namespace SaniteriWebService
         {
             try
             {
-                if (SaniteriDAL.InsertCanCommand(Guid.Parse(canId), Convert.ToInt32(canLidStatus)))
+                if (SaniteriDAL.InsertCanCommand(Int64.Parse(canId), Convert.ToInt32(canLidStatus)))
                 {
                     return true;
                 }
@@ -127,7 +127,7 @@ namespace SaniteriWebService
             CanStatus canStatus = new CanStatus();
             try
             {
-                canStatus = SaniteriDAL.GetCanStatus(Guid.Parse(canId),DateTime.Parse(eDate));
+                canStatus = SaniteriDAL.GetCanStatus(Int64.Parse(canId), DateTime.Parse(eDate));
                 return canStatus;
             }
 

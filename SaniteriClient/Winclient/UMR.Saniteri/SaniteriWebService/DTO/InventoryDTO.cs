@@ -7,7 +7,7 @@ namespace SaniteriWebService.DTO
 {
     public class InventoryDTO
     {
-       public Guid CanId { get; set; }
+       public Int64 CanId { get; set; }
        public DateTime? ProductionDate { get; set; }
        public DateTime? InServiceDate { get; set; }
        public String Street { get; set; }

@@ -50,9 +50,12 @@ namespace UMR.Saniteri
             {
                 DatabaseManager.server.createDataBase(DatabaseManager.dataFile, DatabaseManager.dataFile);
             }
-            catch
+            catch (Exception ex)
             {
- 
+                var msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg = ex.InnerException.Message;
+                DialogManager.popup(msg);
             }
         }
 
