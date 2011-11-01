@@ -10,4 +10,9 @@
 	</string>
 	<string name="url_GetInventoryInfo">/SaniteriWebService/SaniteriWebService/GetInventoryInfo?Id=
 	</string>
+	<string name="url_GetCanStatus">/SaniteriWebService/SaniteriWebService/GetCanStatus?
+	</string>
+	<string name="url_GetCanStatus_CanId">CanId=</string>	
+	<string name="url_GetCanStatus_EventTime">EventTime=</string>	
+	<string name="CanStatusType_Full" >99</string>
 </resources>
