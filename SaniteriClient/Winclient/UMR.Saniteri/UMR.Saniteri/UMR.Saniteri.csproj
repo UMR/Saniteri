@@ -83,6 +83,9 @@
     <Compile Include="view\CanStatusConfigView.xaml.cs">
       <DependentUpon>CanStatusConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\CanStatusView.xaml.cs">
+      <DependentUpon>CanStatusView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\CanStatusConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\CanStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

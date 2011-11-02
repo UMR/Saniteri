@@ -47,7 +47,7 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 
-                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Additional:"/>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Description:"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Text="{Binding CanStatusConfig.description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="55" Width="220" VerticalAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="50"/>
                 
                 <ToolBarTray Grid.Row="0" Grid.ColumnSpan="5">
