@@ -19,11 +19,11 @@ namespace UMR.Saniteri
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            InitializeDialogManager();
             SingleInstanceCreator.make("Saniteri", this);
             base.OnStartup(e);
             InitializeConnectionInfo();
             checkDatabase();
-            InitializeDialogManager();
         }
 
         private void InitializeDialogManager()

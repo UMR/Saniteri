@@ -124,7 +124,7 @@ namespace UMR.Saniteri.DataFactory
             if (scriptKey != null)
             {
                 database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_SQLScript"));
-                database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_DefaultData"));
+                //database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_DefaultData"));
             }
         }
 

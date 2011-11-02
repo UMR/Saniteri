@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="can_inventory.cs" />
+    <Compile Include="can_statuscode.cs" />
     <Compile Include="DBManager.cs" />
     <Compile Include="IsDirtyEventsArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

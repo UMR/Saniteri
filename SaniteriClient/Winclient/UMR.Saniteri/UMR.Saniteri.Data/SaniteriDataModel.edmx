@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="event_type" />
           </Key>
-          <Property Name="event_type" Type="int" Nullable="false" />
+          <Property Name="event_type" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="text" />
         </EntityType>
         <EntityType Name="can_inventory">
@@ -105,7 +105,7 @@
           <Key>
             <PropertyRef Name="status_type" />
           </Key>
-          <Property Name="status_type" Type="int" Nullable="false" />
+          <Property Name="status_type" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="text" />
         </EntityType>
         <EntityType Name="can_transaction_log">
@@ -259,7 +259,7 @@
           <Key>
             <PropertyRef Name="event_type" />
           </Key>
-          <Property Type="Int32" Name="event_type" Nullable="false" />
+          <Property Type="Int32" Name="event_type" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_transaction_log" Relationship="SaniteriEntities.FK_can_EventsLog_can_EventCodes" FromRole="can_eventcodes" ToRole="can_transaction_log" />
         </EntityType>
@@ -312,7 +312,7 @@
           <Key>
             <PropertyRef Name="status_type" />
           </Key>
-          <Property Type="Int32" Name="status_type" Nullable="false" />
+          <Property Type="Int32" Name="status_type" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_status" Relationship="SaniteriEntities.FK_can_Status_can_StatusCode" FromRole="can_statuscode" ToRole="can_status" />
         </EntityType>

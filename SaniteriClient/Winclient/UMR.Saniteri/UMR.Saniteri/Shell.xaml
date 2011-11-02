@@ -33,6 +33,12 @@
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnLogs" Tag="transactionLog" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Logs" EnabledButtonImage="\Resources\Images\database_table.png" DisabledButtonImage="\Resources\Images\database_table.png" ToolTip="Transaction and Maintanance Log Details" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
+                <cControl:CustomToolBarButton x:Name="btnStatus" Tag="status" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Status" EnabledButtonImage="\Resources\Images\status.jpg" DisabledButtonImage="\Resources\Images\status.jpg" ToolTip="Status"/>
+                <Separator Focusable="False" />
+                <cControl:CustomToolBarButton x:Name="btnStatusCode" Tag="statusCode" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Status Type" EnabledButtonImage="\Resources\Images\type.png" DisabledButtonImage="\Resources\Images\type.png" ToolTip="Status Type" Click="btnToolBar_Click"/>
+                <Separator Focusable="False" />
+                <cControl:CustomToolBarButton x:Name="btnEventCode" Tag="EventCode" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Event Code" EnabledButtonImage="\Resources\Images\Code.png" DisabledButtonImage="\Resources\Images\code.png" ToolTip="About"/>
+                <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnAbout" Tag="about" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="About" EnabledButtonImage="\Resources\Images\book_open.png" DisabledButtonImage="\Resources\Images\book_open.png" ToolTip="About"/>
                 <Separator Focusable="False" />
             </ToolBar>

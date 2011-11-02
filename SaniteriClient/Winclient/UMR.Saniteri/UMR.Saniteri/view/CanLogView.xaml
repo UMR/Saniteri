@@ -16,6 +16,7 @@
                 CanUserSortColumns="False"
                 CanUserResizeRows="False"
                 AutoGenerateColumns="False"
+                HorizontalScrollBarVisibility="Hidden"
                 IsEnabled="{Binding IsEnable}"
                 IsReadOnly="True" SelectionMode="Single"
                 SelectedIndex="{Binding selectedIndex, UpdateSourceTrigger=PropertyChanged}"
@@ -24,7 +25,7 @@
                 command:CommandBehavior.CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}"
                 ItemsSource="{Binding CanConfigList, UpdateSourceTrigger=PropertyChanged}">
                     <toolkit:DataGrid.Columns>
-                        <toolkit:DataGridTextColumn Width="60" Binding="{Binding Path=ip_address}" Header="Can ID"/>
+                        <toolkit:DataGridTextColumn Width="60" Binding="{Binding Path=can_id}" Header="Can ID"/>
                         <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=ip_address}" Header="IP Address"/>
                         <toolkit:DataGridTextColumn Width="80" Binding="{Binding Path=street}" Header="Street"/>
                         <toolkit:DataGridTextColumn Width="60"  Binding="{Binding Path=floor}" Header="Floor No"/>

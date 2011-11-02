@@ -130,8 +130,7 @@ namespace UMR.Saniteri.Communication
             this.initializer = initializer;
             if (this.initializer.cancel != null && this.initializer.cancel.IsCancellationRequested) return false;
             this.reset();
-            this.createCommand();
-            //                        
+            this.createCommand();                     
             if (!this.initializer.socket.Poll((int)this.timeout, SelectMode.SelectWrite)) return this.initializer.success = false;
             if (this.initializer.protocolType == ProtocolType.Tcp)
                 this.initializer.socket.Send(this.command);
@@ -165,7 +164,7 @@ namespace UMR.Saniteri.Communication
             return false;
         }
 
-        protected bool processData(byte[] buffer)
+        protected virtual bool processData(byte[] buffer)
         {
             return true;
         }
@@ -185,24 +184,7 @@ namespace UMR.Saniteri.Communication
 
         protected bool validateChecksum(byte[] response)
         {
-            if (!this.checksum) return true;
-            if (response == null || response.Count() == 0 || response.Length < this.packetLength) return this.initializer.success = false;
-            var bitCount = this.packetLength - 1;
-            int tempLength = 0;
-            try
-            {
-                for (int i = 0; i <= bitCount; i++)
-                {
-                    tempLength += response[i];
-                }
-                var tempHex = tempLength.ToString("X").PadLeft(2, '0');
-                tempHex = tempHex.Substring(tempHex.Length - 2);
-                tempLength = Convert.ToInt32(tempHex, 16);
-                long checkSum = response[bitCount + 1];
-                this.initializer.success = checkSum == tempLength;
-            }
-            catch { this.initializer.success = false; }
-            return this.initializer.success;
+            return true;
         }
 
         protected void makeCheckSum()

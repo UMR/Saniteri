@@ -80,6 +80,9 @@
     <Compile Include="view\CanLogView.xaml.cs">
       <DependentUpon>CanLogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\CanStatusConfigView.xaml.cs">
+      <DependentUpon>CanStatusConfigView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\CanLogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\CanStatusConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +195,26 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\StatusCode.png" />
+    <Resource Include="Resources\Images\StatusCode1.png" />
+    <Resource Include="Resources\Images\Type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\status.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Code.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\code.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
