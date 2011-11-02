@@ -122,8 +122,6 @@ namespace UMR.Saniteri.Communication
                 return false;
             }
             Thread.Sleep(TimeSpan.FromSeconds(wait / 3));
-            Thread.Sleep(TimeSpan.FromSeconds(wait / 3));
-            Thread.Sleep(TimeSpan.FromSeconds(wait / 3));
             return true;
         }
 
@@ -164,45 +162,12 @@ namespace UMR.Saniteri.Communication
 
         protected bool isAcknowledge(byte[] response)
         {
-            return response != null && response.Length > 0 && response[0] == (byte)DeviceCommandTypes.deviceACK;
+            return false;
         }
 
         protected bool processData(byte[] buffer)
         {
-            this.response = this.response == null ? buffer : response.Concat(buffer).ToArray();
-            if (this.newPacket && this.initializer.protocolType == ProtocolType.Tcp)
-            {
-                if (!this.calculatePacketLenth()) return true;
-            }
-            if (this.response.Length >= this.packetLength || this.initializer.protocolType != ProtocolType.Tcp)
-            {
-                if (!this.checkResponse(this.response[0])) return false;
-                if (this.isAcknowledge(this.response))
-                {
-                    this.newPacket = true;
-                    this.acknowledge = this.response.Take(packetLength).ToArray();
-                    if (!this.validateChecksum(this.acknowledge)) return false;
-                    if (--this.acknowledgeWait > 0) return true;
-                    if (this.responseWait)
-                    {
-                        buffer = this.response.Skip(packetLength).ToArray();
-                        this.response = null;
-                        if (buffer.Length > 0) this.processData(buffer);
-                    }
-                }
-                else
-                {
-                    this.newPacket = true;
-                    this.responseWait = false;
-                    this.validate(this.response);
-                }
-            }
-            else
-            {
-                this.newPacket = false;
-                return true;
-            }
-            return this.responseWait;
+            return true;
         }
 
         #endregion // Processing Data
