@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="25dip"  android:background="@drawable/listitemstyle">
+	android:layout_width="fill_parent" android:layout_height="25dp"  android:background="@drawable/listitemstyle">
 	<TextView android:id="@+id/lblUnitNumberInList"
-		android:layout_width="fill_parent" android:layout_height="25dip"
+		android:layout_width="fill_parent" android:layout_height="25dp"
 		android:layout_gravity="center" style="@style/ListItemText"  ></TextView>
 </LinearLayout>	

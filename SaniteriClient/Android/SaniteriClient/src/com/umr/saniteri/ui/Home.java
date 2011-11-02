@@ -45,6 +45,7 @@ import android.widget.TabHost.OnTabChangeListener;
 public class Home extends TabActivity {
 	ListView lvUnitNumbers;
 	ArrayList<String> listOfUnitNumbers;
+	ArrayList<String> listOfUnitNumbersWithHeader;
 	RestClient restClient;
 	CanListDataAdapter lvUnitNumberAdapter;
 	Button btnOpen, btnClose;
@@ -66,7 +67,7 @@ public class Home extends TabActivity {
 	final int sampleRate = 8000;
 	final int numSamples = duration * sampleRate;
 	double sample[] = new double[numSamples];
-	double freqOfTone = 400; // hz
+	double freqOfTone = 1000; // hz
 	int beepInterval = 250;
 	int beepDevider = 4;
 
@@ -228,7 +229,7 @@ public class Home extends TabActivity {
 							}
 						}, 0, 500);
 
-						showAlert(Home.this, timer);
+						showAlertForCanStatus(Home.this, timer);
 					}
 
 					arg1.getFocusables(arg2);
@@ -288,22 +289,13 @@ public class Home extends TabActivity {
 			}
 
 			for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-				listOfUnitNumbersFromId.put(listOfUnitNumbers.get(i), "Unit "
-						+ i);
+				listOfUnitNumbersWithHeader.add("Unit "+listOfUnitNumbers.get(i));
 			}
 
-			// lvUnitNumberAdapter = new CanListDataAdapter(this,
-			// listOfUnitNumbers);
-
-			ArrayList<String> a = new ArrayList<String>();
-			a.addAll(listOfUnitNumbersFromId.values());
-
-			lvUnitNumberAdapter = new CanListDataAdapter(this, a);
+			lvUnitNumberAdapter = new CanListDataAdapter(this, listOfUnitNumbersWithHeader);
 
 			lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-
-			// selectedUnitNumber =
-			// lvUnitNumbers.getItemAtPosition(0).toString();
+			
 			selectedUnitNumber = listOfUnitNumbers.get(0);
 
 			canConfigData = getCanConfigurationData(selectedUnitNumber);
@@ -330,7 +322,7 @@ public class Home extends TabActivity {
 					}
 				}, 0, 500);
 
-				showAlert(Home.this, timer);
+				showAlertForCanStatus(Home.this, timer);
 			}
 
 		} catch (Exception e) {
@@ -344,6 +336,7 @@ public class Home extends TabActivity {
 		// TODO Auto-generated method stub
 		lvUnitNumbers = (ListView) findViewById(R.id.lvUnitNumbers);
 		listOfUnitNumbers = new ArrayList<String>();
+		listOfUnitNumbersWithHeader=new ArrayList<String>();
 		listOfUnitNumbersFromId = new HashMap<String, String>();
 		btnOpen = (Button) findViewById(R.id.btnOpen);
 		btnClose = (Button) findViewById(R.id.btnClose);
@@ -422,8 +415,7 @@ public class Home extends TabActivity {
 
 	private void playSound() {
 
-		try {
-			Log.d(tag, "Ok");
+		try {			
 			byte generatedSnd[] = new byte[2 * numSamples];
 
 			for (int i = 0; i < numSamples; ++i) {
@@ -463,7 +455,7 @@ public class Home extends TabActivity {
 
 	}
 
-	private void showAlert(Context context, final Timer timer) {
+	private void showAlertForCanStatus(Context context, final Timer timer) {
 		try {
 			AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(
 					context);
