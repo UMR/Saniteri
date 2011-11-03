@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,11 +47,18 @@
     <Compile Include="DeviceCommands\CanLogCommand.cs" />
     <Compile Include="DeviceCommands\CanStatusCommand.cs" />
     <Compile Include="DeviceConnectionController.cs" />
+    <Compile Include="DeviceConnectionFactory.cs" />
     <Compile Include="IDeviceConnection.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtocolHelper.cs" />
     <Compile Include="SocketExtention.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UMR.Saniteri.Data\UMR.Saniteri.Data.csproj">
+      <Project>{9CE70A1A-94D6-4965-A0DB-BCD82AE6323E}</Project>
+      <Name>UMR.Saniteri.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

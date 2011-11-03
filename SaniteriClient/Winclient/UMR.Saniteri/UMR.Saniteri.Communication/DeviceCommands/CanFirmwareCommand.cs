@@ -36,5 +36,10 @@ namespace UMR.Saniteri.Communication.DeviceCommands
             }
             return false;
         }
+
+        protected override bool processData(byte[] buffer)
+        {
+            return base.processData(buffer);
+        }
     }
 }

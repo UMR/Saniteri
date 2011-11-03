@@ -8,7 +8,9 @@ namespace UMR.Saniteri.Communication
     public interface IDeviceConnection
     {
         void GetCanStatus();
+        void GetCanStatus(string ipAddress);
         void GetCanLog();
-        void UpdateCanFirmware();
+        void GetCanLog(string ipAddress);
+        void UpdateCanFirmware(string ipAddress);
     }
 }

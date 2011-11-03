@@ -7,6 +7,7 @@ namespace UMR.Saniteri.Communication
 {
     public enum DeviceCommandTypes : byte
     {
+        deviceResp = 0x09,
         deviceACK = 0x15,
         deviceNACK = 0x16,
         deviceSatus = 0x01,

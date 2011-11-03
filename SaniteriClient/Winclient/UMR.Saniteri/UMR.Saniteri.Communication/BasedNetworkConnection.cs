@@ -161,7 +161,7 @@ namespace UMR.Saniteri.Communication
 
         protected bool isAcknowledge(byte[] response)
         {
-            return false;
+            return ((DeviceCommandTypes)response[4] == DeviceCommandTypes.deviceResp);
         }
 
         protected virtual bool processData(byte[] buffer)
