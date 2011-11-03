@@ -8,3 +8,4 @@
                              android:summary="Set IP Address for Web Service"
                              android:defaultValue="172.16.205.56"/>   
 </PreferenceScreen>
+	

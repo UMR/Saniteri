@@ -7,8 +7,8 @@
      <color name="dark_green_color">#7ba60d</color>     
      <color name="blue_color">#056EAC</color> 
      <color name="white_color">#FFFFFF</color>
-     <color name="gray_color">#999999</color> 
-     <color name="dark_gray_color">#333333</color>      
+     <color name="gray_color">#999999</color>      
+     <color name="dark_gray_color">#666666</color>      
      <color name="transparent_color">#000000</color>  
      <color name="golden_color">#DE6C00</color>  
      <color name="default_color">#00008B</color>   
@@ -16,6 +16,6 @@
      <color name="transparent_gray">#55000000</color>  
      <color name="offwhite_color">#FFFFCC</color> 
      <color name="orange_color">#FF9900</color> 
-      <color name="light_orange_color">#FF9933</color> 
+     <color name="light_orange_color">#FF9933</color> 
           
 </resources>
