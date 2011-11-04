@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="can_eventcodes.cs" />
     <Compile Include="can_inventory.cs" />
     <Compile Include="can_statuscode.cs" />
     <Compile Include="DBManager.cs" />

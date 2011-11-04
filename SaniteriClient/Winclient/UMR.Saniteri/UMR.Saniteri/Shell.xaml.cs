@@ -93,6 +93,8 @@ namespace UMR.Saniteri
                     container.Content = status;
                     break;
                 case "EventCode":
+                    var _event = new CanEventCodeViewModel();
+                    container.Content = _event;
                     break;
                 default:
                     container.Content = null;

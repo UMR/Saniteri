@@ -77,6 +77,9 @@
     <Compile Include="view\CanConfigView.xaml.cs">
       <DependentUpon>CanConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\CanEventConfigView.xaml.cs">
+      <DependentUpon>CanEventConfigView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\CanLogView.xaml.cs">
       <DependentUpon>CanLogView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="view\CanConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\CanEventConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

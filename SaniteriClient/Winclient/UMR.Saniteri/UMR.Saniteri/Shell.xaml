@@ -19,6 +19,9 @@
             <MenuItem Header="View">
                 <MenuItem Header="Can Configuration" Tag="CanConfig" Click="MenuItem_Click"/>
                 <MenuItem Header="Transaction Log" Tag="transactionLog" Click="MenuItem_Click"/>
+                <MenuItem Header="Status" Tag="status" Click="MenuItem_Click"/>
+                <MenuItem Header="Status Type" Tag="statusCode" Click="MenuItem_Click"/>
+                <MenuItem Header="Event Code" Tag="EventCode" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Window">
                 <MenuItem Header="Help"/>
@@ -37,7 +40,7 @@
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnStatusCode" Tag="statusCode" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Status Type" EnabledButtonImage="\Resources\Images\type.png" DisabledButtonImage="\Resources\Images\type.png" ToolTip="Status Type" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
-                <cControl:CustomToolBarButton x:Name="btnEventCode" Tag="EventCode" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Event Code" EnabledButtonImage="\Resources\Images\Code.png" DisabledButtonImage="\Resources\Images\code.png" ToolTip="About"/>
+                <cControl:CustomToolBarButton x:Name="btnEventCode" Tag="EventCode" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Event Code" EnabledButtonImage="\Resources\Images\Code.png" DisabledButtonImage="\Resources\Images\code.png" ToolTip="Event Code" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnAbout" Tag="about" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="About" EnabledButtonImage="\Resources\Images\book_open.png" DisabledButtonImage="\Resources\Images\book_open.png" ToolTip="About"/>
                 <Separator Focusable="False" />

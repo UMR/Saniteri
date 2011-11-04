@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CanConfigViewModel.cs" />
+    <Compile Include="CanEventCodeViewModel.cs" />
     <Compile Include="CanLogViewModel.cs" />
     <Compile Include="CanStatusCodeViewModel.cs" />
     <Compile Include="CanStatusViewModel.cs" />

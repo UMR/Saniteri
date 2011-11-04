@@ -21,6 +21,9 @@
             <DataTemplate DataType="{x:Type vm:CanStatusViewModel}">
                 <views:CanStatusView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CanEventCodeViewModel}">
+                <views:CanEventConfigView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
