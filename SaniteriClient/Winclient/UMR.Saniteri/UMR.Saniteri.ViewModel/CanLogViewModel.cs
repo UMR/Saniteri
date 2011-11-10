@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using UMR.Saniteri.Command;
 using UMR.Saniteri.Data;
+using UMR.Saniteri.Common;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -66,9 +67,19 @@ namespace UMR.Saniteri.ViewModel
 
         private void LoadInDetails()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            try
             {
-                CanConfigList = context.can_inventory.ToList();
+                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                {
+                    CanConfigList = context.can_inventory.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg = ex.InnerException.Message;
+                DialogManager.popup(msg);
             }
         }
 

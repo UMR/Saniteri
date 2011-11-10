@@ -11,7 +11,7 @@ namespace SaniteriWebService.DAL
 {
     public class SaniteriDAL
     {
-        public static InventoryDTO GetInventoryInfo(Guid id)
+        public static InventoryDTO GetInventoryInfo(Int64 id)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace SaniteriWebService.DAL
                     var inventoryDTO = new InventoryDTO();
                     var _canDetails = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault();
                     if (_canDetails == null) return null;
-                    inventoryDTO.CanId = (Guid)_canDetails.can_id;
+                    inventoryDTO.CanId = (Int64)_canDetails.can_id;
                     inventoryDTO.ProductionDate = _canDetails.production_date;
                     inventoryDTO.InServiceDate = _canDetails.in_service_date;
                     inventoryDTO.Street = _canDetails.street;
@@ -42,7 +42,7 @@ namespace SaniteriWebService.DAL
             }
         }
 
-        public static MaintenanceDTO GetMaintenanceInfo(Guid canId, DateTime serviceDate)
+        public static MaintenanceDTO GetMaintenanceInfo(Int64 canId, DateTime serviceDate)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace SaniteriWebService.DAL
             }
         }
 
-        public static TransactionLogDTO GetTransactionLog(Guid canId, DateTime eventTimeStamp)
+        public static TransactionLogDTO GetTransactionLog(Int64 canId, DateTime eventTimeStamp)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace SaniteriWebService.DAL
         }
 
 
-        public static Boolean InsertCanCommand(Guid canId, int canLidStatus)
+        public static Boolean InsertCanCommand(Int64 canId, int canLidStatus)
         {
             try
             {
@@ -123,12 +123,12 @@ namespace SaniteriWebService.DAL
         }
 
 
-        public static CanStatus  GetCanStatus(Guid canId,DateTime eDate)
+        public static CanStatus  GetCanStatus(Int64 canId,DateTime eDate)
         {           
             CanStatus canStatus = new CanStatus();
             using (var context = DBManager.GetMainEntities())
             {
-                var _canStatus = context.can_status.Where(c=>c.can_id==canId&&c.edate==eDate).FirstOrDefault();
+                var _canStatus = context.can_status.Where(c => c.can_id == canId && c.edate == eDate).FirstOrDefault();
                 if (_canStatus == null) return null;
 
                 canStatus.CanId = _canStatus.can_id;

@@ -83,6 +83,19 @@ namespace UMR.Saniteri
                     var logView = new CanLogViewModel();
                     container.Content = logView;
                     break;
+                case "statusCode":
+                    var sc = new CanStatusCodeViewModel();
+                    sc.OnDirty += new EventHandler(hm_OnDirty);
+                    container.Content = sc;
+                    break;
+                case "status":
+                    var status = new CanStatusViewModel();
+                    container.Content = status;
+                    break;
+                case "EventCode":
+                    var _event = new CanEventCodeViewModel();
+                    container.Content = _event;
+                    break;
                 default:
                     container.Content = null;
                     break;

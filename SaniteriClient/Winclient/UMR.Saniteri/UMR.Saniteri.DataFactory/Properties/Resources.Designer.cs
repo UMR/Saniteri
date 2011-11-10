@@ -61,10 +61,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /****** Object:  Table [dbo].[can_inventory]    Script Date: 10/21/2011 22:51:14 ******/
-        ///INSERT [dbo].[can_inventory] ([id], [production_date], [in_service_date], [street], [additional], [city], [state], [zip], [floor], [room], [custom_1], [custom_2], [custom_3], [ip_address]) VALUES (N&apos;7dcf2297-993a-46b8-a101-579aba45236e&apos;, NULL, NULL, N&apos;Dhaka&apos;, NULL, N&apos;d&apos;, NULL, N&apos;1216&apos;, NULL, NULL, NULL, NULL, NULL, N&apos;10.101.10.10&apos;)
-        ////****** Object:  Table [dbo].[can_users]    Script Date: 10/21/2011 22:51:14 ******/
-        ///I [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string saniteri_main_DefaultData {
             get {
@@ -73,7 +70,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /****** Object:  Table [dbo].[can_inventory]    Script Date: 10/27/2011 21:39:34 ******/
+        ///   Looks up a localized string similar to /****** Object:  Table [dbo].[can_inventory]    Script Date: 11/02/2011 08:50:50 ******/
         ///SET ANSI_NULLS ON
         ///GO
         ///SET QUOTED_IDENTIFIER ON
@@ -81,7 +78,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         ///SET ANSI_PADDING ON
         ///GO
         ///CREATE TABLE [dbo].[can_inventory](
-        ///	[can_id] [uniqueidentifier] NOT NULL,
+        ///	[can_id] [bigint] IDENTITY(1,1) NOT NULL,
         ///	[production_date] [date] NULL,
         ///	[in_service_date] [date] NULL,
         ///	[street] [varchar](50) NULL,
@@ -90,7 +87,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         ///	[state] [varchar](50) NULL,
         ///	[zip] [varchar](50) NULL,
         ///	[floor] [varchar](50) NULL,
-        ///	[room] [varchar]( [rest of string was truncated]&quot;;.
+        ///	[room] [varch [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string saniteri_main_SQLScript {
             get {

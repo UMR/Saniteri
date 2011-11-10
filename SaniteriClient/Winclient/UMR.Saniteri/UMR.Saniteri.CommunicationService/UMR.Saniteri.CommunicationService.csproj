@@ -60,11 +60,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommunicationSeviceInstaller.resx">
       <DependentUpon>CommunicationSeviceInstaller.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UMR.Saniteri.Communication\UMR.Saniteri.Communication.csproj">
+      <Project>{4F453CE3-BDE2-406D-B351-C254A9FF3968}</Project>
+      <Name>UMR.Saniteri.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UMR.Saniteri.Data\UMR.Saniteri.Data.csproj">
+      <Project>{9CE70A1A-94D6-4965-A0DB-BCD82AE6323E}</Project>
+      <Name>UMR.Saniteri.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

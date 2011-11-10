@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="fill_parent" android:layout_width="fill_parent">
 	<LinearLayout android:layout_height="fill_parent"
-		android:layout_width="200dip" android:id="@+id/layoutUnitNumbers"
+		android:layout_width="200dp" android:id="@+id/layoutUnitNumbers"
 		android:orientation="vertical" android:background="@drawable/unitnumberliststyle">
 		<TextView android:layout_width="fill_parent"
-			android:layout_height="65dip" android:text="@string/label_UnitNumberList"
+			android:layout_height="65dp" android:text="@string/label_UnitNumberList"
 			style="@style/ListHeaderStyle">
 		</TextView>
 		<ListView android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@+id/lvUnitNumbers"
 			android:clickable="true" android:divider="@color/gray_color"
-			android:dividerHeight="2dip"></ListView>
+			android:dividerHeight="2dp"></ListView>
 	</LinearLayout>
 
 	<TabHost android:layout_width="fill_parent"
@@ -22,18 +22,41 @@
 			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:orientation="vertical"
 				android:gravity="center" android:id="@+id/LayoutHome">
-				<Button android:layout_width="150dip" android:id="@+id/btnOpen"
-					android:layout_height="40dip" android:text="Open" style="@style/ButtonText"
+				<Button android:layout_width="150dp" android:id="@+id/btnOpen"
+					android:layout_height="40dp" android:text="Open" style="@style/ButtonText"
 					android:background="@drawable/button_selector"
 					android:layout_margin="5dp"></Button>
-				<Button android:layout_width="150dip" android:id="@+id/btnClose"
-					android:layout_height="40dip" android:text="Close" style="@style/ButtonText"
+				<Button android:layout_width="150dp" android:id="@+id/btnClose"
+					android:layout_height="40dp" android:text="Close" style="@style/ButtonText"
 					android:background="@drawable/button_selector"></Button>
 
 			</LinearLayout>
 
 			<LinearLayout android:layout_width="fill_parent"
-				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus">
+				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus"
+				android:gravity="center" android:orientation="vertical">
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="42dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Can Id"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
+						android:gravity="center_vertical" ></TextView>
+					<TextView android:layout_width="250dp"
+						android:layout_height="40dp" android:id="@+id/lblCanIdinCanStatus"
+						android:editable="false" android:background="@color/white_color"
+						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="42dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Can Status"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
+						android:gravity="center_vertical"></TextView>
+					<TextView android:layout_width="250dp"
+						android:layout_height="40dp" android:id="@+id/lblCanStatus"
+						android:editable="false" android:background="@color/white_color"
+						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
+				</LinearLayout>
 
 
 			</LinearLayout>
@@ -41,48 +64,48 @@
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanConfig"
 				android:orientation="vertical" android:gravity="center">
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="42dip" android:layout_margin="5dp">
-					<TextView android:layout_width="140dip"
-						android:layout_height="35dip" android:text="Id"
-						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
+					android:layout_height="42dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Id"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="250dip"
-						android:layout_height="40dip" android:id="@+id/lblCanId"
+					<TextView android:layout_width="250dp"
+						android:layout_height="40dp" android:id="@+id/lblCanId"
 						android:editable="false" android:background="@color/white_color"
-						android:textColor="@color/black_color" android:paddingLeft="3dip"></TextView>
+						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="5dp">
-					<TextView android:layout_width="140dip"
-						android:layout_height="35dip" android:text="Ip Address"
-						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Ip Address"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="250dip"
-						android:layout_height="35dip" android:id="@+id/lblCanIpAddress"
+					<TextView android:layout_width="250dp"
+						android:layout_height="35dp" android:id="@+id/lblCanIpAddress"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="3dip"></TextView>
+						android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="5dp">
-					<TextView android:layout_width="140dip"
-						android:layout_height="35dip" android:text="Room No"
-						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Room No"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="250dip"
-						android:layout_height="35dip" android:id="@+id/lblRoomNo"
+					<TextView android:layout_width="250dp"
+						android:layout_height="35dp" android:id="@+id/lblRoomNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="3dip"></TextView>
+						android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="5dp">
-					<TextView android:layout_width="140dip"
-						android:layout_height="35dip" android:text="Floor No"
-						android:layout_marginRight="5dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="5dp">
+					<TextView android:layout_width="140dp"
+						android:layout_height="35dp" android:text="Floor No"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="250dip"
-						android:layout_height="35dip" android:id="@+id/lblFloorNo"
+					<TextView android:layout_width="250dp"
+						android:layout_height="35dp" android:id="@+id/lblFloorNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="3dip"></TextView>
+						android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 			</LinearLayout>
 

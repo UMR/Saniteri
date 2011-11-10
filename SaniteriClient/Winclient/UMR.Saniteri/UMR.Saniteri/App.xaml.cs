@@ -19,11 +19,11 @@ namespace UMR.Saniteri
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            InitializeDialogManager();
             SingleInstanceCreator.make("Saniteri", this);
             base.OnStartup(e);
             InitializeConnectionInfo();
             checkDatabase();
-            InitializeDialogManager();
         }
 
         private void InitializeDialogManager()
@@ -50,9 +50,12 @@ namespace UMR.Saniteri
             {
                 DatabaseManager.server.createDataBase(DatabaseManager.dataFile, DatabaseManager.dataFile);
             }
-            catch
+            catch (Exception ex)
             {
- 
+                var msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg = ex.InnerException.Message;
+                DialogManager.popup(msg);
             }
         }
 

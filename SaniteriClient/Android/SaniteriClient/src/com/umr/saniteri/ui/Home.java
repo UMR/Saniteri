@@ -1,10 +1,13 @@
 package com.umr.saniteri.ui;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,9 +16,16 @@ import com.umr.saniteri.connection.RestClient;
 import com.umr.saniteri.connection.RestClient.RequestMethod;
 import com.umr.saniteri.lib.CanListDataAdapter;
 import com.umr.saniteri.ui.R;
+
+import android.app.AlertDialog;
 import android.app.TabActivity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -35,6 +45,7 @@ import android.widget.TabHost.OnTabChangeListener;
 public class Home extends TabActivity {
 	ListView lvUnitNumbers;
 	ArrayList<String> listOfUnitNumbers;
+	ArrayList<String> listOfUnitNumbersWithHeader;
 	RestClient restClient;
 	CanListDataAdapter lvUnitNumberAdapter;
 	Button btnOpen, btnClose;
@@ -43,10 +54,22 @@ public class Home extends TabActivity {
 	public static final String tag = "Tabs";
 	String selectedUnitNumber;
 	TextView lblCanId, lblCanIpAddress, lblRoomNo, lblFloorNo;
+	TextView lblCanIdinCanStatus, lblCanStatus;
 	HashMap<String, String> canConfigData;
+	HashMap<String, String> canStatusData;
 	SharedPreferences sharedpreference;
 	String ipAddressForWebService;
 	HashMap<String, String> listOfUnitNumbersFromId;
+	SimpleDateFormat dateFormatter;
+	Timer timer;
+	AudioTrack audioTrack;
+	final int duration = 1; // seconds
+	final int sampleRate = 8000;
+	final int numSamples = duration * sampleRate;
+	double sample[] = new double[numSamples];
+	double freqOfTone = 1000; // hz
+	int beepInterval = 250;
+	int beepDevider = 4;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -179,20 +202,43 @@ public class Home extends TabActivity {
 				// TODO Auto-generated method stub
 				// selectedUnitNumber = lvUnitNumbers.getItemAtPosition(arg2)
 				// .toString();
-				selectedUnitNumber = listOfUnitNumbers.get(arg2);
-				Log.d(tag, "Selected Unit Number in onitemclick"
-						+ selectedUnitNumber);
+				try {
+					selectedUnitNumber = listOfUnitNumbers.get(arg2);
+					Log.d(tag, "Selected Unit Number in onitemclick"
+							+ selectedUnitNumber);
 
-				canConfigData = getCanConfigurationData(selectedUnitNumber);
+					canConfigData = getCanConfigurationData(selectedUnitNumber);
 
-				lblCanId.setText(canConfigData.get("CanId"));
-				lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
-				lblFloorNo.setText(canConfigData.get("FloorNo"));
-				lblRoomNo.setText(canConfigData.get("RoomNo"));
+					lblCanId.setText(canConfigData.get("CanId"));
+					lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+					lblFloorNo.setText(canConfigData.get("FloorNo"));
+					lblRoomNo.setText(canConfigData.get("RoomNo"));
 
-				arg1.getFocusables(arg2);
-				arg1.setSelected(true);
+					canStatusData = getCanStatus(selectedUnitNumber);
+
+					lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+					lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+					if (canStatusData.get("CanStatusType").compareTo(getString(R.string.CanStatusType_Full))==0) {
+						timer = new Timer();
+						timer.scheduleAtFixedRate(new TimerTask() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								playSound();
+							}
+						}, 0, 500);
+
+						showAlertForCanStatus(Home.this, timer);
+					}
+
+					arg1.getFocusables(arg2);
+					arg1.setSelected(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+
 		});
 
 		/*
@@ -243,22 +289,13 @@ public class Home extends TabActivity {
 			}
 
 			for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-				listOfUnitNumbersFromId.put(listOfUnitNumbers.get(i), "Unit "
-						+ i);
+				listOfUnitNumbersWithHeader.add("Unit "+listOfUnitNumbers.get(i));
 			}
 
-			// lvUnitNumberAdapter = new CanListDataAdapter(this,
-			// listOfUnitNumbers);
-
-			ArrayList<String> a = new ArrayList<String>();
-			a.addAll(listOfUnitNumbersFromId.values());
-
-			lvUnitNumberAdapter = new CanListDataAdapter(this, a);
+			lvUnitNumberAdapter = new CanListDataAdapter(this, listOfUnitNumbersWithHeader);
 
 			lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-
-			// selectedUnitNumber =
-			// lvUnitNumbers.getItemAtPosition(0).toString();
+			
 			selectedUnitNumber = listOfUnitNumbers.get(0);
 
 			canConfigData = getCanConfigurationData(selectedUnitNumber);
@@ -267,6 +304,26 @@ public class Home extends TabActivity {
 			lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
 			lblFloorNo.setText(canConfigData.get("FloorNo"));
 			lblRoomNo.setText(canConfigData.get("RoomNo"));
+
+			canStatusData = getCanStatus(selectedUnitNumber);
+
+			lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+
+			lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+			if (canStatusData.get("CanStatusType").compareTo(getString(R.string.CanStatusType_Full))==0) {
+				timer = new Timer();
+				timer.scheduleAtFixedRate(new TimerTask() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						playSound();
+					}
+				}, 0, 500);
+
+				showAlertForCanStatus(Home.this, timer);
+			}
 
 		} catch (Exception e) {
 			// TODO: hanedle exception
@@ -279,9 +336,12 @@ public class Home extends TabActivity {
 		// TODO Auto-generated method stub
 		lvUnitNumbers = (ListView) findViewById(R.id.lvUnitNumbers);
 		listOfUnitNumbers = new ArrayList<String>();
+		listOfUnitNumbersWithHeader=new ArrayList<String>();
 		listOfUnitNumbersFromId = new HashMap<String, String>();
 		btnOpen = (Button) findViewById(R.id.btnOpen);
 		btnClose = (Button) findViewById(R.id.btnClose);
+		lblCanIdinCanStatus = (TextView) findViewById(R.id.lblCanIdinCanStatus);
+		lblCanStatus = (TextView) findViewById(R.id.lblCanStatus);
 		lblCanId = (TextView) findViewById(R.id.lblCanId);
 		lblCanIpAddress = (TextView) findViewById(R.id.lblCanIpAddress);
 		lblFloorNo = (TextView) findViewById(R.id.lblFloorNo);
@@ -289,7 +349,8 @@ public class Home extends TabActivity {
 		sharedpreference = PreferenceManager.getDefaultSharedPreferences(this);
 		ipAddressForWebService = sharedpreference.getString(
 				"IpAddressForWebService", "172.16.205.56");
-
+		dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		timer = new Timer();
 	}
 
 	private HashMap<String, String> getCanConfigurationData(String canId) {
@@ -298,10 +359,13 @@ public class Home extends TabActivity {
 		try {
 			HashMap<String, String> canConfig = new HashMap<String, String>();
 			restClient.Execute(RequestMethod.GET);
-			String canconfigResponse = restClient.getResponse();
-			if (canconfigResponse != "") {
+			String canConfigResponse = null;
+			if (restClient.getResponse() != "") {
+				canConfigResponse = restClient.getResponse();
+			}
+			if (canConfigResponse != null) {
 				JSONObject canConfigJsonObject = new JSONObject(
-						canconfigResponse);
+						canConfigResponse);
 
 				if (canConfigJsonObject.getString("CanId") != "null") {
 					canConfig.put("CanId", canConfigJsonObject
@@ -344,6 +408,136 @@ public class Home extends TabActivity {
 		}
 
 		catch (Exception exception) {
+			exception.printStackTrace();
+			return null;
+		}
+	}
+
+	private void playSound() {
+
+		try {			
+			byte generatedSnd[] = new byte[2 * numSamples];
+
+			for (int i = 0; i < numSamples; ++i) {
+				sample[i] = Math.sin(2 * Math.PI * i
+						/ (sampleRate / freqOfTone));
+			}
+
+			// convert to 16 bit pcm sound array
+			// assumes the sample buffer is normalised.
+
+			int idx = 0;
+
+			for (final double dVal : sample) {
+				// scale to maximum amplitude
+				final short val = (short) ((dVal * 52767));
+				// in 16 bit wav PCM, first byte is the low
+				// order byte
+				generatedSnd[idx++] = (byte) (val & 0x00ff);
+				generatedSnd[idx++] = (byte) ((val & 0xff00) >>> 8);
+			}
+
+			if (audioTrack != null) {
+				audioTrack.release();
+				audioTrack = null;
+			}
+			audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
+					AudioFormat.CHANNEL_CONFIGURATION_MONO,
+					AudioFormat.ENCODING_PCM_16BIT, numSamples,
+					AudioTrack.MODE_STATIC);
+			audioTrack.write(generatedSnd, 0,
+					(int) (generatedSnd.length / beepDevider));
+			audioTrack.play();
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+	}
+
+	private void showAlertForCanStatus(Context context, final Timer timer) {
+		try {
+			AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(
+					context);
+			alertdialogBuilder.setMessage("The Can is full").setCancelable(
+					false).setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							timer.cancel();
+						}
+					}).setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+
+							timer.cancel();
+							dialog.cancel();
+						}
+					});
+			AlertDialog alert = alertdialogBuilder.create();
+			alert.setTitle("The Can is full");
+
+			alert.show();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+	}
+
+	private HashMap<String, String> getCanStatus(String canId) {
+		dateTime = new Date();
+		HashMap<String, String> canStatus = new HashMap<String, String>();
+		restClient = new RestClient("http://" + ipAddressForWebService
+				+ getString(R.string.url_GetCanStatus)
+				+ getString(R.string.url_GetCanStatus_CanId) + canId + "&"
+				+ getString(R.string.url_GetCanStatus_EventTime)
+				+ dateFormatter.format(dateTime));
+
+		try {
+			restClient.Execute(RequestMethod.GET);
+			Log.d(tag, "http://" + ipAddressForWebService
+					+ getString(R.string.url_GetCanStatus)
+					+ getString(R.string.url_GetCanStatus_CanId) + canId + "&"
+					+ getString(R.string.url_GetCanStatus_EventTime)
+					+ dateFormatter.format(dateTime));
+			String canStatusResponse = null;
+			if (restClient.getResponse() != "") {
+				canStatusResponse = restClient.getResponse();
+			}
+
+			if (canStatusResponse != null) {
+				JSONObject canStatusJsonObject = new JSONObject(
+						canStatusResponse);
+
+				if (canStatusJsonObject.getString("CanId") != "null") {
+					canStatus.put("CanId", canStatusJsonObject
+							.getString("CanId"));
+				} else {
+					canStatus.put("CanId", "N/A");
+				}
+				if(canStatusJsonObject.get("StatusType")!=null)
+				{
+					canStatus.put("CanStatusType",canStatusJsonObject.get("StatusType").toString());				
+					
+				}
+				else
+				{
+					canStatus.put("CanStatusType","N/A");
+				}
+
+				if (canStatusJsonObject.getString("StatusDescription") != "null") {
+					canStatus.put("CanStatus", canStatusJsonObject
+							.getString("StatusDescription"));
+				} else {
+					canStatus.put("CanStatus", "N/A");
+				}
+			}
+			else {
+				canStatus.put("CanId", "N/A");
+				canStatus.put("CanStatus", "N/A");
+				canStatus.put("CanStatusType","N/A");
+			}
+			return canStatus;
+		} catch (Exception exception) {
 			exception.printStackTrace();
 			return null;
 		}

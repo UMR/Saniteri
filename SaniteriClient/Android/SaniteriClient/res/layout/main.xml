@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content" android:layout_width="wrap_content">
 	<LinearLayout android:layout_height="fill_parent"
-		android:layout_width="120dip" android:id="@+id/layoutUnitNumbers"
+		android:layout_width="120dp" android:id="@+id/layoutUnitNumbers"
 		android:orientation="vertical" android:background="@drawable/unitnumberliststyle">
 		<TextView android:layout_width="fill_parent"
-			android:layout_height="65dip" android:text="@string/label_UnitNumberList"
+			android:layout_height="65dp" android:text="@string/label_UnitNumberList"
 			android:textSize="15sp" android:textStyle="bold" android:textColor="#ffffff"
 			android:gravity="center">
 		</TextView>
 		<ListView android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@+id/lvUnitNumbers"
-			android:divider="@color/gray_color" android:dividerHeight="2dip"></ListView>
+			android:divider="@color/gray_color" android:dividerHeight="2dp"></ListView>
 
 	</LinearLayout>
 
@@ -24,12 +24,12 @@
 			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:orientation="vertical"
 				android:gravity="center" android:id="@+id/LayoutHome">
-				<Button android:layout_width="120dip" android:id="@+id/btnOpen"
-					android:layout_height="35dip" android:text="Open" android:textSize="17sp"
+				<Button android:layout_width="120dp" android:id="@+id/btnOpen"
+					android:layout_height="35dp" android:text="Open" android:textSize="17sp"
 					android:textColor="#ffffff" android:background="@drawable/button_selector"
 					android:layout_margin="4dp"></Button>
-				<Button android:layout_width="120dip" android:id="@+id/btnClose"
-					android:layout_height="35dip" android:text="Close"
+				<Button android:layout_width="120dp" android:id="@+id/btnClose"
+					android:layout_height="35dp" android:text="Close"
 					android:textSize="17sp" android:textColor="#ffffff"
 					android:background="@drawable/button_selector"
 					android:layout_margin="4dp"></Button>
@@ -37,7 +37,30 @@
 			</LinearLayout>
 
 			<LinearLayout android:layout_width="fill_parent"
-				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus">
+				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus" android:orientation="vertical" android:gravity="center">
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="42dp" android:layout_marginLeft="15dp">
+					<TextView android:layout_width="80dp"
+						android:layout_height="42dp" android:text="Can Id"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
+						android:gravity="center_vertical" ></TextView>
+					<TextView android:layout_width="180dp"
+						android:layout_height="42dp" android:id="@+id/lblCanIdinCanStatus"
+						 android:background="@color/white_color"
+						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="35dp" android:layout_marginLeft="15dp">
+					<TextView android:layout_width="80dp"
+						android:layout_height="35dp" android:text="Can Status"
+						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
+						android:gravity="center_vertical"></TextView>
+					<TextView android:layout_width="180dp"
+						android:layout_height="35dp" android:id="@+id/lblCanStatus"
+						 android:background="@color/white_color"
+						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
+				</LinearLayout>
+				
 
 
 			</LinearLayout>
@@ -45,48 +68,48 @@
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanConfig"
 				android:orientation="vertical" android:gravity="center">
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="45dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Id"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+					android:layout_height="45dp" android:layout_margin="4dp">
+					<TextView android:layout_width="100dp"
+						android:layout_height="35dp" android:text="Id"
+						android:layout_marginRight="3dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
-						android:layout_height="40dip" android:id="@+id/lblCanId"
+					<TextView android:layout_width="180dp"
+						android:layout_height="42dp" android:id="@+id/lblCanId"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="2dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Ip Address"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="4dp">
+					<TextView android:layout_width="100dp"
+						android:layout_height="35dp" android:text="Ip Address"
+						android:layout_marginRight="3dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
-						android:layout_height="35dip" android:id="@+id/lblCanIpAddress"
+					<TextView android:layout_width="180dp"
+						android:layout_height="35dp" android:id="@+id/lblCanIpAddress"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="2dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Room No"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="4dp">
+					<TextView android:layout_width="100dp"
+						android:layout_height="35dp" android:text="Room No"
+						android:layout_marginRight="3dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
-						android:layout_height="35dip" android:id="@+id/lblRoomNo"
+					<TextView android:layout_width="180dp"
+						android:layout_height="35dp" android:id="@+id/lblRoomNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="2dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dip" android:layout_margin="4dp">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Floor No"
-						android:layout_marginRight="3dip" android:layout_marginLeft="10dip"
+					android:layout_height="35dp" android:layout_margin="4dp">
+					<TextView android:layout_width="100dp"
+						android:layout_height="35dp" android:text="Floor No"
+						android:layout_marginRight="3dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="160dip"
-						android:layout_height="35dip" android:id="@+id/lblFloorNo"
+					<TextView android:layout_width="180dp"
+						android:layout_height="35dp" android:id="@+id/lblFloorNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
-						android:paddingLeft="2dip"></TextView>
+						android:paddingLeft="2dp"></TextView>
 				</LinearLayout>
 			</LinearLayout>
 

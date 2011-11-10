@@ -15,6 +15,15 @@
             <DataTemplate DataType="{x:Type vm:CanLogViewModel}">
                 <views:CanLogView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CanStatusCodeViewModel}">
+                <views:CanStatusConfigView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CanStatusViewModel}">
+                <views:CanStatusView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CanEventCodeViewModel}">
+                <views:CanEventConfigView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
