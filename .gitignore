@@ -23,3 +23,7 @@
 /SaniteriClient/Winclient/UMR.Saniteri/UMR.Saniteri.ViewModel/obj
 /SaniteriClient/Winclient/UMR.Saniteri/Output/*.*
 /SaniteriClient/Winclient/UMR.Saniteri/*.suo
+/SaniteriClient/Winclient/UMR.Saniteri/UMR.DBUtility/bin
+/SaniteriClient/Winclient/UMR.Saniteri/UMR.DBUtility/obj
+/SaniteriClient/Winclient/UMR.Saniteri/UMR.Saniteri.Converters/bin
+/SaniteriClient/Winclient/UMR.Saniteri/UMR.Saniteri.Converters/obj

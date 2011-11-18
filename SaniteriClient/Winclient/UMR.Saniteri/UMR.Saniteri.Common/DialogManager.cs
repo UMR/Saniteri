@@ -9,5 +9,6 @@ namespace UMR.Saniteri.Common
     {
         public static Action<string> popup;
         public static Func<string, string, bool> confirm;
+        public static Func<string, string> openFile;
     }
 }
