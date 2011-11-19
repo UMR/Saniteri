@@ -18,6 +18,7 @@ namespace UMR.DBUtility
 
         public DatabaseConfigurationViewModel()
         {
+            message = "Loading Please wait ...";
             Task task = Task.Factory.StartNew(() =>
             {
                 this.servers = this.getSQLServers(true);
@@ -33,6 +34,7 @@ namespace UMR.DBUtility
                     this.userName = this.database.connectionSettings.userName;
                     this.password = this.database.connectionSettings.password;
                 }
+                message = "";
             });
             this.database = new SQLDatabase();
             ready = true;
