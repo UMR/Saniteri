@@ -178,6 +178,10 @@
     <Resource Include="Resources\Images\wallet_16.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UMR.Saniteri.Clock\UMR.Saniteri.Clock.csproj">
+      <Project>{DD87CABF-DB74-4894-9275-CCEA8ADAAEC1}</Project>
+      <Name>UMR.Saniteri.Clock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UMR.Saniteri.Command\UMR.Saniteri.Command.csproj">
       <Project>{F08EA7BB-54DF-4ED0-9658-412663FF5785}</Project>
       <Name>UMR.Saniteri.Command</Name>

@@ -35,6 +35,7 @@ namespace UMR.DBUtility
                     this.password = this.database.connectionSettings.password;
                 }
                 message = "";
+                checkDatabaseAsync();
             });
             this.database = new SQLDatabase();
             ready = true;
@@ -117,6 +118,13 @@ namespace UMR.DBUtility
 
         public bool canFinish { get { return this.connected && this.ready; } }
 
+        bool _canCreate = false;
+        public bool canCreate 
+        {
+            get { return this._canCreate; }
+            set { this._canCreate = value; this.onPropertyChanged("canCreate"); } 
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void onPropertyChanged(string propertyName)
@@ -160,11 +168,12 @@ namespace UMR.DBUtility
 
         private void checkDatabaseAsync()
         {
-            Task.Factory.StartNew(() =>
-            {
-                //if (!this.saveSettings()) return;
-                //this.message = Database.checkDatabase(ApplicationData.applicationData.version);
-                //if (string.IsNullOrEmpty(this.message)) this.message = Strings.DatabaseUpToDate;
+            if (database == null) database = new SQLDatabase();
+            Task.Factory.StartNew(() => 
+            { 
+                canCreate = !database.databaseExists("saniteri_main");
+                if (!canCreate) this.message = "Database Up to Date";
+
             });
         }
 
