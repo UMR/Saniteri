@@ -95,7 +95,7 @@ namespace SaniteriWebService.DAL
                 using (var context = DBManager.GetMainEntities())
                 {
                     var newCommand = new can_command();
-                    newCommand.command_id = Guid.NewGuid();
+                    newCommand.command_id = 0;
                     newCommand.can_id = canId;
                     newCommand.can_lid_status = Convert.ToByte(canLidStatus);
                     newCommand.command_timestamp = DateTime.Now;

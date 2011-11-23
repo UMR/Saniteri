@@ -129,16 +129,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\Attributes\" />
-    <Folder Include="Validation\Base Classes\" />
-    <Folder Include="Validation\Delegates\" />
-    <Folder Include="Validation\Enums\" />
-    <Folder Include="Validation\Event Args\" />
-    <Folder Include="Validation\Interfaces\" />
-    <Folder Include="Validation\Validation Manager\" />
-    <Folder Include="Validation\Validation Rules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

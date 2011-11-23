@@ -13,15 +13,7 @@
           <EntitySet Name="can_status" EntityType="SaniteriEntities.Store.can_status" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="can_statuscode" EntityType="SaniteriEntities.Store.can_statuscode" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="can_transaction_log" EntityType="SaniteriEntities.Store.can_transaction_log" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="can_users" EntityType="SaniteriEntities.Store.can_users" store:Type="Tables" store:Schema="dbo" store:Name="can_users">
-            <DefiningQuery>SELECT 
-      [can_users].[id] AS [id], 
-      [can_users].[user_id] AS [user_id], 
-      [can_users].[first_name] AS [first_name], 
-      [can_users].[last_name] AS [last_name], 
-      [can_users].[title] AS [title]
-      FROM [dbo].[can_users] AS [can_users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="can_users" EntityType="SaniteriEntities.Store.can_users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_can_command_can_inventory" Association="SaniteriEntities.Store.FK_can_command_can_inventory">
             <End Role="can_inventory" EntitySet="can_inventory" />
             <End Role="can_command" EntitySet="can_command" />
@@ -49,9 +41,10 @@
         </EntityContainer>
         <EntityType Name="can_command">
           <Key>
-            <PropertyRef Name="command_id" />
+            <PropertyRef Name="seqno" />
           </Key>
-          <Property Name="command_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="seqno" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="command_id" Type="int" />
           <Property Name="can_id" Type="bigint" Nullable="false" />
           <Property Name="can_lid_status" Type="tinyint" Nullable="false" />
           <Property Name="command_timestamp" Type="datetime" Nullable="false" />
@@ -60,14 +53,14 @@
           <Key>
             <PropertyRef Name="event_type" />
           </Key>
-          <Property Name="event_type" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="event_type" Type="int" Nullable="false" />
           <Property Name="description" Type="text" />
         </EntityType>
         <EntityType Name="can_inventory">
           <Key>
             <PropertyRef Name="can_id" />
           </Key>
-          <Property Name="can_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="can_id" Type="bigint" Nullable="false" />
           <Property Name="production_date" Type="date" />
           <Property Name="in_service_date" Type="date" />
           <Property Name="street" Type="varchar" MaxLength="50" />
@@ -105,7 +98,7 @@
           <Key>
             <PropertyRef Name="status_type" />
           </Key>
-          <Property Name="status_type" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="status_type" Type="int" Nullable="false" />
           <Property Name="description" Type="text" />
         </EntityType>
         <EntityType Name="can_transaction_log">
@@ -121,19 +114,15 @@
           <Property Name="tag_id" Type="bigint" />
           <Property Name="name" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'saniteri_main.dbo.can_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="can_users">
           <Key>
-            <PropertyRef Name="id" />
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="user_id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_id" Type="bigint" Nullable="false" />
           <Property Name="first_name" Type="nvarchar" MaxLength="50" />
           <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="options" Type="int" />
         </EntityType>
         <Association Name="FK_can_command_can_inventory">
           <End Role="can_inventory" Type="SaniteriEntities.Store.can_inventory" Multiplicity="1" />
@@ -247,9 +236,10 @@
         </EntityContainer>
         <EntityType Name="can_command">
           <Key>
-            <PropertyRef Name="command_id" />
+            <PropertyRef Name="seqno" />
           </Key>
-          <Property Type="Guid" Name="command_id" Nullable="false" />
+          <Property Type="Int32" Name="seqno" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="command_id" />
           <Property Type="Int64" Name="can_id" Nullable="false" />
           <Property Type="Byte" Name="can_lid_status" Nullable="false" />
           <Property Type="DateTime" Name="command_timestamp" Nullable="false" />
@@ -259,7 +249,7 @@
           <Key>
             <PropertyRef Name="event_type" />
           </Key>
-          <Property Type="Int32" Name="event_type" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="event_type" Nullable="false" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_transaction_log" Relationship="SaniteriEntities.FK_can_EventsLog_can_EventCodes" FromRole="can_eventcodes" ToRole="can_transaction_log" />
         </EntityType>
@@ -267,7 +257,7 @@
           <Key>
             <PropertyRef Name="can_id" />
           </Key>
-          <Property Type="Int64" Name="can_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="can_id" Nullable="false" />
           <Property Type="DateTime" Name="production_date" />
           <Property Type="DateTime" Name="in_service_date" />
           <Property Type="String" Name="street" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -312,7 +302,7 @@
           <Key>
             <PropertyRef Name="status_type" />
           </Key>
-          <Property Type="Int32" Name="status_type" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="status_type" Nullable="false" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_status" Relationship="SaniteriEntities.FK_can_Status_can_StatusCode" FromRole="can_statuscode" ToRole="can_status" />
         </EntityType>
@@ -333,14 +323,13 @@
         </EntityType>
         <EntityType Name="can_users">
           <Key>
-            <PropertyRef Name="id" />
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="String" Name="user_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="user_id" Nullable="false" />
           <Property Type="String" Name="first_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="last_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="title" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="options" />
         </EntityType>
         <Association Name="FK_can_command_can_inventory">
           <End Type="SaniteriEntities.can_inventory" Role="can_inventory" Multiplicity="1" />
@@ -427,6 +416,7 @@
                 <ScalarProperty Name="can_lid_status" ColumnName="can_lid_status" />
                 <ScalarProperty Name="can_id" ColumnName="can_id" />
                 <ScalarProperty Name="command_id" ColumnName="command_id" />
+                <ScalarProperty Name="seqno" ColumnName="seqno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -503,11 +493,11 @@
           <EntitySetMapping Name="can_users">
             <EntityTypeMapping TypeName="SaniteriEntities.can_users">
               <MappingFragment StoreEntitySet="can_users">
+                <ScalarProperty Name="options" ColumnName="options" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -532,41 +522,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="SaniteriDataModel">
-        <EntityTypeShape EntityType="SaniteriEntities.can_command" Width="1.5" PointX="3" PointY="4.75" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.25" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="4.875" Height="4.4802050781250031" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="7.5" Height="1.7879850260416745" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_status" Width="1.5" PointX="6" PointY="5.875" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="10.25" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_transaction_log" Width="1.5" PointX="6" PointY="1.625" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_command" Width="1.5" PointX="3" PointY="4.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="4.875" Height="4.4802050781250022" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="7.75" Height="1.7879850260416745" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_status" Width="1.5" PointX="6" PointY="6" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="10.375" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_transaction_log" Width="1.5" PointX="6" PointY="1.75" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_users" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" />
         <AssociationConnector Association="SaniteriEntities.FK_can_command_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="5.8026432291666659" />
-          <ConnectorPoint PointX="3" PointY="5.8026432291666659" />
+          <ConnectorPoint PointX="2.25" PointY="5.8987939453125" />
+          <ConnectorPoint PointX="3" PointY="5.8987939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_EventsLog_can_EventCodes" >
-          <ConnectorPoint PointX="5.25" PointY="3.047841796875" />
-          <ConnectorPoint PointX="6" PointY="3.047841796875" />
+          <ConnectorPoint PointX="5.25" PointY="3.172841796875" />
+          <ConnectorPoint PointX="6" PointY="3.172841796875" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_maintenance_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="8.3939925130208373" />
-          <ConnectorPoint PointX="3" PointY="8.3939925130208373" />
+          <ConnectorPoint PointX="2.25" PointY="8.5526025390625016" />
+          <ConnectorPoint PointX="3" PointY="8.5526025390625016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_status_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="7.1151432291666659" />
-          <ConnectorPoint PointX="6" PointY="7.1151432291666659" />
+          <ConnectorPoint PointX="2.25" PointY="7.3362939453125" />
+          <ConnectorPoint PointX="6" PointY="7.3362939453125" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_transaction_log_can_inventory" >
           <ConnectorPoint PointX="1.5" PointY="4.875" />
-          <ConnectorPoint PointX="1.5" PointY="4.09568359375" />
-          <ConnectorPoint PointX="5.625" PointY="4.09568359375" />
-          <ConnectorPoint PointX="5.625" PointY="3.8385697083333272" />
-          <ConnectorPoint PointX="6" PointY="3.8385697083333272" />
+          <ConnectorPoint PointX="1.5" PointY="4.22068359375" />
+          <ConnectorPoint PointX="5.625" PointY="4.22068359375" />
+          <ConnectorPoint PointX="5.625" PointY="3.9635697083333272" />
+          <ConnectorPoint PointX="6" PointY="3.9635697083333272" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_Status_can_StatusCode" >
-          <ConnectorPoint PointX="4.90625" PointY="10.25" />
-          <ConnectorPoint PointX="4.90625" PointY="7.3075741145833337" />
-          <ConnectorPoint PointX="6" PointY="7.3075741145833337" />
+          <ConnectorPoint PointX="4.90625" PointY="10.375" />
+          <ConnectorPoint PointX="4.90625" PointY="7.5431494726562507" />
+          <ConnectorPoint PointX="6" PointY="7.5431494726562507" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

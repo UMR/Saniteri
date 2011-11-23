@@ -291,14 +291,14 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// Create a new can_command object.
         /// </summary>
-        /// <param name="command_id">Initial value of the command_id property.</param>
+        /// <param name="seqno">Initial value of the seqno property.</param>
         /// <param name="can_id">Initial value of the can_id property.</param>
         /// <param name="can_lid_status">Initial value of the can_lid_status property.</param>
         /// <param name="command_timestamp">Initial value of the command_timestamp property.</param>
-        public static can_command Createcan_command(global::System.Guid command_id, global::System.Int64 can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
+        public static can_command Createcan_command(global::System.Int32 seqno, global::System.Int64 can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
         {
             can_command can_command = new can_command();
-            can_command.command_id = command_id;
+            can_command.seqno = seqno;
             can_command.can_id = can_id;
             can_command.can_lid_status = can_lid_status;
             can_command.command_timestamp = command_timestamp;
@@ -313,7 +313,34 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid command_id
+        public global::System.Int32 seqno
+        {
+            get
+            {
+                return _seqno;
+            }
+            set
+            {
+                if (_seqno != value)
+                {
+                    OnseqnoChanging(value);
+                    ReportPropertyChanging("seqno");
+                    _seqno = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("seqno");
+                    OnseqnoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _seqno;
+        partial void OnseqnoChanging(global::System.Int32 value);
+        partial void OnseqnoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> command_id
         {
             get
             {
@@ -321,18 +348,15 @@ namespace UMR.Saniteri.Data
             }
             set
             {
-                if (_command_id != value)
-                {
-                    Oncommand_idChanging(value);
-                    ReportPropertyChanging("command_id");
-                    _command_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("command_id");
-                    Oncommand_idChanged();
-                }
+                Oncommand_idChanging(value);
+                ReportPropertyChanging("command_id");
+                _command_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("command_id");
+                Oncommand_idChanged();
             }
         }
-        private global::System.Guid _command_id;
-        partial void Oncommand_idChanging(global::System.Guid value);
+        private Nullable<global::System.Int32> _command_id;
+        partial void Oncommand_idChanging(Nullable<global::System.Int32> value);
         partial void Oncommand_idChanged();
     
         /// <summary>
@@ -1818,12 +1842,10 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// Create a new can_users object.
         /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
         /// <param name="user_id">Initial value of the user_id property.</param>
-        public static can_users Createcan_users(global::System.Guid id, global::System.String user_id)
+        public static can_users Createcan_users(global::System.Int64 user_id)
         {
             can_users can_users = new can_users();
-            can_users.id = id;
             can_users.user_id = user_id;
             return can_users;
         }
@@ -1836,34 +1858,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Guid _id;
-        partial void OnidChanging(global::System.Guid value);
-        partial void OnidChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String user_id
+        public global::System.Int64 user_id
         {
             get
             {
@@ -1875,14 +1870,14 @@ namespace UMR.Saniteri.Data
                 {
                     Onuser_idChanging(value);
                     ReportPropertyChanging("user_id");
-                    _user_id = StructuralObject.SetValidValue(value, false);
+                    _user_id = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("user_id");
                     Onuser_idChanged();
                 }
             }
         }
-        private global::System.String _user_id;
-        partial void Onuser_idChanging(global::System.String value);
+        private global::System.Int64 _user_id;
+        partial void Onuser_idChanging(global::System.Int64 value);
         partial void Onuser_idChanged();
     
         /// <summary>
@@ -1956,6 +1951,30 @@ namespace UMR.Saniteri.Data
         private global::System.String _title;
         partial void OntitleChanging(global::System.String value);
         partial void OntitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> options
+        {
+            get
+            {
+                return _options;
+            }
+            set
+            {
+                OnoptionsChanging(value);
+                ReportPropertyChanging("options");
+                _options = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("options");
+                OnoptionsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _options;
+        partial void OnoptionsChanging(Nullable<global::System.Int32> value);
+        partial void OnoptionsChanged();
 
         #endregion
     

@@ -9,16 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using UMR.Saniteri.Command;
 using UMR.Saniteri.DataFactory;
+using System.IO;
+using UMR.Saniteri.Common;
 
 namespace UMR.DBUtility
 {
     public class DatabaseConfigurationViewModel : INotifyPropertyChanged
     {
         public SQLDatabase database { get; private set; }
+        private string DBName = "saniteri_main";            
 
         public DatabaseConfigurationViewModel()
         {
-            message = "Loading Please wait ...";
+            canCreate = false;
+            ready = false;
+            message = "Loading ... Please wait";
             Task task = Task.Factory.StartNew(() =>
             {
                 this.servers = this.getSQLServers(true);
@@ -38,7 +43,6 @@ namespace UMR.DBUtility
                 checkDatabaseAsync();
             });
             this.database = new SQLDatabase();
-            ready = true;
         }
 
         IEnumerable<ServerInstance> _servers;
@@ -95,7 +99,7 @@ namespace UMR.DBUtility
             set { this._integratedSecurity = value; this.onPropertyChanged("integratedSecurity"); }
         }
 
-        string _message = "Thanks";
+        string _message;
         public string message
         {
             get { return this._message; }
@@ -116,7 +120,7 @@ namespace UMR.DBUtility
             private set { this._connected = value; this.onPropertyChanged("connected"); this.onPropertyChanged("canFinish"); }
         }
 
-        public bool canFinish { get { return this.connected && this.ready; } }
+        public bool canFinish { get { return this.connected && !this.canCreate; } }
 
         bool _canCreate = false;
         public bool canCreate 
@@ -144,13 +148,23 @@ namespace UMR.DBUtility
             }
         }
 
-        DelegateCommand _updateCommand;
-        public ICommand updateCommand
+        DelegateCommand _saveCommand;
+        public ICommand SaveCommand
         {
             get
             {
-                if (_updateCommand == null) _updateCommand = new DelegateCommand(() => this.update(), () => { return this.ready && this.connected; });
-                return _updateCommand;
+                if (_saveCommand == null) _saveCommand = new DelegateCommand(() => this.saveSettings(), () => { return true; });
+                return _saveCommand;
+            }
+        }
+
+        DelegateCommand _createCommand;
+        public ICommand CreateCommand
+        {
+            get
+            {
+                if (_createCommand == null) _createCommand = new DelegateCommand(() => this.CreateDatabase(), () => { return true; });
+                return _createCommand;
             }
         }
 
@@ -166,14 +180,37 @@ namespace UMR.DBUtility
 
         #endregion
 
+        private void CreateDatabase()
+        {
+            try
+            {
+                ready = false;
+                message = "Database Creating...please wait";
+                this.database.createDataBase(DBName, DBName);
+                if (database.databaseExists(DBName))
+                {
+                    message = "Database has created successfully.";
+                    canCreate = false;
+                }
+                connected = true;
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg = ex.InnerException.Message;
+                DialogManager.popup(msg);
+            }
+        }
+
         private void checkDatabaseAsync()
         {
             if (database == null) database = new SQLDatabase();
             Task.Factory.StartNew(() => 
-            { 
-                canCreate = !database.databaseExists("saniteri_main");
+            {
+                canCreate = !database.databaseExists(DBName);
                 if (!canCreate) this.message = "Database Up to Date";
-
+                ready = canCreate;
             });
         }
 
@@ -181,7 +218,6 @@ namespace UMR.DBUtility
         {
             this.ready = false;
             this.connected = false;
-            //this.message = Strings.CheckingDatabase;
             database.connectionSettings.serverName = server.serverName;
             if (integratedSecurity) database.connectionSettings.integratedSecurity = integratedSecurity;
             else
@@ -193,37 +229,17 @@ namespace UMR.DBUtility
             try
             {
                 database.saveSettings(database.connectionSettings);
-                return this.connected = true;
+                checkDatabaseAsync();
+                return true;
             }
             catch (Exception ex)
             {
-                this.message = ex.Message;
-                //this.sendMessage(new Message(ex.InnerException == null ? ex.Message : ex.Message + Environment.NewLine + ex.InnerException.Message));
+                var msg = ex.Message;
+                if (ex.InnerException != null)
+                    msg = ex.InnerException.Message;
+                DialogManager.popup(msg);
                 return connected;
             }
-            finally { this.ready = true; }
-        }
-
-        private void update()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    //this.message = Strings.CheckingDatabase;
-                    //this.ready = false;
-                    //DispatcherService.dispatcherService.dispatch(() => ((DelegateCommand)updateCommand).RaiseCanExecuteChanged());
-                    //Database.createDatabase(ApplicationData.applicationData.version, false);
-                    //this.message = "Database Up To Date";
-                    //this.sendMessage(new Message(this.closeCommand, Strings.SuccessfullyConfiguredDatabase));
-                }
-                catch (Exception ex)
-                {
-                    //this.message = ex.Message;
-                    //this.sendMessage(new Message(ex.InnerException == null ? ex.Message : ex.Message + Environment.NewLine + ex.InnerException.Message));
-                    //this.ready = true;
-                }
-            });
         }
 
         private IEnumerable<ServerInstance> getSQLServers(bool shouldSortList)

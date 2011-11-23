@@ -70,7 +70,8 @@ namespace UMR.Saniteri.DataFactory.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /****** Object:  Table [dbo].[can_inventory]    Script Date: 11/02/2011 08:50:50 ******/
+        ///   Looks up a localized string similar to GO
+        ////****** Object:  Table [dbo].[can_inventory]    Script Date: 11/21/2011 22:50:54 ******/
         ///SET ANSI_NULLS ON
         ///GO
         ///SET QUOTED_IDENTIFIER ON
@@ -78,7 +79,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         ///SET ANSI_PADDING ON
         ///GO
         ///CREATE TABLE [dbo].[can_inventory](
-        ///	[can_id] [bigint] IDENTITY(1,1) NOT NULL,
+        ///	[can_id] [bigint] NOT NULL,
         ///	[production_date] [date] NULL,
         ///	[in_service_date] [date] NULL,
         ///	[street] [varchar](50) NULL,
@@ -87,7 +88,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         ///	[state] [varchar](50) NULL,
         ///	[zip] [varchar](50) NULL,
         ///	[floor] [varchar](50) NULL,
-        ///	[room] [varch [rest of string was truncated]&quot;;.
+        ///	[room] [varchar](50) NU [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string saniteri_main_SQLScript {
             get {
