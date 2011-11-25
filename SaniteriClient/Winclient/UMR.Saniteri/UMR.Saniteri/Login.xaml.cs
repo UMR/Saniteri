@@ -25,7 +25,7 @@ namespace UMR.Saniteri
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //using (var cx = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            //using (var cx = DatabaseManager.server.GetMainEntities())
             //{
             //    var tt = cx.can_users.ToList();
             //}

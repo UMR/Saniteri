@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="saniteri_main_DefaultData" xml:space="preserve">
+  <data name="SaniteriMain_DefaultData" xml:space="preserve">
     <value />
   </data>
-  <data name="saniteri_main_SQLScript" xml:space="preserve">
+  <data name="SaniteriMain_SQLScript" xml:space="preserve">
     <value>GO
 /****** Object:  Table [dbo].[can_inventory]    Script Date: 11/21/2011 22:50:54 ******/
 SET ANSI_NULLS ON

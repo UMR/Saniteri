@@ -6,7 +6,7 @@
       <Value Profile="(Default)">.</Value>
     </Setting>
     <Setting Name="MainDBName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">saniteri_main</Value>
+      <Value Profile="(Default)">SaniteriMain</Value>
     </Setting>
     <Setting Name="MainIntegratedSecurity" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>

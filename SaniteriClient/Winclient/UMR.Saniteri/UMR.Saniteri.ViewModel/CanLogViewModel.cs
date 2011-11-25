@@ -7,6 +7,7 @@ using System.Windows.Input;
 using UMR.Saniteri.Command;
 using UMR.Saniteri.Data;
 using UMR.Saniteri.Common;
+using UMR.Saniteri.DataFactory;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -69,7 +70,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     CanConfigList = context.can_inventory.ToList();
                 }
@@ -107,7 +108,7 @@ namespace UMR.Saniteri.ViewModel
                 if (value != null)
                 {
                     _selectedCan = value;
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         CanConfig = context.can_inventory.Where(r => r.can_id == value.can_id).FirstOrDefault<can_inventory>();
                         CanEventsList = context.can_transaction_log.Where(r => r.can_id == value.can_id).ToList<can_transaction_log>();
@@ -124,7 +125,7 @@ namespace UMR.Saniteri.ViewModel
 
         protected bool Search()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 try
                 {

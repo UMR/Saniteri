@@ -10,6 +10,7 @@ using UMR.Saniteri.DataFactory.Properties;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
+using UMR.Saniteri.Data;
 
 namespace UMR.Saniteri.DataFactory
 {
@@ -18,6 +19,8 @@ namespace UMR.Saniteri.DataFactory
         private string settingsPath { get; set; }
         private SqlConnectionInfo connectionInfo { get; set; }
         public DatabaseSettings connectionSettings { get; set; }
+        string modelName { get; set; }
+        string dataFile { get; set; }
 
         public SQLDatabase()
         {
@@ -34,6 +37,13 @@ namespace UMR.Saniteri.DataFactory
             }
             this.connectionSettings = data as DatabaseSettings;
             this.resetConnectionInfo();
+        }
+
+        public SQLDatabase(string _modelName, string dataFile)
+            : this()
+        {
+            this.modelName = _modelName;
+            this.dataFile = dataFile;
         }
 
         private string GetLocalDatabaseServer()
@@ -99,6 +109,11 @@ namespace UMR.Saniteri.DataFactory
             string security = this.connectionInfo.UseIntegratedSecurity ? "Integrated Security=True;" : string.Format("User ID={0};Password={1};", this.connectionInfo.UserName, this.connectionInfo.Password);
             ECSB.ProviderConnectionString = string.Format(@"Data Source={0};Initial Catalog={1};{2}MultipleActiveResultSets=True;", this.connectionInfo.ServerName, dataFilePath, security);
             return new EntityConnection(ECSB.ToString());
+        }
+
+        public SaniteriModelEntities GetMainEntities()
+        {
+            return new SaniteriModelEntities(getConnection(modelName, dataFile));
         }
 
         public void createDataBase(string databaseName, string scriptKey)

@@ -7,6 +7,7 @@ using UMR.Saniteri.Data;
 using UMR.Saniteri.Command;
 using System.Windows.Input;
 using UMR.Saniteri.Common;
+using UMR.Saniteri.DataFactory;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -47,7 +48,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     CanConfigList = context.can_inventory.ToList();
                     if (CanConfigList.Count > 0 && CanConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
@@ -160,7 +161,7 @@ namespace UMR.Saniteri.ViewModel
             {
                 try
                 {
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         var id = _canConfig.can_id;
                         var tmpCan = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault<can_inventory>();
@@ -204,7 +205,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     if (!(CanConfig.can_id > 0))
                     {
@@ -279,7 +280,7 @@ namespace UMR.Saniteri.ViewModel
                 if (value != null)
                 {
                     _selectedCustomer = value;
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         CanConfig = context.can_inventory.Where(r => r.can_id == value.can_id).FirstOrDefault<can_inventory>();
                         CanConfig.SetButtonState(true);
@@ -295,7 +296,7 @@ namespace UMR.Saniteri.ViewModel
 
         protected bool Search()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 try
                 {

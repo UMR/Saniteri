@@ -55,6 +55,10 @@
     <Compile Include="SocketExtention.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UMR.Saniteri.DataFactory\UMR.Saniteri.DataFactory.csproj">
+      <Project>{01F8C69F-71BF-4471-8647-D832A847AA0E}</Project>
+      <Name>UMR.Saniteri.DataFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UMR.Saniteri.Data\UMR.Saniteri.Data.csproj">
       <Project>{9CE70A1A-94D6-4965-A0DB-BCD82AE6323E}</Project>
       <Name>UMR.Saniteri.Data</Name>

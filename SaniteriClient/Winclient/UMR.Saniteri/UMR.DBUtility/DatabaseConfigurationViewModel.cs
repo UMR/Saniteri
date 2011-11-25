@@ -17,7 +17,7 @@ namespace UMR.DBUtility
     public class DatabaseConfigurationViewModel : INotifyPropertyChanged
     {
         public SQLDatabase database { get; private set; }
-        private string DBName = "saniteri_main";            
+        private string DBName = "SaniteriMain";            
 
         public DatabaseConfigurationViewModel()
         {

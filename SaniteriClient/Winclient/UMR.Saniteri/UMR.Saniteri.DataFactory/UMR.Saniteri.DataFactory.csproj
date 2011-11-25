@@ -81,6 +81,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UMR.Saniteri.Data\UMR.Saniteri.Data.csproj">
+      <Project>{9CE70A1A-94D6-4965-A0DB-BCD82AE6323E}</Project>
+      <Name>UMR.Saniteri.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

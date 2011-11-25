@@ -16,8 +16,8 @@ namespace UMR.Saniteri.DataFactory
         static DatabaseManager()
         {
             modelName = "SaniteriDataModel";
-            dataFile = "saniteri_main";
-            server = new SQLDatabase();
+            dataFile = "SaniteriMain";
+            server = new SQLDatabase(modelName, dataFile);
         }
     }
 }

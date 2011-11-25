@@ -7,6 +7,7 @@ using UMR.Saniteri.Data;
 using UMR.Saniteri.Common;
 using System.Windows.Input;
 using UMR.Saniteri.Command;
+using UMR.Saniteri.DataFactory;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -46,7 +47,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     CanStatusConfigList = context.can_eventcodes.ToList();
                     if (CanStatusConfigList.Count > 0 && CanStatusConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
@@ -158,7 +159,7 @@ namespace UMR.Saniteri.ViewModel
             {
                 try
                 {
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         var _type = _canEventConfig.event_type;
                         var tmpCan = context.can_eventcodes.Where(r => r.event_type == _type).FirstOrDefault<can_eventcodes>();
@@ -202,7 +203,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     if (!(CanEventConfig.event_type > 0))
                         context.AddTocan_eventcodes(CanEventConfig);
@@ -274,7 +275,7 @@ namespace UMR.Saniteri.ViewModel
                 if (value != null)
                 {
                     _selectedCustomer = value;
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         CanEventConfig = context.can_eventcodes.Where(r => r.event_type == value.event_type).FirstOrDefault<can_eventcodes>();
                         CanEventConfig.SetButtonState(true);
@@ -290,7 +291,7 @@ namespace UMR.Saniteri.ViewModel
 
         protected bool Search()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 try
                 {

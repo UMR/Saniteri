@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.EntityClient;
 using System.ComponentModel;
+using UMR.Saniteri.Data;
 
 namespace UMR.Saniteri.DataFactory
 {
@@ -17,6 +18,7 @@ namespace UMR.Saniteri.DataFactory
         void backupDatabase(string databaseName, string filePath, ProgressInformation progress);
         void restoreDatabase(string databaseName, string filePath, ProgressInformation progress);
         string backupLocation { get; }
+        SaniteriModelEntities GetMainEntities();
     }
 
     public class ProgressInformation : INotifyPropertyChanged

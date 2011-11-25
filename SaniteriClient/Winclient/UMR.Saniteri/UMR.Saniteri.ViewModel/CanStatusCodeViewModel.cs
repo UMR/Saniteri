@@ -7,6 +7,7 @@ using UMR.Saniteri.Data;
 using UMR.Saniteri.Common;
 using System.Windows.Input;
 using UMR.Saniteri.Command;
+using UMR.Saniteri.DataFactory;
 
 namespace UMR.Saniteri.ViewModel
 {
@@ -46,7 +47,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     CanStatusConfigList = context.can_statuscode.ToList();
                     if (CanStatusConfigList.Count > 0 && CanStatusConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
@@ -158,7 +159,7 @@ namespace UMR.Saniteri.ViewModel
             {
                 try
                 {
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         var _type = _canStatusConfig.status_type;
                         var tmpCan = context.can_statuscode.Where(r => r.status_type == _type).FirstOrDefault<can_statuscode>();
@@ -202,7 +203,7 @@ namespace UMR.Saniteri.ViewModel
         {
             try
             {
-                using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     if (!(CanStatusConfig.status_type > 0))
                     {
@@ -277,7 +278,7 @@ namespace UMR.Saniteri.ViewModel
                 if (value != null)
                 {
                     _selectedCustomer = value;
-                    using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+                    using (var context = DatabaseManager.server.GetMainEntities())
                     {
                         CanStatusConfig = context.can_statuscode.Where(r => r.status_type == value.status_type).FirstOrDefault<can_statuscode>();
                         CanStatusConfig.SetButtonState(true);
@@ -293,7 +294,7 @@ namespace UMR.Saniteri.ViewModel
 
         protected bool Search()
         {
-            using (var context = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 try
                 {

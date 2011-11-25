@@ -5,6 +5,7 @@ using System.Text;
 using UMR.Saniteri.Communication.DeviceCommands;
 using System.Net;
 using System.Net.NetworkInformation;
+using UMR.Saniteri.DataFactory;
 
 namespace UMR.Saniteri.Communication
 {
@@ -12,7 +13,7 @@ namespace UMR.Saniteri.Communication
     {
         public void GetCanStatus()
         {
-            using (var ctx = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var ctx = DatabaseManager.server.GetMainEntities())
             {
                 var canList = ctx.can_inventory.Where(dr => dr.ip_address != null);
                 foreach (var can in canList)
@@ -30,7 +31,7 @@ namespace UMR.Saniteri.Communication
 
         public void GetCanLog()
         {
-            using (var ctx = UMR.Saniteri.Data.DBManager.GetMainEntities())
+            using (var ctx = DatabaseManager.server.GetMainEntities())
             {
                 var canList = ctx.can_inventory.Where(dr => dr.ip_address != null);
                 foreach (var can in canList)
