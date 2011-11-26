@@ -85,7 +85,18 @@ namespace UMR.Saniteri.Data
             get
             {
                 string result = null;
-                if (columnName == "ip_address")
+                if (columnName == "can_id")
+                {
+                    Int64 canID;
+                    if ((!Int64.TryParse(can_id.ToString(), out canID)) || canID <= 0)
+                    {
+                        result = "Can ID has to be set!";
+                        _errorCollection["can_id"] = "Can ID has to be set!";
+                    }
+                    else if (_errorCollection.ContainsKey("can_id"))
+                        _errorCollection.Remove("can_id");
+                }
+               else if (columnName == "ip_address")
                 {
                     IPAddress address;
                     var total = ip_address == null ? 0 : ip_address.Count(c => c == '.');

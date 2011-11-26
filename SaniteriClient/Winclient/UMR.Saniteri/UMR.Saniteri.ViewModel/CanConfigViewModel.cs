@@ -207,11 +207,8 @@ namespace UMR.Saniteri.ViewModel
             {
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
-                    if (!(CanConfig.can_id > 0))
-                    {
-                        //CanConfig.can_id = Guid.NewGuid();
-                        context.AddTocan_inventory(CanConfig);
-                    }
+                    var newCan = context.can_inventory.Where(r => r.can_id == CanConfig.can_id).FirstOrDefault();
+                    if (newCan == null) context.AddTocan_inventory(CanConfig);
                     else
                     {
                         var id = _canConfig.can_id;

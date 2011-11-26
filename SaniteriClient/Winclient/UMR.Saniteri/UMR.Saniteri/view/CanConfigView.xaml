@@ -58,29 +58,34 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Street:"/>
-                <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="City:" />
-                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="State:"/>
-                <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Content="Additional:"/>
-                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="Zip Code:"/>
-                <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Content="Floor No:"/>
-                <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Content="Room No:"/>
-                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Content="IP Address:"/>
-                <Label Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Content="Custom Data:"/>
-                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Content="Date of Production:"/>
-                <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" Content="Date Of Service:"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CanConfig.street, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
-                <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CanConfig.city, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="25" Width="220"  MaxLength="50"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CanConfig.state, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
-                <TextBox Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Text="{Binding CanConfig.additional, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="55" Width="220" VerticalAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="50"/>
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CanConfig.zip, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220" MaxLength="50"/>
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CanConfig.floor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
-                <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding CanConfig.room, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CanConfig.ip_address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
-                <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding CanConfig.custom_1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
-                <toolkit:DatePicker Grid.Row="7" Grid.Column="1" x:Name="txtDatePicker0" SelectedDate="{Binding CanConfig.production_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                <toolkit:DatePicker Grid.Row="7" Grid.Column="3" x:Name="txtDatePicker1" SelectedDate="{Binding CanConfig.in_service_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Can ID:"/>
+                <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="IP Address:"/>
+                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Street:"/>
+                <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Content="City:" />
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="State:"/>
+                <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Content="Additional:"/>
+                <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Content="Zip Code:"/>
+                <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Content="Floor No:"/>
+                <Label Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Content="Room No:"/>
+                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Content="IP Address:"/>
+                <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" Content="Custom Data:"/>
+                <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Content="Date of Production:"/>
+                <Label Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right" Content="Date Of Service:"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CanConfig.can_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="6"/>
+                <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CanConfig.ip_address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CanConfig.street, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxLength="50"/>
+                <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding CanConfig.city, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CanConfig.state, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
+                <TextBox Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" Text="{Binding CanConfig.additional, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="55" Width="220" VerticalAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" MaxLength="50"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CanConfig.zip, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220" MaxLength="50"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CanConfig.floor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding CanConfig.room, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding CanConfig.custom_1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding CanConfig.custom_2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <toolkit:DatePicker Grid.Row="8" Grid.Column="1" x:Name="txtDatePicker0" SelectedDate="{Binding CanConfig.production_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                <toolkit:DatePicker Grid.Row="8" Grid.Column="3" x:Name="txtDatePicker1" SelectedDate="{Binding CanConfig.in_service_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <ToolBarTray Grid.Row="0" Grid.ColumnSpan="5">
                     <ToolBar>
                         <cControl:CustomToolBarButton Command="{Binding addCommand}" x:Name="btnNew" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Horizontal" ButtonText="New" EnabledButtonImage="\Resources\Images\New.png" ToolTip="Create new account" DisabledButtonImage="\Resources\Images\NewDisabled.png" />
