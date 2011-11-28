@@ -84,12 +84,23 @@ namespace UMR.Saniteri.Data
             {
                 string result = null;
 
-                if (columnName == "description")
+                if (columnName == "status_type")
+                {
+                    int sType;
+                    if ((!int.TryParse(status_type.ToString(), out sType)) || sType <= 0)
+                    {
+                        result = "Status Type has to be set!";
+                        _errorCollection["status_type"] = "Status Type has to be set!";
+                    }
+                    else if (_errorCollection.ContainsKey("status_type"))
+                        _errorCollection.Remove("status_type");
+                }
+                else if (columnName == "description")
                 {
                     if (String.IsNullOrEmpty(description))
                     {
                         result = "Description has to be set!";
-                        _errorCollection["street"] = "Description has to be set!";
+                        _errorCollection["description"] = "Description has to be set!";
                     }
                     else if (_errorCollection.ContainsKey("description"))
                         _errorCollection.Remove("description");

@@ -43,6 +43,14 @@ namespace UMR.Saniteri.ViewModel
             }
         }
 
+        bool _isReadOnly;
+
+        public bool IsReadOnly
+        {
+            get { return CanStatusConfigList.Where(can => can.status_type == this.CanStatusConfig.status_type).Count() <= 0; }
+            set { _isReadOnly = value; OnPropertyChanged("IsReadOnly"); }
+        }
+
         private void LoadInDetails()
         {
             try
@@ -110,6 +118,7 @@ namespace UMR.Saniteri.ViewModel
                 _canStatusConfig.OnIsDirty -= new can_statuscode.IsDirtyHandler(_canConfig_OnIsDirty);
                 _canStatusConfig.OnIsDirty += new can_statuscode.IsDirtyHandler(_canConfig_OnIsDirty);
                 OnPropertyChanged("CanStatusConfig");
+                OnPropertyChanged("IsReadOnly");
             }
         }
 
@@ -205,11 +214,8 @@ namespace UMR.Saniteri.ViewModel
             {
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
-                    if (!(CanStatusConfig.status_type > 0))
-                    {
-                        //CanConfig.can_id = Guid.NewGuid();
-                        context.AddTocan_statuscode(CanStatusConfig);
-                    }
+                    var newCan = context.can_statuscode.Where(r => r.status_type == CanStatusConfig.status_type).FirstOrDefault();
+                    if (newCan == null) context.AddTocan_statuscode(CanStatusConfig);
                     else
                     {
                         var _type = _canStatusConfig.status_type;

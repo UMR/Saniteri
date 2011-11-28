@@ -44,6 +44,14 @@ namespace UMR.Saniteri.ViewModel
             }
         }
 
+        bool _isReadOnly;
+
+        public bool IsReadOnly
+        {
+            get { return CanConfigList.Where(can => can.can_id == this.CanConfig.can_id).Count() <= 0; }
+            set { _isReadOnly = value; OnPropertyChanged("IsReadOnly"); }
+        }
+
         private void LoadInDetails()
         {
             try
@@ -111,6 +119,7 @@ namespace UMR.Saniteri.ViewModel
                 _canConfig.OnIsDirty -=new can_inventory.IsDirtyHandler(_canConfig_OnIsDirty);
                 _canConfig.OnIsDirty += new can_inventory.IsDirtyHandler(_canConfig_OnIsDirty);
                 OnPropertyChanged("CanConfig");
+                OnPropertyChanged("IsReadOnly");
             }
         }
 

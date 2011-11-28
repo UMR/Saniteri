@@ -43,16 +43,24 @@ namespace UMR.Saniteri.ViewModel
             }
         }
 
+        bool _isReadOnly;
+
+        public bool IsReadOnly
+        {
+            get { return CanEventConfigList.Where(can => can.event_type == this.CanEventConfig.event_type).Count() <= 0; }
+            set { _isReadOnly = value; OnPropertyChanged("IsReadOnly"); }
+        }
+
         private void LoadInDetails()
         {
             try
             {
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
-                    CanStatusConfigList = context.can_eventcodes.ToList();
-                    if (CanStatusConfigList.Count > 0 && CanStatusConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
+                    CanEventConfigList = context.can_eventcodes.ToList();
+                    if (CanEventConfigList.Count > 0 && CanEventConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
                     {
-                        var _type = CanStatusConfigList[_selectedIndex].event_type;
+                        var _type = CanEventConfigList[_selectedIndex].event_type;
                         CanEventConfig = context.can_eventcodes.Where(r => r.event_type == _type).FirstOrDefault<can_eventcodes>();
                     }
                 }
@@ -91,13 +99,13 @@ namespace UMR.Saniteri.ViewModel
                 }
             }
         }
-        public IList<can_eventcodes> CanStatusConfigList
+        public IList<can_eventcodes> CanEventConfigList
         {
             get { return _canEventConfigList; }
             set 
             { 
                 _canEventConfigList = value;
-                OnPropertyChanged("CanStatusConfigList");
+                OnPropertyChanged("CanEventConfigList");
             }
         }
 
@@ -109,7 +117,8 @@ namespace UMR.Saniteri.ViewModel
                 _canEventConfig = value;
                 _canEventConfig.OnIsDirty -= new can_eventcodes.IsDirtyHandler(_canConfig_OnIsDirty);
                 _canEventConfig.OnIsDirty += new can_eventcodes.IsDirtyHandler(_canConfig_OnIsDirty);
-                OnPropertyChanged("CanStatusConfig");
+                OnPropertyChanged("CanEventConfig");
+                OnPropertyChanged("IsReadOnly");
             }
         }
 
@@ -147,7 +156,7 @@ namespace UMR.Saniteri.ViewModel
             {
                 if (_deleteCommand == null)
                 {
-                    this._deleteCommand = new DelegateCommand(DeleteCommand, () => { return CanStatusConfigList != null && CanStatusConfigList.Count > 0 && CanEventConfig.CanDelete && selectedIndex >= 0; });
+                    this._deleteCommand = new DelegateCommand(DeleteCommand, () => { return CanEventConfigList != null && CanEventConfigList.Count > 0 && CanEventConfig.CanDelete && selectedIndex >= 0; });
                 }
                 return this._deleteCommand;
             }
@@ -172,7 +181,7 @@ namespace UMR.Saniteri.ViewModel
                             LoadInDetails();
                             CanEventConfig.SetButtonState(true);
                             selectedIndex = result > 1 ? result - 1 : 0;
-                            if (CanStatusConfigList.Count <= 0)
+                            if (CanEventConfigList.Count <= 0)
                                 CanEventConfig = new can_eventcodes();
                         }
                     }
@@ -205,8 +214,8 @@ namespace UMR.Saniteri.ViewModel
             {
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
-                    if (!(CanEventConfig.event_type > 0))
-                        context.AddTocan_eventcodes(CanEventConfig);
+                    var newCanCode = context.can_eventcodes.Where(r => r.event_type == CanEventConfig.event_type).FirstOrDefault();
+                    if (newCanCode == null) context.AddTocan_eventcodes(CanEventConfig);
                     else
                     {
                         var _type = _canEventConfig.event_type;
@@ -219,7 +228,7 @@ namespace UMR.Saniteri.ViewModel
                     LoadInDetails();
                     CanEventConfig.SetButtonState(true);
                     if (selectedIndex < 0)
-                        selectedIndex = CanStatusConfigList.Count - 1;
+                        selectedIndex = CanEventConfigList.Count - 1;
                     else
                         OnPropertyChanged("selectedIndex");
                 }
@@ -295,10 +304,10 @@ namespace UMR.Saniteri.ViewModel
             {
                 try
                 {
-                    CanStatusConfigList = context.can_eventcodes.Where(r => r.description.Contains(searchData)).ToList();
-                    if (CanStatusConfigList.Count > 0 && CanStatusConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
+                    CanEventConfigList = context.can_eventcodes.Where(r => r.description.Contains(searchData)).ToList();
+                    if (CanEventConfigList.Count > 0 && CanEventConfigList.Count >= _selectedIndex && _selectedIndex >= 0)
                     {
-                        var _type = CanStatusConfigList[_selectedIndex].event_type;
+                        var _type = CanEventConfigList[_selectedIndex].event_type;
                         CanEventConfig = context.can_eventcodes.Where(r => r.event_type == _type).FirstOrDefault<can_eventcodes>();
                         return true;
                     }

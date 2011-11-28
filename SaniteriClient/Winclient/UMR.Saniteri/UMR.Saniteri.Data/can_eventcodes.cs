@@ -84,7 +84,18 @@ namespace UMR.Saniteri.Data
             get
             {
                 string result = null;
-                if (columnName == "description")
+                if (columnName == "event_type")
+                {
+                    int eType;
+                    if ((!int.TryParse(event_type.ToString(), out eType)) || eType <= 0)
+                    {
+                        result = "Event Type has to be set!";
+                        _errorCollection["event_type"] = "Event Type has to be set!";
+                    }
+                    else if (_errorCollection.ContainsKey("event_type"))
+                        _errorCollection.Remove("event_type");
+                } 
+                else if (columnName == "description")
                 {
                     if (String.IsNullOrEmpty(description))
                     {

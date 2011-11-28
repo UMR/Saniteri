@@ -69,11 +69,11 @@
                 <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Content="Zip Code:"/>
                 <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Content="Floor No:"/>
                 <Label Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Content="Room No:"/>
-                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Content="IP Address:"/>
-                <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" Content="Custom Data:"/>
+                <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Content="Custom Data 1:"/>
+                <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" Content="Custom Data 2:"/>
                 <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Content="Date of Production:"/>
                 <Label Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right" Content="Date Of Service:"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CanConfig.can_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="6"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CanConfig.can_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsEnabled="{Binding IsReadOnly, Mode=TwoWay}" MaxLength="6"/>
                 <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CanConfig.ip_address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
                 <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CanConfig.street, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxLength="50"/>
                 <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding CanConfig.city, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
