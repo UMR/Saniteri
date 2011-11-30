@@ -12,22 +12,32 @@ public final class R {
     }
     public static final class color {
         public static final int black_color=0x7f050000;
-        public static final int blue_color=0x7f050005;
-        public static final int dark_gray_color=0x7f050008;
-        public static final int dark_green_color=0x7f050004;
-        public static final int default_color=0x7f05000b;
-        public static final int golden_color=0x7f05000a;
-        public static final int gray_color=0x7f050007;
-        public static final int green_color=0x7f050002;
-        public static final int light_green_color=0x7f050003;
-        public static final int light_orange_color=0x7f050010;
-        public static final int offwhite_color=0x7f05000e;
-        public static final int orange_color=0x7f05000f;
+        public static final int blue_color=0x7f050006;
+        public static final int burlywood_color=0x7f05000d;
+        public static final int dark_blue_color=0x7f050008;
+        public static final int dark_gray_color=0x7f05000c;
+        public static final int dark_green_color=0x7f050005;
+        public static final int default_color=0x7f050011;
+        public static final int golden_color=0x7f050010;
+        public static final int gray_color=0x7f05000b;
+        public static final int green_color=0x7f050003;
+        public static final int indianred_color=0x7f050002;
+        public static final int light_blue_color=0x7f050007;
+        public static final int light_green_color=0x7f050004;
+        public static final int light_orange_color=0x7f050016;
+        public static final int lightsteel_blue=0x7f050009;
+        public static final int ocen_color=0x7f050017;
+        public static final int offwhite_color=0x7f050014;
+        public static final int orange_color=0x7f050015;
+        public static final int purple_color=0x7f050018;
         public static final int red_color=0x7f050001;
-        public static final int transparent_black=0x7f05000c;
-        public static final int transparent_color=0x7f050009;
-        public static final int transparent_gray=0x7f05000d;
-        public static final int white_color=0x7f050006;
+        public static final int sky_blue_color=0x7f05001a;
+        public static final int slate_gray_color=0x7f05000e;
+        public static final int transparent_black=0x7f050012;
+        public static final int transparent_color=0x7f05000f;
+        public static final int transparent_gray=0x7f050013;
+        public static final int white_color=0x7f05000a;
+        public static final int whitesmoke_color=0x7f050019;
     }
     public static final class drawable {
         public static final int button_background_normal=0x7f020000;

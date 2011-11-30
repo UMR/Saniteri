@@ -3,5 +3,5 @@
 	android:layout_width="fill_parent" android:layout_height="25dp"  android:background="@drawable/listitemstyle">
 	<TextView android:id="@+id/lblUnitNumberInList"
 		android:layout_width="fill_parent" android:layout_height="25dp"
-		android:layout_gravity="center" style="@style/ListItemText"  ></TextView>
+		android:layout_gravity="center" android:gravity="center" style="@style/ListItemText"  ></TextView>
 </LinearLayout>	

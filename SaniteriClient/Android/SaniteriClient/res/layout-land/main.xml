@@ -16,7 +16,7 @@
 
 	<TabHost android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:id="@android:id/tabhost"
-		android:layout_toRightOf="@id/layoutUnitNumbers">
+		android:layout_toRightOf="@id/layoutUnitNumbers" android:background="@color/black_color">
 		<FrameLayout android:layout_width="fill_parent"
 			android:layout_height="fill_parent" android:id="@android:id/tabcontent">
 			<LinearLayout android:layout_width="fill_parent"
@@ -36,24 +36,24 @@
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus"
 				android:gravity="center" android:orientation="vertical">
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="42dp" android:layout_margin="5dp">
+					android:layout_height="42dp" android:layout_margin="2dp" android:gravity="center_vertical">
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Can Id"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical" ></TextView>
 					<TextView android:layout_width="250dp"
-						android:layout_height="40dp" android:id="@+id/lblCanIdinCanStatus"
-						android:editable="false" android:background="@color/white_color"
+						android:layout_height="35dp" android:id="@+id/lblCanIdinCanStatus"
+						 android:background="@color/white_color"
 						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="42dp" android:layout_margin="5dp">
+					android:layout_height="42dp" android:layout_margin="2dp" android:gravity="center_vertical">
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Can Status"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
 					<TextView android:layout_width="250dp"
-						android:layout_height="40dp" android:id="@+id/lblCanStatus"
+						android:layout_height="35dp" android:id="@+id/lblCanStatus"
 						android:editable="false" android:background="@color/white_color"
 						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
@@ -64,18 +64,18 @@
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanConfig"
 				android:orientation="vertical" android:gravity="center">
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="42dp" android:layout_margin="5dp">
+					android:layout_height="40dp" android:layout_margin="3dp"  android:gravity="center_vertical">
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Id"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
 						android:gravity="center_vertical"></TextView>
 					<TextView android:layout_width="250dp"
-						android:layout_height="40dp" android:id="@+id/lblCanId"
+						android:layout_height="35dp" android:id="@+id/lblCanId"
 						android:editable="false" android:background="@color/white_color"
 						android:textColor="@color/black_color" android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dp" android:layout_margin="5dp">
+					android:layout_height="40dp" android:layout_margin="3dp"  android:gravity="center_vertical">
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Ip Address"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
@@ -86,7 +86,7 @@
 						android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dp" android:layout_margin="5dp">
+					android:layout_height="40dp" android:layout_margin="3dp" android:gravity="center_vertical" >
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Room No"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"
@@ -97,7 +97,7 @@
 						android:paddingLeft="3dp"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
-					android:layout_height="35dp" android:layout_margin="5dp">
+					android:layout_height="40dp" android:layout_margin="3dp"  android:gravity="center_vertical">
 					<TextView android:layout_width="140dp"
 						android:layout_height="35dp" android:text="Floor No"
 						android:layout_marginRight="5dp" android:layout_marginLeft="10dp"

@@ -108,7 +108,6 @@ public class Home extends TabActivity {
 
 			}
 		});
-
 	}
 
 	@Override
@@ -137,7 +136,6 @@ public class Home extends TabActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				id = UUID.randomUUID();
 				restClient = new RestClient("http://" + ipAddressForWebService
 						+ getString(R.string.url_InsertCanCommand));
 				restClient.AddHeader("Content-Type", "application/json");
@@ -167,7 +165,6 @@ public class Home extends TabActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				id = UUID.randomUUID();
 				restClient = new RestClient("http://" + ipAddressForWebService
 						+ getString(R.string.url_InsertCanCommand));
 				restClient.AddHeader("Content-Type", "application/json");
@@ -216,10 +213,16 @@ public class Home extends TabActivity {
 
 					canStatusData = getCanStatus(selectedUnitNumber);
 
-					lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+					lblCanIdinCanStatus.setText(selectedUnitNumber);
+					// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
 					lblCanStatus.setText(canStatusData.get("CanStatus"));
-
-					if (canStatusData.get("CanStatusType").compareTo(getString(R.string.CanStatusType_Full))==0) {
+					if(timer!=null)
+					{
+						timer.cancel();
+					}
+					
+					if (canStatusData.get("CanStatusType").compareTo(
+							getString(R.string.CanStatusType_Full)) == 0) {
 						timer = new Timer();
 						timer.scheduleAtFixedRate(new TimerTask() {
 							@Override
@@ -289,13 +292,15 @@ public class Home extends TabActivity {
 			}
 
 			for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-				listOfUnitNumbersWithHeader.add("Unit "+listOfUnitNumbers.get(i));
+				listOfUnitNumbersWithHeader.add("Unit "
+						+ listOfUnitNumbers.get(i));
 			}
 
-			lvUnitNumberAdapter = new CanListDataAdapter(this, listOfUnitNumbersWithHeader);
+			lvUnitNumberAdapter = new CanListDataAdapter(this,
+					listOfUnitNumbersWithHeader);
 
 			lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-			
+
 			selectedUnitNumber = listOfUnitNumbers.get(0);
 
 			canConfigData = getCanConfigurationData(selectedUnitNumber);
@@ -307,14 +312,16 @@ public class Home extends TabActivity {
 
 			canStatusData = getCanStatus(selectedUnitNumber);
 
-			lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+			lblCanIdinCanStatus.setText(selectedUnitNumber);
+
+			// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
 
 			lblCanStatus.setText(canStatusData.get("CanStatus"));
 
-			if (canStatusData.get("CanStatusType").compareTo(getString(R.string.CanStatusType_Full))==0) {
+			if (canStatusData.get("CanStatusType").compareTo(
+					getString(R.string.CanStatusType_Full)) == 0) {
 				timer = new Timer();
 				timer.scheduleAtFixedRate(new TimerTask() {
-
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
@@ -336,7 +343,7 @@ public class Home extends TabActivity {
 		// TODO Auto-generated method stub
 		lvUnitNumbers = (ListView) findViewById(R.id.lvUnitNumbers);
 		listOfUnitNumbers = new ArrayList<String>();
-		listOfUnitNumbersWithHeader=new ArrayList<String>();
+		listOfUnitNumbersWithHeader = new ArrayList<String>();
 		listOfUnitNumbersFromId = new HashMap<String, String>();
 		btnOpen = (Button) findViewById(R.id.btnOpen);
 		btnClose = (Button) findViewById(R.id.btnClose);
@@ -414,25 +421,18 @@ public class Home extends TabActivity {
 	}
 
 	private void playSound() {
-
-		try {			
+		try {
 			byte generatedSnd[] = new byte[2 * numSamples];
 
 			for (int i = 0; i < numSamples; ++i) {
 				sample[i] = Math.sin(2 * Math.PI * i
 						/ (sampleRate / freqOfTone));
 			}
-
-			// convert to 16 bit pcm sound array
-			// assumes the sample buffer is normalised.
-
 			int idx = 0;
 
 			for (final double dVal : sample) {
-				// scale to maximum amplitude
 				final short val = (short) ((dVal * 52767));
-				// in 16 bit wav PCM, first byte is the low
-				// order byte
+
 				generatedSnd[idx++] = (byte) (val & 0x00ff);
 				generatedSnd[idx++] = (byte) ((val & 0xff00) >>> 8);
 			}
@@ -452,7 +452,6 @@ public class Home extends TabActivity {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-
 	}
 
 	private void showAlertForCanStatus(Context context, final Timer timer) {
@@ -464,6 +463,7 @@ public class Home extends TabActivity {
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							timer.cancel();
+							dialog.cancel();
 						}
 					}).setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
@@ -514,14 +514,12 @@ public class Home extends TabActivity {
 				} else {
 					canStatus.put("CanId", "N/A");
 				}
-				if(canStatusJsonObject.get("StatusType")!=null)
-				{
-					canStatus.put("CanStatusType",canStatusJsonObject.get("StatusType").toString());				
-					
-				}
-				else
-				{
-					canStatus.put("CanStatusType","N/A");
+				if (canStatusJsonObject.get("StatusType") != null) {
+					canStatus.put("CanStatusType", canStatusJsonObject.get(
+							"StatusType").toString());
+
+				} else {
+					canStatus.put("CanStatusType", "N/A");
 				}
 
 				if (canStatusJsonObject.getString("StatusDescription") != "null") {
@@ -530,11 +528,10 @@ public class Home extends TabActivity {
 				} else {
 					canStatus.put("CanStatus", "N/A");
 				}
-			}
-			else {
+			} else {
 				canStatus.put("CanId", "N/A");
 				canStatus.put("CanStatus", "N/A");
-				canStatus.put("CanStatusType","N/A");
+				canStatus.put("CanStatusType", "N/A");
 			}
 			return canStatus;
 		} catch (Exception exception) {
