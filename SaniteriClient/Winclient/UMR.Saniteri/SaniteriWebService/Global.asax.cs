@@ -12,16 +12,6 @@ namespace SaniteriWebService
         void Application_Start(object sender, EventArgs e)
         {
             RegisterRoutes();
-            InitializeConnectionInfo();
-        }
-
-        private void InitializeConnectionInfo()
-        {
-            DBManager.MainServerName = ConfigurationManager.AppSettings["MainServerName"];
-            DBManager.MainDBName = ConfigurationManager.AppSettings["MainDBName"];
-            DBManager.MainIntegratedSecurity = Convert.ToBoolean(ConfigurationManager.AppSettings["MainIntegratedSecurity"]);
-            DBManager.MainUserName = ConfigurationManager.AppSettings["MainUserName"];
-            DBManager.MainPassword = ConfigurationManager.AppSettings["MainPassword"];
         }
 
         private void RegisterRoutes()

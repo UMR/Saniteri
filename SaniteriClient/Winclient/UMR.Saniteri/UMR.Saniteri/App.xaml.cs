@@ -3,6 +3,8 @@ using System.Windows;
 using UMR.Saniteri.DataFactory;
 using UMR.Saniteri.Data;
 using UMR.Saniteri.Common;
+using System.Diagnostics;
+using System.IO;
 
 namespace UMR.Saniteri
 {
@@ -22,7 +24,11 @@ namespace UMR.Saniteri
         {
             try
             {
-                DatabaseManager.server.createDataBase(DatabaseManager.dataFile, DatabaseManager.dataFile);
+                if (!DatabaseManager.server.createDataBase(ApplicationData.applicationData.version))
+                {
+                    Process.Start(Path.Combine(ApplicationData.applicationData.executingLocation, "UMR.DBUtility.exe"));
+                    System.Environment.Exit(0);
+                }
             }
             catch (Exception ex)
             {

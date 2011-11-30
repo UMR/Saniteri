@@ -6,6 +6,7 @@ using SaniteriWebService.DTO;
 using System.Data;
 using System.Data.SqlClient;
 using UMR.Saniteri.Data;
+using UMR.Saniteri.DataFactory;
 
 namespace SaniteriWebService.DAL
 {
@@ -15,7 +16,7 @@ namespace SaniteriWebService.DAL
         {
             try
             {
-                using (var context = DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     var inventoryDTO = new InventoryDTO();
                     var _canDetails = context.can_inventory.Where(r => r.can_id == id).FirstOrDefault();
@@ -46,7 +47,7 @@ namespace SaniteriWebService.DAL
         {
             try
             {
-                using (var context = DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
 
                     var maintenanceDTO = new MaintenanceDTO();
@@ -67,7 +68,7 @@ namespace SaniteriWebService.DAL
         {
             try
             {
-                using (var context = DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     var transactionLogDTO = new TransactionLogDTO();
                     var _canEventLog = context.can_transaction_log.Where(r => r.can_id == canId && r.event_time_stamp == eventTimeStamp).FirstOrDefault();
@@ -92,10 +93,12 @@ namespace SaniteriWebService.DAL
         {
             try
             {
-                using (var context = DBManager.GetMainEntities())
+                using (var context = DatabaseManager.server.GetMainEntities())
                 {
+                    var count = context.can_command.Count();
                     var newCommand = new can_command();
-                    newCommand.command_id = 0;
+                    newCommand.seqno = count + 1;
+                    newCommand.command_id = null;
                     newCommand.can_id = canId;
                     newCommand.can_lid_status = Convert.ToByte(canLidStatus);
                     newCommand.command_timestamp = DateTime.Now;
@@ -113,7 +116,7 @@ namespace SaniteriWebService.DAL
         public static List<String> GetAllCanId()
         {
             List<String> listOfAllCanId = new List<string>();
-            using (var context = DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 var canIdList = context.can_inventory;
                 foreach (var item in canIdList)
@@ -126,7 +129,7 @@ namespace SaniteriWebService.DAL
         public static CanStatus  GetCanStatus(Int64 canId,DateTime eDate)
         {           
             CanStatus canStatus = new CanStatus();
-            using (var context = DBManager.GetMainEntities())
+            using (var context = DatabaseManager.server.GetMainEntities())
             {
                 var _canStatus = context.can_status.Where(c => c.can_id == canId && c.edate == eDate).FirstOrDefault();
                 if (_canStatus == null) return null;

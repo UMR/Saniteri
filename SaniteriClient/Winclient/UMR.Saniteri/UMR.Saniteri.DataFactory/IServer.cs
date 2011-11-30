@@ -11,7 +11,7 @@ namespace UMR.Saniteri.DataFactory
     public interface IServer
     {
         EntityConnection getConnection(string modelName, string dataFilePath);
-        void createDataBase(string databaseName, string script);
+        bool createDataBase(string DBVersion);
         void deleteDataBase(string databaseName);
         bool databaseExists(string databaseName);
         bool saveSettings(object connectionSettings);

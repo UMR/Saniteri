@@ -18,6 +18,8 @@ namespace UMR.Saniteri.DataFactory
         public bool integratedSecurity { get; set; }
         [DataMember]
         public string userName { get; set; }
+        [DataMember]
+        public string databaseVersion { get; set; }
 
         public string password
         {

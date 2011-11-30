@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Data;
 using UMR.Saniteri.Data;
+using UMR.Saniteri.Common;
 
 namespace UMR.Saniteri.DataFactory
 {
@@ -33,6 +34,7 @@ namespace UMR.Saniteri.DataFactory
             {
                 var svrName = GetLocalDatabaseServer();
                 data = new DatabaseSettings { databaseTechnology = "Microsoft SQL Server", serverName = svrName, integratedSecurity = true };
+                data.databaseVersion = ApplicationData.applicationData.version;
                 new ObjectReaderWriter().writeObject(data, this.settingsPath);
             }
             this.connectionSettings = data as DatabaseSettings;
@@ -116,31 +118,45 @@ namespace UMR.Saniteri.DataFactory
             return new SaniteriModelEntities(getConnection(modelName, dataFile));
         }
 
-        public void createDataBase(string databaseName, string scriptKey)
+        public bool createDataBase(string DBVersion)
         {
-            //if (this.databaseExists(databaseName)) throw new Exception(string.Format("Database {0} already exists.", databaseName));
-            if (this.databaseExists(databaseName))
-                return;
-                //databaseName = string.Format("{0}_{1}", databaseName, DateTime.Now.ToString("ddMMyyHHmmss"));
-            var server = new Server(new ServerConnection(this.connectionInfo));
-            var database = new Database(server, databaseName);
-            var fileGroup = new FileGroup(database, "PRIMARY");
-            var dateTime = DateTime.Now.ToString("ddMMyyHHmmss");
-            var dataFile = new DataFile(fileGroup, databaseName + "_Data", Path.Combine(server.MasterDBLogPath, databaseName + dateTime + "_Data.mdf"));
-            dataFile.GrowthType = FileGrowthType.Percent;
-            dataFile.Growth = 10;
-            fileGroup.Files.Add(dataFile);
-            database.FileGroups.Add(fileGroup);
-            var logFile = new LogFile(database, databaseName + "_Log", Path.Combine(server.MasterDBLogPath, databaseName + dateTime + "_Log.ldf"));
-            logFile.GrowthType = FileGrowthType.Percent;
-            logFile.Growth = 10;
-            database.LogFiles.Add(logFile);
-            database.Create();
-            if (scriptKey != null)
+            if ((DBVersion == connectionSettings.databaseVersion) && this.databaseExists(dataFile))
+                return true;
+            else
+                return createDataBase(dataFile, dataFile);
+        }
+
+        public bool createDataBase(string databaseName, string scriptKey)
+        {
+            try
             {
-                database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_SQLScript"));
-                //database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_DefaultData"));
+                if (this.databaseExists(databaseName))
+                    return true;
+                var server = new Server(new ServerConnection(this.connectionInfo));
+                var database = new Database(server, databaseName);
+                var fileGroup = new FileGroup(database, "PRIMARY");
+                var dateTime = DateTime.Now.ToString("ddMMyyHHmmss");
+                var dataFile = new DataFile(fileGroup, databaseName + "_Data", Path.Combine(server.MasterDBLogPath, databaseName + dateTime + "_Data.mdf"));
+                dataFile.GrowthType = FileGrowthType.Percent;
+                dataFile.Growth = 10;
+                fileGroup.Files.Add(dataFile);
+                database.FileGroups.Add(fileGroup);
+                var logFile = new LogFile(database, databaseName + "_Log", Path.Combine(server.MasterDBLogPath, databaseName + dateTime + "_Log.ldf"));
+                logFile.GrowthType = FileGrowthType.Percent;
+                logFile.Growth = 10;
+                database.LogFiles.Add(logFile);
+                database.Create();
+                if (scriptKey != null)
+                {
+                    database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_SQLScript"));
+                    //database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_DefaultData"));
+                }
             }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         public void deleteDataBase(string databaseName)
