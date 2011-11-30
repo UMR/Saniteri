@@ -24,7 +24,7 @@ namespace UMR.Saniteri
         {
             try
             {
-                if (!DatabaseManager.server.createDataBase(ApplicationData.applicationData.version))
+                if (!DatabaseManager.server.databaseExists(DatabaseManager.dataFile))
                 {
                     Process.Start(Path.Combine(ApplicationData.applicationData.executingLocation, "UMR.DBUtility.exe"));
                     System.Environment.Exit(0);

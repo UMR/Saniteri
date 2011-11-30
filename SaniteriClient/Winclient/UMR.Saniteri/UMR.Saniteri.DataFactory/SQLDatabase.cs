@@ -119,6 +119,7 @@ namespace UMR.Saniteri.DataFactory
 
         public bool createDataBase(string DBVersion)
         {
+            this.resetConnectionInfo();
             if (this.databaseExists(dataFile))
             {
                 if (DBVersion == connectionSettings.databaseVersion)
@@ -192,7 +193,15 @@ namespace UMR.Saniteri.DataFactory
 
         public bool databaseExists(string databaseName)
         {
-            return new Server(new ServerConnection(this.connectionInfo)).Databases.Contains(databaseName);
+            this.resetConnectionInfo();
+            try
+            {
+                return new Server(new ServerConnection(this.connectionInfo)).Databases.Contains(databaseName);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool saveSettings(object connectionSettings)

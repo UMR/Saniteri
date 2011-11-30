@@ -186,6 +186,7 @@ namespace UMR.DBUtility
             {
                 ready = false;
                 message = "Database Creating...please wait";
+                resetConnectionInfo();
                 this.database.createDataBase(ApplicationData.applicationData.version);
                 if (database.databaseExists(DBName))
                 {
@@ -200,6 +201,18 @@ namespace UMR.DBUtility
                 if (ex.InnerException != null)
                     msg = ex.InnerException.Message;
                 DialogManager.popup(msg);
+            }
+        }
+
+        private void resetConnectionInfo()
+        {
+            database.connectionSettings.serverName = server.serverName;
+            if (integratedSecurity) database.connectionSettings.integratedSecurity = integratedSecurity;
+            else
+            {
+                database.connectionSettings.integratedSecurity = false;
+                database.connectionSettings.userName = userName;
+                database.connectionSettings.password = password;
             }
         }
 
