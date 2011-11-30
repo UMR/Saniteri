@@ -33,8 +33,7 @@ namespace UMR.Saniteri.DataFactory
             if (data == null)
             {
                 var svrName = GetLocalDatabaseServer();
-                data = new DatabaseSettings { databaseTechnology = "Microsoft SQL Server", serverName = svrName, integratedSecurity = true };
-                data.databaseVersion = ApplicationData.applicationData.version;
+                data = new DatabaseSettings { databaseTechnology = "Microsoft SQL Server", serverName = svrName, integratedSecurity = true, databaseVersion = ApplicationData.applicationData.version };
                 new ObjectReaderWriter().writeObject(data, this.settingsPath);
             }
             this.connectionSettings = data as DatabaseSettings;
@@ -120,8 +119,13 @@ namespace UMR.Saniteri.DataFactory
 
         public bool createDataBase(string DBVersion)
         {
-            if ((DBVersion == connectionSettings.databaseVersion) && this.databaseExists(dataFile))
-                return true;
+            if (this.databaseExists(dataFile))
+            {
+                if (DBVersion == connectionSettings.databaseVersion)
+                    return true;
+                else
+                    return createDataBase(dataFile, dataFile);
+            }
             else
                 return createDataBase(dataFile, dataFile);
         }
@@ -151,6 +155,7 @@ namespace UMR.Saniteri.DataFactory
                     database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_SQLScript"));
                     //database.ExecuteNonQuery(Resources.ResourceManager.GetString(scriptKey + "_DefaultData"));
                 }
+                saveSettings(connectionSettings);
             }
             catch
             {
@@ -193,8 +198,9 @@ namespace UMR.Saniteri.DataFactory
         public bool saveSettings(object connectionSettings)
         {
             this.connectionSettings = connectionSettings as DatabaseSettings;
+            this.connectionSettings.databaseVersion = ApplicationData.applicationData.version;
             this.tryToReachServer();
-            new ObjectReaderWriter().writeObject(connectionSettings, this.settingsPath);
+            new ObjectReaderWriter().writeObject(this.connectionSettings, this.settingsPath);
             return true;
         }
 

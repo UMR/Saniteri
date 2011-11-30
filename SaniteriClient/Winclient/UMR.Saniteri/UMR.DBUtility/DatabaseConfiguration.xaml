@@ -1,6 +1,7 @@
 ﻿<Window x:Class="UMR.DBUtility.DatabaseConfiguration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ph="clr-namespace:UMR.DBUtility"
         xmlns:converters="clr-namespace:UMR.Saniteri.Converters;assembly=UMR.Saniteri.Converters"
         Title="Saniteri Database Utility" Height="380" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Images\utility.png">
     <Window.Resources>
@@ -35,7 +36,7 @@
                         <Label Target="{Binding ElementName=_userName}" Content="User Name"></Label>
                         <TextBox Name="_userName" Text="{Binding userName}"/>
                         <Label Target="{Binding ElementName=_password}" Content="Password"></Label>
-                        <PasswordBox Name="_password"/>
+                        <PasswordBox Name="_password" ph:PasswordHelper.Password="{Binding password, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding ready, Converter={StaticResource notBoolToVisibility}}" Text="{Binding message}"/>

@@ -24,6 +24,7 @@ namespace UMR.DBUtility
             canCreate = false;
             ready = false;
             message = "Loading ... Please wait";
+            this.database = new SQLDatabase("SaniteriDataModel", "SaniteriMain");
             Task task = Task.Factory.StartNew(() =>
             {
                 this.servers = this.getSQLServers(true);
@@ -42,7 +43,6 @@ namespace UMR.DBUtility
                 message = "";
                 checkDatabaseAsync();
             });
-            this.database = new SQLDatabase();
         }
 
         IEnumerable<ServerInstance> _servers;
@@ -186,7 +186,7 @@ namespace UMR.DBUtility
             {
                 ready = false;
                 message = "Database Creating...please wait";
-                this.database.createDataBase(DBName, DBName);
+                this.database.createDataBase(ApplicationData.applicationData.version);
                 if (database.databaseExists(DBName))
                 {
                     message = "Database has created successfully.";
