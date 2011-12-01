@@ -17,15 +17,22 @@ import com.umr.saniteri.connection.RestClient.RequestMethod;
 import com.umr.saniteri.lib.CanListDataAdapter;
 import com.umr.saniteri.ui.R;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.NetworkInfo.State;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -70,15 +77,23 @@ public class Home extends TabActivity {
 	double freqOfTone = 1000; // hz
 	int beepInterval = 250;
 	int beepDevider = 4;
+	ConnectivityManager connectivityManager;
+	State wifiState;
+	Activity activity;
+
+	boolean isFromOnCreate = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		isFromOnCreate = true;
 		initiliazeControls();
 		loadInitialData();
 		registerEvents();
+
 		TabHost tabHost = getTabHost();
 
 		TabHost.TabSpec specHome = tabHost.newTabSpec("HomeTab");
@@ -216,11 +231,10 @@ public class Home extends TabActivity {
 					lblCanIdinCanStatus.setText(selectedUnitNumber);
 					// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
 					lblCanStatus.setText(canStatusData.get("CanStatus"));
-					if(timer!=null)
-					{
+					if (timer != null) {
 						timer.cancel();
 					}
-					
+
 					if (canStatusData.get("CanStatusType").compareTo(
 							getString(R.string.CanStatusType_Full)) == 0) {
 						timer = new Timer();
@@ -230,9 +244,10 @@ public class Home extends TabActivity {
 								// TODO Auto-generated method stub
 								playSound();
 							}
-						}, 0, 500);
+						}, 0, 300);
 
-						showAlertForCanStatus(Home.this, timer);
+						showAlertForCanStatus(Home.this, timer,
+								selectedUnitNumber);
 					}
 
 					arg1.getFocusables(arg2);
@@ -273,70 +288,112 @@ public class Home extends TabActivity {
 	}
 
 	private void loadInitialData() {
+
+		new LoadData(activity, Home.this).execute();
+
 		// TODO Auto-generated method stub
-		restClient = new RestClient("http://" + ipAddressForWebService
-				+ getString(R.string.url_GetAllCanId));
-		Log.d(tag, "http://" + ipAddressForWebService
-				+ getString(R.string.url_GetAllCanId));
+		// try {
+		// if (wifiState == NetworkInfo.State.CONNECTED
+		// || wifiState == NetworkInfo.State.CONNECTING) {
+		//
+		// restClient = new RestClient("http://" + ipAddressForWebService
+		// + getString(R.string.url_GetAllCanId));
+		// Log.d(tag, "http://" + ipAddressForWebService
+		// + getString(R.string.url_GetAllCanId));
+		//
+		// restClient.Execute(RequestMethod.GET);
+		// String response = restClient.getResponse();
+		//
+		// JSONArray responseArray = new JSONArray(response);
+		//
+		// for (int i = 0; i < responseArray.length(); ++i) {
+		// String unitNumber = responseArray.get(i).toString();
+		// listOfUnitNumbers.add(unitNumber);
+		// Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
+		// }
+		//
+		// if (listOfUnitNumbers.size() == 0) {
+		// btnOpen.setVisibility(View.INVISIBLE);
+		// btnClose.setVisibility(View.INVISIBLE);
+		// } else {
+		// btnOpen.setVisibility(View.VISIBLE);
+		// btnClose.setVisibility(View.VISIBLE);
+		// }
+		//
+		// for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
+		// listOfUnitNumbersWithHeader.add("Unit "
+		// + listOfUnitNumbers.get(i));
+		// }
+		//
+		// lvUnitNumberAdapter = new CanListDataAdapter(this,
+		// listOfUnitNumbersWithHeader);
+		//
+		// lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
+		//
+		// selectedUnitNumber = listOfUnitNumbers.get(0);
+		//
+		// canConfigData = getCanConfigurationData(selectedUnitNumber);
+		//
+		// lblCanId.setText(canConfigData.get("CanId"));
+		// lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+		// lblFloorNo.setText(canConfigData.get("FloorNo"));
+		// lblRoomNo.setText(canConfigData.get("RoomNo"));
+		//
+		// canStatusData = getCanStatus(selectedUnitNumber);
+		//
+		// lblCanIdinCanStatus.setText(selectedUnitNumber);
+		//
+		// // lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+		//
+		// lblCanStatus.setText(canStatusData.get("CanStatus"));
+		//
+		// if (canStatusData.get("CanStatusType").compareTo(
+		// getString(R.string.CanStatusType_Full)) == 0) {
+		// timer = new Timer();
+		// timer.scheduleAtFixedRate(new TimerTask() {
+		// @Override
+		// public void run() {
+		// // TODO Auto-generated method stub
+		// playSound();
+		// }
+		// }, 0, 500);
+		//
+		// showAlertForCanStatus(Home.this, timer);
+		// }
+		// }
+		//
+		// else {
+		// Toast.makeText(Home.this,
+		// "Please Check the Wifi Connectivity.",
+		// Toast.LENGTH_LONG);
+		// }
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		//
+		// }
 
-		try {
-			restClient.Execute(RequestMethod.GET);
-			String response = restClient.getResponse();
+	}
 
-			JSONArray responseArray = new JSONArray(response);
-
-			for (int i = 0; i < responseArray.length(); ++i) {
-				String unitNumber = responseArray.get(i).toString();
-				listOfUnitNumbers.add(unitNumber);
-				Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
-			}
-
-			for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-				listOfUnitNumbersWithHeader.add("Unit "
-						+ listOfUnitNumbers.get(i));
-			}
-
-			lvUnitNumberAdapter = new CanListDataAdapter(this,
-					listOfUnitNumbersWithHeader);
-
-			lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-
-			selectedUnitNumber = listOfUnitNumbers.get(0);
-
-			canConfigData = getCanConfigurationData(selectedUnitNumber);
-
-			lblCanId.setText(canConfigData.get("CanId"));
-			lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
-			lblFloorNo.setText(canConfigData.get("FloorNo"));
-			lblRoomNo.setText(canConfigData.get("RoomNo"));
-
-			canStatusData = getCanStatus(selectedUnitNumber);
-
-			lblCanIdinCanStatus.setText(selectedUnitNumber);
-
-			// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
-
-			lblCanStatus.setText(canStatusData.get("CanStatus"));
-
-			if (canStatusData.get("CanStatusType").compareTo(
-					getString(R.string.CanStatusType_Full)) == 0) {
-				timer = new Timer();
-				timer.scheduleAtFixedRate(new TimerTask() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						playSound();
-					}
-				}, 0, 500);
-
-				showAlertForCanStatus(Home.this, timer);
-			}
-
-		} catch (Exception e) {
-			// TODO: hanedle exception
-			e.printStackTrace();
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (!isFromOnCreate
+				&& ipAddressForWebService.compareTo(sharedpreference.getString(
+						"IpAddressForWebService", "172.16.205.56")) != 0) {
+			ipAddressForWebService = sharedpreference.getString(
+					"IpAddressForWebService", "172.16.205.56");
+			loadInitialData();
 		}
+		Log.d(tag, "onResume called.");
+	}
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		isFromOnCreate = false;
+		Log.d(tag, "onPause called.");
 	}
 
 	private void initiliazeControls() {
@@ -358,6 +415,11 @@ public class Home extends TabActivity {
 				"IpAddressForWebService", "172.16.205.56");
 		dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 		timer = new Timer();
+		connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		wifiState = connectivityManager.getNetworkInfo(
+				ConnectivityManager.TYPE_WIFI).getState();
+		activity = Home.this;
+
 	}
 
 	private HashMap<String, String> getCanConfigurationData(String canId) {
@@ -454,27 +516,29 @@ public class Home extends TabActivity {
 		}
 	}
 
-	private void showAlertForCanStatus(Context context, final Timer timer) {
+	private void showAlertForCanStatus(Context context, final Timer timer,
+			String canID) {
 		try {
 			AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(
 					context);
-			alertdialogBuilder.setMessage("The Can is full").setCancelable(
-					false).setPositiveButton("OK",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							timer.cancel();
-							dialog.cancel();
-						}
-					}).setNegativeButton("Cancel",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-
-							timer.cancel();
-							dialog.cancel();
-						}
-					});
+			alertdialogBuilder.setMessage("The Can " + canID + " is full")
+					.setCancelable(false).setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									timer.cancel();
+									dialog.cancel();
+								}
+							}).setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									timer.cancel();
+									dialog.cancel();
+								}
+							});
 			AlertDialog alert = alertdialogBuilder.create();
-			alert.setTitle("The Can is full");
+			alert.setTitle("The Can " + canID + " is full");
 
 			alert.show();
 		} catch (Exception exception) {
@@ -539,4 +603,150 @@ public class Home extends TabActivity {
 			return null;
 		}
 	}
+
+	private class LoadData extends AsyncTask<Void, Void, Void> {
+		ProgressDialog dialog;
+		Context context;
+		Activity activity;
+
+		public LoadData(Activity activity, Context context) {
+			this.activity = activity;
+			this.context = context;
+			dialog = new ProgressDialog(context);
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog.setMessage("Loading data...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+
+			try {
+				 if (wifiState == NetworkInfo.State.CONNECTED
+				 || wifiState == NetworkInfo.State.CONNECTING) {
+
+				restClient = new RestClient("http://" + ipAddressForWebService
+						+ getString(R.string.url_GetAllCanId));
+				Log.d(tag, "http://" + ipAddressForWebService
+						+ getString(R.string.url_GetAllCanId));
+
+				restClient.Execute(RequestMethod.GET);
+				String response = restClient.getResponse();
+
+				JSONArray responseArray = new JSONArray(response);
+
+				for (int i = 0; i < responseArray.length(); ++i) {
+					String unitNumber = responseArray.get(i).toString();
+					listOfUnitNumbers.add(unitNumber);
+					Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
+				}
+
+				if (listOfUnitNumbers.size() == 0) {
+					btnOpen.setVisibility(View.INVISIBLE);
+					btnClose.setVisibility(View.INVISIBLE);
+				} else {
+					btnOpen.setVisibility(View.VISIBLE);
+					btnClose.setVisibility(View.VISIBLE);
+				}
+
+				for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
+					listOfUnitNumbersWithHeader.add("Unit "
+							+ listOfUnitNumbers.get(i));
+				}
+
+				// lvUnitNumberAdapter = new CanListDataAdapter(activity,
+				// listOfUnitNumbersWithHeader);
+
+				// lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
+
+				selectedUnitNumber = listOfUnitNumbers.get(0);
+				canConfigData = getCanConfigurationData(selectedUnitNumber);
+				//
+				// lblCanId.setText(canConfigData.get("CanId"));
+				// lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+				// lblFloorNo.setText(canConfigData.get("FloorNo"));
+				// lblRoomNo.setText(canConfigData.get("RoomNo"));
+
+				canStatusData = getCanStatus(selectedUnitNumber);
+
+				// lblCanIdinCanStatus.setText(selectedUnitNumber);
+
+				// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+
+				// lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+				// if (canStatusData.get("CanStatusType").compareTo(
+				// getString(R.string.CanStatusType_Full)) == 0) {
+				// timer = new Timer();
+				// timer.scheduleAtFixedRate(new TimerTask() {
+				// @Override
+				// public void run() {
+				// // TODO Auto-generated method stub
+				// playSound();
+				// }
+				// }, 0,500);
+				//
+				// showAlertForCanStatus(activity, timer);
+				// }
+				 }
+				 
+			} catch (Exception e) {
+				e.printStackTrace();
+				if (dialog.isShowing()) {
+					dialog.cancel();							
+				}
+			}
+			return null;
+
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if (dialog.isShowing()) {
+				dialog.cancel();
+			}
+			try {
+				lvUnitNumberAdapter = new CanListDataAdapter(activity,
+					listOfUnitNumbersWithHeader);
+
+				lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
+				
+				lblCanId.setText(canConfigData.get("CanId"));
+				lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+				lblFloorNo.setText(canConfigData.get("FloorNo"));
+				lblRoomNo.setText(canConfigData.get("RoomNo"));
+				lblCanIdinCanStatus.setText(selectedUnitNumber);
+				lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+				if (canStatusData.get("CanStatusType").compareTo(
+						getString(R.string.CanStatusType_Full)) == 0) {
+					timer = new Timer();
+					timer.scheduleAtFixedRate(new TimerTask() {
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							playSound();
+						}
+					}, 300, 300);
+					
+					showAlertForCanStatus(activity, timer, selectedUnitNumber);
+				}
+
+			} catch (Exception e) {
+				Toast.makeText(context, "Data Loading failed.",
+						Toast.LENGTH_LONG);
+
+			}
+		}
+	}
+
 }

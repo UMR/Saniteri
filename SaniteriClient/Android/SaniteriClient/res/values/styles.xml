@@ -15,8 +15,13 @@
 		<item name="android:textColor">#FFFFFF</item>
 	</style>
 	<style name="ButtonText">
-		<item name="android:textSize">20sp</item>
+		<item name="android:textSize">17sp</item>
+		<item name="android:textStyle">bold</item>
 		<item name="android:textColor">#FFFFFF</item>
+		<item name="android:shadowColor">#000000</item>
+		<item name="android:shadowDx">1</item>
+		<item name="android:shadowDy">1</item>
+		<item name="android:shadowRadius">1</item>	
 	</style>
 	<style name="ListItemText">
 		<item name="android:textSize">17sp</item>
