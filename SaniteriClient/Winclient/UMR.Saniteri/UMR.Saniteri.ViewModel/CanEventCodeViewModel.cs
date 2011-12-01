@@ -146,6 +146,7 @@ namespace UMR.Saniteri.ViewModel
             _selectedIndex = -1;
             CanEventConfig = new can_eventcodes();
             CanEventConfig.SetButtonState(false);
+            CanEventConfig.IsNew = true;
             IsEnable = false;
         }
 
@@ -215,6 +216,7 @@ namespace UMR.Saniteri.ViewModel
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     var newCanCode = context.can_eventcodes.Where(r => r.event_type == CanEventConfig.event_type).FirstOrDefault();
+                    if (CanEventConfig.IsNew && newCanCode != null) { DialogManager.popup("Event Type already Exists."); return; }
                     if (newCanCode == null) context.AddTocan_eventcodes(CanEventConfig);
                     else
                     {
@@ -240,6 +242,7 @@ namespace UMR.Saniteri.ViewModel
                     msg = ex.InnerException.Message;
                 DialogManager.popup(msg);
             }
+            CanEventConfig.IsNew = false;
         }
 
         ICommand _cancelCommand;
@@ -259,6 +262,7 @@ namespace UMR.Saniteri.ViewModel
             LoadInDetails();
             selectedIndex = _selectedIndex >= 0 ? _selectedIndex : 0;
             CanEventConfig.SetButtonState(true);
+            CanEventConfig.IsNew = false;
         }
 
         ICommand _selectionChangedCommand;

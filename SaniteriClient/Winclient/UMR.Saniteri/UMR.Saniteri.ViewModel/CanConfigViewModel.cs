@@ -148,6 +148,7 @@ namespace UMR.Saniteri.ViewModel
             CanConfig = new can_inventory();
             CanConfig.in_service_date = DateTime.Now;
             CanConfig.SetButtonState(false);
+            CanConfig.IsNew = true;
             IsEnable = false;
         }
 
@@ -217,7 +218,9 @@ namespace UMR.Saniteri.ViewModel
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     var newCan = context.can_inventory.Where(r => r.can_id == CanConfig.can_id).FirstOrDefault();
-                    if (newCan == null) context.AddTocan_inventory(CanConfig);
+                    if (CanConfig.IsNew && newCan != null) { DialogManager.popup("Can already Exists."); return; }
+                    if (newCan == null)
+                        context.AddTocan_inventory(CanConfig);
                     else
                     {
                         var id = _canConfig.can_id;
@@ -242,6 +245,7 @@ namespace UMR.Saniteri.ViewModel
                     msg = ex.InnerException.Message;
                 DialogManager.popup(msg);
             }
+            CanConfig.IsNew = false;
         }
 
         ICommand _cancelCommand;
@@ -261,6 +265,7 @@ namespace UMR.Saniteri.ViewModel
             LoadInDetails();
             selectedIndex = _selectedIndex >= 0 ? _selectedIndex : 0;
             CanConfig.SetButtonState(true);
+            CanConfig.IsNew = false;
         }
 
         ICommand _selectionChangedCommand;

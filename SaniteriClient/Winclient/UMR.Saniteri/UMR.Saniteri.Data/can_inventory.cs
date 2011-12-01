@@ -64,6 +64,13 @@ namespace UMR.Saniteri.Data
             set { canCancel = value; }
         }
 
+        bool _isNew;
+        public bool IsNew
+        {
+            get { return _isNew; }
+            set { _isNew = value; }
+        }
+
         public void SetButtonState(bool state)
         {
             canAdd = state;

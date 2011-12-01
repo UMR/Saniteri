@@ -147,6 +147,7 @@ namespace UMR.Saniteri.ViewModel
             CanStatusConfig = new can_statuscode();
             CanStatusConfig.SetButtonState(false);
             IsEnable = false;
+            CanStatusConfig.IsNew = true;
         }
 
         ICommand _deleteCommand;
@@ -215,6 +216,7 @@ namespace UMR.Saniteri.ViewModel
                 using (var context = DatabaseManager.server.GetMainEntities())
                 {
                     var newCan = context.can_statuscode.Where(r => r.status_type == CanStatusConfig.status_type).FirstOrDefault();
+                    if (CanStatusConfig.IsNew && newCan != null) { DialogManager.popup("Status Type already Exists."); return; }
                     if (newCan == null) context.AddTocan_statuscode(CanStatusConfig);
                     else
                     {
@@ -240,6 +242,7 @@ namespace UMR.Saniteri.ViewModel
                     msg = ex.InnerException.Message;
                 DialogManager.popup(msg);
             }
+            CanStatusConfig.IsNew = false;
         }
 
         ICommand _cancelCommand;
@@ -259,6 +262,7 @@ namespace UMR.Saniteri.ViewModel
             LoadInDetails();
             selectedIndex = _selectedIndex >= 0 ? _selectedIndex : 0;
             CanStatusConfig.SetButtonState(true);
+            CanStatusConfig.IsNew = false;
         }
 
         ICommand _selectionChangedCommand;
