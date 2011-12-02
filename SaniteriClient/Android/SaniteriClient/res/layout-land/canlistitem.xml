@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="25dip"  android:background="@drawable/listitemstyle">
+	android:layout_width="fill_parent" android:layout_height="25dip"
+	android:background="@drawable/listitemstyle" android:orientation="horizontal">
+	<ImageView android:id="@+id/imgCan" android:layout_width="23dip"
+		android:layout_height="23dip" android:src="@drawable/can"></ImageView>
 	<TextView android:id="@+id/lblUnitNumberInList"
-		android:layout_width="fill_parent" android:layout_height="25dip"
-		android:layout_gravity="center" android:gravity="center" style="@style/ListItemText"  ></TextView>
+		android:layout_width="100dip" android:layout_height="fill_parent"
+		android:gravity="center" style="@style/ListItemText"></TextView>	
+
 </LinearLayout>	

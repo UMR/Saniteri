@@ -8,7 +8,7 @@
                 android:width="1dip"
                 android:color="@color/dark_green_color" />
             <corners
-                android:radius="3dip" />
+                android:radius="7dip" />
             <padding
                 android:left="7dip"
                 android:top="7dip"
@@ -26,7 +26,7 @@
                 android:width="1dip"
                 android:color="@color/dark_green_color" />
             <corners
-                android:radius="3dip" />
+                android:radius="7dip" />
             <padding	
                 android:left="7dip"
                 android:top="7dip"

@@ -43,26 +43,38 @@ public final class R {
         public static final int button_background_normal=0x7f020000;
         public static final int button_background_pressed=0x7f020001;
         public static final int button_selector=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int listitemstyle=0x7f020004;
-        public static final int unitnumberliststyle=0x7f020005;
+        public static final int can=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int listitemstyle=0x7f020005;
+        public static final int menu_settings_icon=0x7f020006;
+        public static final int tab_canconfig_selected=0x7f020007;
+        public static final int tab_canconfig_selector=0x7f020008;
+        public static final int tab_canconfig_unselected=0x7f020009;
+        public static final int tab_canstatus_selected=0x7f02000a;
+        public static final int tab_canstatus_selector=0x7f02000b;
+        public static final int tab_canstatus_unselected=0x7f02000c;
+        public static final int tab_home_selected=0x7f02000d;
+        public static final int tab_home_selector=0x7f02000e;
+        public static final int tab_home_unselected=0x7f02000f;
+        public static final int unitnumberliststyle=0x7f020010;
     }
     public static final class id {
-        public static final int LayoutCanConfig=0x7f090009;
-        public static final int LayoutCanStatus=0x7f090006;
-        public static final int LayoutHome=0x7f090003;
-        public static final int btnClose=0x7f090005;
-        public static final int btnOpen=0x7f090004;
-        public static final int layoutUnitNumbers=0x7f090001;
-        public static final int lblCanId=0x7f09000a;
-        public static final int lblCanIdinCanStatus=0x7f090007;
-        public static final int lblCanIpAddress=0x7f09000b;
-        public static final int lblCanStatus=0x7f090008;
-        public static final int lblFloorNo=0x7f09000d;
-        public static final int lblRoomNo=0x7f09000c;
-        public static final int lblUnitNumberInList=0x7f090000;
-        public static final int lvUnitNumbers=0x7f090002;
-        public static final int menuitem_IpAddressForWebService=0x7f09000e;
+        public static final int LayoutCanConfig=0x7f09000a;
+        public static final int LayoutCanStatus=0x7f090007;
+        public static final int LayoutHome=0x7f090004;
+        public static final int btnClose=0x7f090006;
+        public static final int btnOpen=0x7f090005;
+        public static final int imgCan=0x7f090000;
+        public static final int layoutUnitNumbers=0x7f090002;
+        public static final int lblCanId=0x7f09000b;
+        public static final int lblCanIdinCanStatus=0x7f090008;
+        public static final int lblCanIpAddress=0x7f09000c;
+        public static final int lblCanStatus=0x7f090009;
+        public static final int lblFloorNo=0x7f09000e;
+        public static final int lblRoomNo=0x7f09000d;
+        public static final int lblUnitNumberInList=0x7f090001;
+        public static final int lvUnitNumbers=0x7f090003;
+        public static final int menuitem_Settings=0x7f09000f;
     }
     public static final class layout {
         public static final int canlistitem=0x7f030000;

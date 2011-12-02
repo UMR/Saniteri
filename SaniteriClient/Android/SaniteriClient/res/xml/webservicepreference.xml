@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android">  
      <EditTextPreference  android:dialogTitle="Server IP Address"
                              android:dialogMessage="Server IP Address"                            
                              android:key="IpAddressForWebService"
                              android:title="Server IP Address"
                              android:summary="Server IP Address"
                              android:defaultValue="172.16.205.56"/>   
+
 </PreferenceScreen>
 	

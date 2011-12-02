@@ -93,20 +93,21 @@ public class Home extends TabActivity {
 		initiliazeControls();
 		loadInitialData();
 		registerEvents();
-
+		
 		TabHost tabHost = getTabHost();
 
 		TabHost.TabSpec specHome = tabHost.newTabSpec("HomeTab");
-		specHome.setIndicator("Home");
+		specHome.setIndicator("Home",getResources().getDrawable(R.drawable.tab_home_selector));
+		
 		specHome.setContent(R.id.LayoutHome);
 
 		TabHost.TabSpec specCanStatus = tabHost.newTabSpec("CanStatus");
-		specCanStatus.setIndicator("Can Status");
+		specCanStatus.setIndicator("Can Status",getResources().getDrawable(R.drawable.tab_canstatus_selector));
 		specCanStatus.setContent(R.id.LayoutCanStatus);
 
 		TabHost.TabSpec specCanConfiguration = tabHost
 				.newTabSpec("CanConfiguration");
-		specCanConfiguration.setIndicator("Can Configuration");
+		specCanConfiguration.setIndicator("Can Configuration",getResources().getDrawable(R.drawable.tab_canconfig_selector));
 		specCanConfiguration.setContent(R.id.LayoutCanConfig);
 
 		tabHost.addTab(specHome);
@@ -134,7 +135,7 @@ public class Home extends TabActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menuitem_IpAddressForWebService:
+		case R.id.menuitem_Settings:
 			Intent intent = new Intent(this, WebServicePreference.class);
 			startActivity(intent);
 			break;
