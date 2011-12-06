@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="fill_parent" android:layout_width="fill_parent" android:keepScreenOn=>
+	android:layout_height="fill_parent" android:layout_width="fill_parent" android:keepScreenOn="true">
 	<LinearLayout android:layout_height="fill_parent"
 		android:layout_width="200dip" android:id="@+id/layoutUnitNumbers"
 		android:orientation="vertical" android:background="@drawable/unitnumberliststyle">

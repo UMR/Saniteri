@@ -1,5 +1,6 @@
 package com.umr.saniteri.ui;
 
+import java.net.SocketException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -80,6 +82,8 @@ public class Home extends TabActivity {
 	ConnectivityManager connectivityManager;
 	State wifiState;
 	Activity activity;
+	Handler exceptionHandler;
+	Runnable exceptionMsgRunnable;
 
 	boolean isFromOnCreate = false;
 
@@ -93,21 +97,24 @@ public class Home extends TabActivity {
 		initiliazeControls();
 		loadInitialData();
 		registerEvents();
-		
+
 		TabHost tabHost = getTabHost();
 
 		TabHost.TabSpec specHome = tabHost.newTabSpec("HomeTab");
-		specHome.setIndicator("Home",getResources().getDrawable(R.drawable.tab_home_selector));
-		
+		specHome.setIndicator("Home", getResources().getDrawable(
+				R.drawable.tab_home_selector));
+
 		specHome.setContent(R.id.LayoutHome);
 
 		TabHost.TabSpec specCanStatus = tabHost.newTabSpec("CanStatus");
-		specCanStatus.setIndicator("Can Status",getResources().getDrawable(R.drawable.tab_canstatus_selector));
+		specCanStatus.setIndicator("Can Status", getResources().getDrawable(
+				R.drawable.tab_canstatus_selector));
 		specCanStatus.setContent(R.id.LayoutCanStatus);
 
 		TabHost.TabSpec specCanConfiguration = tabHost
 				.newTabSpec("CanConfiguration");
-		specCanConfiguration.setIndicator("Can Configuration",getResources().getDrawable(R.drawable.tab_canconfig_selector));
+		specCanConfiguration.setIndicator("Can Configuration", getResources()
+				.getDrawable(R.drawable.tab_canconfig_selector));
 		specCanConfiguration.setContent(R.id.LayoutCanConfig);
 
 		tabHost.addTab(specHome);
@@ -172,7 +179,8 @@ public class Home extends TabActivity {
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Toast.makeText(Home.this, "Request not accepted.",
+							Toast.LENGTH_LONG).show();
 				}
 			}
 		});
@@ -202,7 +210,8 @@ public class Home extends TabActivity {
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Toast.makeText(Home.this, "Request not accepted.",
+							Toast.LENGTH_LONG).show();
 				}
 			}
 		});
@@ -255,6 +264,20 @@ public class Home extends TabActivity {
 					arg1.setSelected(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+
+					exceptionMsgRunnable = new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							Toast.makeText(Home.this,
+									"Problem in getting data.",
+									Toast.LENGTH_LONG).show();
+						}
+
+					};
+					exceptionHandler.post(exceptionMsgRunnable);
+
 				}
 			}
 
@@ -289,7 +312,8 @@ public class Home extends TabActivity {
 	}
 
 	private void loadInitialData() {
-
+		btnOpen.setVisibility(View.INVISIBLE);
+		btnClose.setVisibility(View.INVISIBLE);
 		new LoadData(activity, Home.this).execute();
 
 		// TODO Auto-generated method stub
@@ -420,6 +444,7 @@ public class Home extends TabActivity {
 		wifiState = connectivityManager.getNetworkInfo(
 				ConnectivityManager.TYPE_WIFI).getState();
 		activity = Home.this;
+		exceptionHandler = new Handler();
 
 	}
 
@@ -613,6 +638,9 @@ public class Home extends TabActivity {
 		public LoadData(Activity activity, Context context) {
 			this.activity = activity;
 			this.context = context;
+			if (dialog != null && dialog.isShowing()) {				
+				dialog = null;
+			}
 			dialog = new ProgressDialog(context);
 
 		}
@@ -630,79 +658,123 @@ public class Home extends TabActivity {
 			// TODO Auto-generated method stub
 
 			try {
-				 if (wifiState == NetworkInfo.State.CONNECTED
-				 || wifiState == NetworkInfo.State.CONNECTING) {
+				if (wifiState == NetworkInfo.State.CONNECTED
+						|| wifiState == NetworkInfo.State.CONNECTING) {
 
-				restClient = new RestClient("http://" + ipAddressForWebService
-						+ getString(R.string.url_GetAllCanId));
-				Log.d(tag, "http://" + ipAddressForWebService
-						+ getString(R.string.url_GetAllCanId));
+					restClient = new RestClient("http://"
+							+ ipAddressForWebService
+							+ getString(R.string.url_GetAllCanId));
+					Log.d(tag, "http://" + ipAddressForWebService
+							+ getString(R.string.url_GetAllCanId));
 
-				restClient.Execute(RequestMethod.GET);
-				String response = restClient.getResponse();
+					restClient.Execute(RequestMethod.GET);
+					String response = restClient.getResponse();
 
-				JSONArray responseArray = new JSONArray(response);
+					JSONArray responseArray = new JSONArray(response);
 
-				for (int i = 0; i < responseArray.length(); ++i) {
-					String unitNumber = responseArray.get(i).toString();
-					listOfUnitNumbers.add(unitNumber);
-					Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
-				}
+					for (int i = 0; i < responseArray.length(); ++i) {
+						String unitNumber = responseArray.get(i).toString();
+						listOfUnitNumbers.add(unitNumber);
+						Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
+					}
 
-				if (listOfUnitNumbers.size() == 0) {
-					btnOpen.setVisibility(View.INVISIBLE);
-					btnClose.setVisibility(View.INVISIBLE);
+					for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
+						listOfUnitNumbersWithHeader.add("Unit "
+								+ listOfUnitNumbers.get(i));
+					}
+
+					// lvUnitNumberAdapter = new CanListDataAdapter(activity,
+					// listOfUnitNumbersWithHeader);
+
+					// lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
+					if (listOfUnitNumbers.size() != 0) {
+						selectedUnitNumber = listOfUnitNumbers.get(0);
+						canConfigData = getCanConfigurationData(selectedUnitNumber);
+						//
+						// lblCanId.setText(canConfigData.get("CanId"));
+						// lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+						// lblFloorNo.setText(canConfigData.get("FloorNo"));
+						// lblRoomNo.setText(canConfigData.get("RoomNo"));
+
+						canStatusData = getCanStatus(selectedUnitNumber);
+
+						// lblCanIdinCanStatus.setText(selectedUnitNumber);
+
+						// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
+
+						// lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+						// if (canStatusData.get("CanStatusType").compareTo(
+						// getString(R.string.CanStatusType_Full)) == 0) {
+						// timer = new Timer();
+						// timer.scheduleAtFixedRate(new TimerTask() {
+						// @Override
+						// public void run() {
+						// // TODO Auto-generated method stub
+						// playSound();
+						// }
+						// }, 0,500);
+						//
+						// showAlertForCanStatus(activity, timer);
+						// }
+					}
 				} else {
-					btnOpen.setVisibility(View.VISIBLE);
-					btnClose.setVisibility(View.VISIBLE);
+					exceptionMsgRunnable = new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							Toast.makeText(Home.this,
+									"Check Wifi connectivity in your device.",
+									Toast.LENGTH_LONG).show();
+						}
+
+					};
+					exceptionHandler.post(exceptionMsgRunnable);
 				}
 
-				for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-					listOfUnitNumbersWithHeader.add("Unit "
-							+ listOfUnitNumbers.get(i));
-				}
-
-				// lvUnitNumberAdapter = new CanListDataAdapter(activity,
-				// listOfUnitNumbersWithHeader);
-
-				// lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-
-				selectedUnitNumber = listOfUnitNumbers.get(0);
-				canConfigData = getCanConfigurationData(selectedUnitNumber);
-				//
-				// lblCanId.setText(canConfigData.get("CanId"));
-				// lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
-				// lblFloorNo.setText(canConfigData.get("FloorNo"));
-				// lblRoomNo.setText(canConfigData.get("RoomNo"));
-
-				canStatusData = getCanStatus(selectedUnitNumber);
-
-				// lblCanIdinCanStatus.setText(selectedUnitNumber);
-
-				// lblCanIdinCanStatus.setText(canStatusData.get("CanId"));
-
-				// lblCanStatus.setText(canStatusData.get("CanStatus"));
-
-				// if (canStatusData.get("CanStatusType").compareTo(
-				// getString(R.string.CanStatusType_Full)) == 0) {
-				// timer = new Timer();
-				// timer.scheduleAtFixedRate(new TimerTask() {
-				// @Override
-				// public void run() {
-				// // TODO Auto-generated method stub
-				// playSound();
-				// }
-				// }, 0,500);
-				//
-				// showAlertForCanStatus(activity, timer);
-				// }
-				 }
-				 
-			} catch (Exception e) {
+			} catch (SocketException e) {
 				e.printStackTrace();
 				if (dialog.isShowing()) {
-					dialog.cancel();							
+					dialog.cancel();
 				}
+				exceptionMsgRunnable = new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+
+						Toast
+								.makeText(
+										Home.this,
+										"Please check internet connectivity.Restart the application.",
+										Toast.LENGTH_LONG).show();
+					}
+
+				};
+				exceptionHandler.post(exceptionMsgRunnable);
+
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+				if (dialog.isShowing()) {
+					dialog.cancel();
+				}
+				exceptionMsgRunnable = new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+
+						Toast.makeText(Home.this,
+								"Problem in loading.Restart the application.",
+								Toast.LENGTH_LONG).show();
+					}
+
+				};
+				exceptionHandler.post(exceptionMsgRunnable);
+
 			}
 			return null;
 
@@ -711,40 +783,46 @@ public class Home extends TabActivity {
 		@Override
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if (dialog.isShowing()) {
-				dialog.cancel();
-			}
+			super.onPostExecute(result);			
 			try {
-				lvUnitNumberAdapter = new CanListDataAdapter(activity,
-					listOfUnitNumbersWithHeader);
+				if (dialog.isShowing()) {
+					dialog.cancel();
+				}
+				if (listOfUnitNumbers.size() != 0) {
+					lvUnitNumberAdapter = new CanListDataAdapter(activity,
+							listOfUnitNumbersWithHeader);
 
-				lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
-				
-				lblCanId.setText(canConfigData.get("CanId"));
-				lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
-				lblFloorNo.setText(canConfigData.get("FloorNo"));
-				lblRoomNo.setText(canConfigData.get("RoomNo"));
-				lblCanIdinCanStatus.setText(selectedUnitNumber);
-				lblCanStatus.setText(canStatusData.get("CanStatus"));
+					lvUnitNumbers.setAdapter(lvUnitNumberAdapter);
 
-				if (canStatusData.get("CanStatusType").compareTo(
-						getString(R.string.CanStatusType_Full)) == 0) {
-					timer = new Timer();
-					timer.scheduleAtFixedRate(new TimerTask() {
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							playSound();
-						}
-					}, 300, 300);
-					
-					showAlertForCanStatus(activity, timer, selectedUnitNumber);
+					btnOpen.setVisibility(View.VISIBLE);
+					btnClose.setVisibility(View.VISIBLE);
+
+					lblCanId.setText(canConfigData.get("CanId"));
+					lblCanIpAddress.setText(canConfigData.get("CanIpAddress"));
+					lblFloorNo.setText(canConfigData.get("FloorNo"));
+					lblRoomNo.setText(canConfigData.get("RoomNo"));
+					lblCanIdinCanStatus.setText(selectedUnitNumber);
+					lblCanStatus.setText(canStatusData.get("CanStatus"));
+
+					if (canStatusData.get("CanStatusType").compareTo(
+							getString(R.string.CanStatusType_Full)) == 0) {
+						timer = new Timer();
+						timer.scheduleAtFixedRate(new TimerTask() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								playSound();
+							}
+						}, 300, 300);
+
+						showAlertForCanStatus(activity, timer,
+								selectedUnitNumber);
+					}
 				}
 
 			} catch (Exception e) {
-				Toast.makeText(context, "Data Loading failed.",
-						Toast.LENGTH_LONG);
+				Toast.makeText(context, "Data loading failed.",
+						Toast.LENGTH_LONG).show();
 
 			}
 		}
