@@ -20,6 +20,7 @@ import com.umr.saniteri.ui.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Context;
@@ -27,6 +28,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.Configuration;
+import android.graphics.Bitmap.Config;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
@@ -37,7 +40,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +51,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -84,14 +90,30 @@ public class Home extends TabActivity {
 	Activity activity;
 	Handler exceptionHandler;
 	Runnable exceptionMsgRunnable;
-
+	LoadData loadData;
 	boolean isFromOnCreate = false;
+	TabWidget tabWidget;
+	DisplayMetrics metrics;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		initialiseUI();	
+	}
+
+	private void initialiseUI() {
+		// TODO Auto-generated method stub
+		
+		metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		if (metrics.densityDpi > DisplayMetrics.DENSITY_MEDIUM) {
+			Log.d(tag, "hhdpi");
+			setContentView(R.layout.main_hdpi);
+		} else {
+			Log.d(tag, "mdpi");
+			setContentView(R.layout.main);
+		}
 
 		isFromOnCreate = true;
 		initiliazeControls();
@@ -105,6 +127,7 @@ public class Home extends TabActivity {
 				R.drawable.tab_home_selector));
 
 		specHome.setContent(R.id.LayoutHome);
+		tabWidget = tabHost.getTabWidget();
 
 		TabHost.TabSpec specCanStatus = tabHost.newTabSpec("CanStatus");
 		specCanStatus.setIndicator("Can Status", getResources().getDrawable(
@@ -123,14 +146,39 @@ public class Home extends TabActivity {
 
 		tabHost.setCurrentTab(0);
 
-		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+		int orientation = getResources().getConfiguration().orientation;
 
-			@Override
-			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
+		if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+			if (metrics.densityDpi > DisplayMetrics.DENSITY_MEDIUM) {
+				final TextView tv1 = (TextView) tabWidget.getChildAt(0)
+						.findViewById(android.R.id.title);
+				tv1.setTextSize(9);
+				final TextView tv2 = (TextView) tabWidget.getChildAt(1)
+						.findViewById(android.R.id.title);
+				tv2.setTextSize(9);
+				final TextView tv3 = (TextView) tabWidget.getChildAt(2)
+						.findViewById(android.R.id.title);
+				tv3.setTextSize(9);
+			} else {
+				final TextView tv1 = (TextView) tabWidget.getChildAt(0)
+						.findViewById(android.R.id.title);
+				tv1.setTextSize(11);
+				final TextView tv2 = (TextView) tabWidget.getChildAt(1)
+						.findViewById(android.R.id.title);
+				tv2.setTextSize(11);
+				final TextView tv3 = (TextView) tabWidget.getChildAt(2)
+						.findViewById(android.R.id.title);
+				tv3.setTextSize(11);
 
 			}
-		});
+		}
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		initialiseUI();
 	}
 
 	@Override
@@ -146,10 +194,20 @@ public class Home extends TabActivity {
 			Intent intent = new Intent(this, WebServicePreference.class);
 			startActivity(intent);
 			break;
+
+		case R.id.menuitem_Refresh:
+			refresh();
+			break;
+
 		default:
 			break;
 		}
 		return false;
+	}
+
+	private void refresh() {
+		// TODO Auto-generated method stub
+		loadInitialData();
 	}
 
 	private void registerEvents() {
@@ -310,11 +368,25 @@ public class Home extends TabActivity {
 		 */
 
 	}
+	
+	
+	private void refreshUIcontrols()
+	{
+		lblCanId.setText("");
+		lblCanIpAddress.setText("");
+		lblFloorNo.setText("");
+		lblRoomNo.setText("");
+		lblCanIdinCanStatus.setText("");
+		lblCanStatus.setText("");
+		lvUnitNumbers.setAdapter(null);
+	}
+	
 
 	private void loadInitialData() {
 		btnOpen.setVisibility(View.INVISIBLE);
 		btnClose.setVisibility(View.INVISIBLE);
-		new LoadData(activity, Home.this).execute();
+		loadData = new LoadData(activity, Home.this);
+		loadData.execute();
 
 		// TODO Auto-generated method stub
 		// try {
@@ -407,8 +479,10 @@ public class Home extends TabActivity {
 				&& ipAddressForWebService.compareTo(sharedpreference.getString(
 						"IpAddressForWebService", "172.16.205.56")) != 0) {
 			ipAddressForWebService = sharedpreference.getString(
-					"IpAddressForWebService", "172.16.205.56");
-			loadInitialData();
+					"IpAddressForWebService", "172.16.205.56");			
+			refreshUIcontrols();
+			refresh();
+			Log.d(tag, "onResume inside called.");
 		}
 		Log.d(tag, "onResume called.");
 	}
@@ -638,7 +712,7 @@ public class Home extends TabActivity {
 		public LoadData(Activity activity, Context context) {
 			this.activity = activity;
 			this.context = context;
-			if (dialog != null && dialog.isShowing()) {				
+			if (dialog != null && dialog.isShowing()) {
 				dialog = null;
 			}
 			dialog = new ProgressDialog(context);
@@ -651,6 +725,7 @@ public class Home extends TabActivity {
 			super.onPreExecute();
 			dialog.setMessage("Loading data...");
 			dialog.show();
+
 		}
 
 		@Override
@@ -671,16 +746,16 @@ public class Home extends TabActivity {
 					String response = restClient.getResponse();
 
 					JSONArray responseArray = new JSONArray(response);
-
+					listOfUnitNumbers = new ArrayList<String>();
 					for (int i = 0; i < responseArray.length(); ++i) {
 						String unitNumber = responseArray.get(i).toString();
 						listOfUnitNumbers.add(unitNumber);
 						Log.d("listOfunitNumbers", listOfUnitNumbers.get(i));
 					}
-
+					listOfUnitNumbersWithHeader = new ArrayList<String>();
 					for (int i = 0; i < listOfUnitNumbers.size(); ++i) {
-						listOfUnitNumbersWithHeader.add("Unit "
-								+ listOfUnitNumbers.get(i));
+						listOfUnitNumbersWithHeader.add(listOfUnitNumbers
+								.get(i));
 					}
 
 					// lvUnitNumberAdapter = new CanListDataAdapter(activity,
@@ -749,6 +824,7 @@ public class Home extends TabActivity {
 										Home.this,
 										"Please check internet connectivity.Restart the application.",
 										Toast.LENGTH_LONG).show();
+					
 					}
 
 				};
@@ -766,10 +842,11 @@ public class Home extends TabActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-
+						
 						Toast.makeText(Home.this,
 								"Problem in loading.Restart the application.",
-								Toast.LENGTH_LONG).show();
+								Toast.LENGTH_SHORT).show();
+						
 					}
 
 				};
@@ -783,7 +860,7 @@ public class Home extends TabActivity {
 		@Override
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
-			super.onPostExecute(result);			
+			super.onPostExecute(result);
 			try {
 				if (dialog.isShowing()) {
 					dialog.cancel();

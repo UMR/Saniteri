@@ -18,9 +18,9 @@
 		android:layout_height="fill_parent" android:id="@android:id/tabhost"
 		android:layout_toRightOf="@id/layoutUnitNumbers" android:background="@color/black_color">
 		<FrameLayout android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:id="@android:id/tabcontent" android:layout_gravity="center">
+			android:layout_height="fill_parent" android:id="@android:id/tabcontent" >
 
-			<LinearLayout android:layout_width="fill_parent" 
+			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:orientation="vertical"
 				android:gravity="center" android:id="@+id/LayoutHome">
 				<Button android:layout_width="120dip" android:id="@+id/btnOpen"
@@ -33,30 +33,31 @@
 					android:layout_margin="4dip"></Button>
 
 			</LinearLayout>
+
 			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:id="@+id/LayoutCanStatus"
 				android:orientation="vertical" android:gravity="center" android:layout_gravity="center">
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="42dip" 
 					android:gravity="center">
-					<TextView android:layout_width="80dip"
-						android:layout_height="35dip" android:text="Can Id"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Can Id"
 						android:layout_marginRight="5dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblCanIdinCanStatus"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblCanIdinCanStatus"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="42dip" 
 					android:gravity="center">
-					<TextView android:layout_width="80dip"
-						android:layout_height="35dip" android:text="Can Status"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Can Status"
 						android:layout_marginRight="5dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblCanStatus"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblCanStatus"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="3dip"></TextView>
 				</LinearLayout>
@@ -70,48 +71,48 @@
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="40dip" android:layout_margin="2dip"
 					android:gravity="center">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Can Id"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Can Id"
 						android:layout_marginRight="3dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblCanId"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblCanId"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="2dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="40dip" android:layout_margin="2dip"
 					android:gravity="center">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Ip Address"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Ip Address"
 						android:layout_marginRight="3dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblCanIpAddress"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblCanIpAddress"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="2dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="40dip" android:layout_margin="2dip"
 					android:gravity="center">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Room No"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Room No"
 						android:layout_marginRight="3dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblRoomNo"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblRoomNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="2dip"></TextView>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="40dip" android:layout_margin="2dip"
 					android:gravity="center">
-					<TextView android:layout_width="100dip"
-						android:layout_height="35dip" android:text="Floor No"
+					<TextView android:layout_width="75dip"
+						android:layout_height="32dip" android:text="Floor No"
 						android:layout_marginRight="3dip" android:layout_marginLeft="7dip"
 						android:gravity="center_vertical"></TextView>
-					<TextView android:layout_width="180dip"
-						android:layout_height="35dip" android:id="@+id/lblFloorNo"
+					<TextView android:layout_width="130dip"
+						android:layout_height="32dip" android:id="@+id/lblFloorNo"
 						android:background="@color/white_color" android:textColor="@color/black_color"
 						android:paddingLeft="2dip"></TextView>
 				</LinearLayout>

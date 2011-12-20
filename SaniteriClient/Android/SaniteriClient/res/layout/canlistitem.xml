@@ -5,8 +5,8 @@
 	<ImageView android:id="@+id/imgCan" android:layout_width="25dip"
 		android:layout_height="25dip" android:src="@drawable/can"></ImageView>
 	<TextView android:id="@+id/lblUnitNumberInList"
-		android:layout_width="60dip" android:layout_height="fill_parent"
+		android:layout_width="30dip" android:layout_height="fill_parent"
 		 android:gravity="center" 
-		android:textSize="16sp" android:textColor="#000000"></TextView>
+		android:textSize="15sp" android:textColor="#000000"></TextView>
 
 </LinearLayout>	

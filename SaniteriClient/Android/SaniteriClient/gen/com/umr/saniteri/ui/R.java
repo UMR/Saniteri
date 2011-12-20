@@ -45,18 +45,20 @@ public final class R {
         public static final int button_selector=0x7f020002;
         public static final int can=0x7f020003;
         public static final int icon=0x7f020004;
-        public static final int listitemstyle=0x7f020005;
-        public static final int menu_settings_icon=0x7f020006;
-        public static final int tab_canconfig_selected=0x7f020007;
-        public static final int tab_canconfig_selector=0x7f020008;
-        public static final int tab_canconfig_unselected=0x7f020009;
-        public static final int tab_canstatus_selected=0x7f02000a;
-        public static final int tab_canstatus_selector=0x7f02000b;
-        public static final int tab_canstatus_unselected=0x7f02000c;
-        public static final int tab_home_selected=0x7f02000d;
-        public static final int tab_home_selector=0x7f02000e;
-        public static final int tab_home_unselected=0x7f02000f;
-        public static final int unitnumberliststyle=0x7f020010;
+        public static final int icons=0x7f020005;
+        public static final int listitemstyle=0x7f020006;
+        public static final int menu_refresh_icon=0x7f020007;
+        public static final int menu_settings_icon=0x7f020008;
+        public static final int tab_canconfig_selected=0x7f020009;
+        public static final int tab_canconfig_selector=0x7f02000a;
+        public static final int tab_canconfig_unselected=0x7f02000b;
+        public static final int tab_canstatus_selected=0x7f02000c;
+        public static final int tab_canstatus_selector=0x7f02000d;
+        public static final int tab_canstatus_unselected=0x7f02000e;
+        public static final int tab_home_selected=0x7f02000f;
+        public static final int tab_home_selector=0x7f020010;
+        public static final int tab_home_unselected=0x7f020011;
+        public static final int unitnumberliststyle=0x7f020012;
     }
     public static final class id {
         public static final int LayoutCanConfig=0x7f09000a;
@@ -74,11 +76,13 @@ public final class R {
         public static final int lblRoomNo=0x7f09000d;
         public static final int lblUnitNumberInList=0x7f090001;
         public static final int lvUnitNumbers=0x7f090003;
+        public static final int menuitem_Refresh=0x7f090010;
         public static final int menuitem_Settings=0x7f09000f;
     }
     public static final class layout {
         public static final int canlistitem=0x7f030000;
         public static final int main=0x7f030001;
+        public static final int main_hdpi=0x7f030002;
     }
     public static final class menu {
         public static final int menu=0x7f080000;
