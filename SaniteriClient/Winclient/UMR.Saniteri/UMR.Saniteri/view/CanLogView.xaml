@@ -44,12 +44,11 @@
                         AutoGenerateColumns="False"
                         IsEnabled="{Binding IsEnable}"
                         IsReadOnly="True" SelectionMode="Single"
-                        command:CommandBehavior.Event="SelectionChanged"
                         ItemsSource="{Binding CanEventsList, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:DataGrid.Columns>
-                            <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=event_time_stamp}" Header="Event Date"/>
-                            <toolkit:DataGridTextColumn Width="100" Binding="{Binding Path=event_type}" Header="Event Type"/>
-                            <toolkit:DataGridTextColumn Width="100" Binding="{Binding Path=event_description}" Header="Event Details"/>
+                            <toolkit:DataGridTextColumn Width="150" Binding="{Binding Path=event_time_stamp}" Header="Event Date"/>
+                            <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=event_type}" Header="Event Type"/>
+                            <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=event_description}" Header="Event Details"/>
                             <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=event_data}" Header="Event Data"/>
                         </toolkit:DataGrid.Columns>
                     </toolkit:DataGrid>
@@ -62,7 +61,6 @@
                         AutoGenerateColumns="False"
                         IsEnabled="{Binding IsEnable}"
                         IsReadOnly="True" SelectionMode="Single"
-                        command:CommandBehavior.Event="SelectionChanged"
                         ItemsSource="{Binding CanMaintenanceList, UpdateSourceTrigger=PropertyChanged}">
                                 <toolkit:DataGrid.Columns>
                                     <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=service_date}" Header="Service Date"/>

@@ -1703,7 +1703,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> tag_id
+        public global::System.String tag_id
         {
             get
             {
@@ -1713,13 +1713,13 @@ namespace UMR.Saniteri.Data
             {
                 Ontag_idChanging(value);
                 ReportPropertyChanging("tag_id");
-                _tag_id = StructuralObject.SetValidValue(value);
+                _tag_id = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("tag_id");
                 Ontag_idChanged();
             }
         }
-        private Nullable<global::System.Int64> _tag_id;
-        partial void Ontag_idChanging(Nullable<global::System.Int64> value);
+        private global::System.String _tag_id;
+        partial void Ontag_idChanging(global::System.String value);
         partial void Ontag_idChanged();
     
         /// <summary>
@@ -1843,7 +1843,7 @@ namespace UMR.Saniteri.Data
         /// Create a new can_users object.
         /// </summary>
         /// <param name="user_id">Initial value of the user_id property.</param>
-        public static can_users Createcan_users(global::System.Int64 user_id)
+        public static can_users Createcan_users(global::System.String user_id)
         {
             can_users can_users = new can_users();
             can_users.user_id = user_id;
@@ -1858,7 +1858,7 @@ namespace UMR.Saniteri.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 user_id
+        public global::System.String user_id
         {
             get
             {
@@ -1870,14 +1870,14 @@ namespace UMR.Saniteri.Data
                 {
                     Onuser_idChanging(value);
                     ReportPropertyChanging("user_id");
-                    _user_id = StructuralObject.SetValidValue(value);
+                    _user_id = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("user_id");
                     Onuser_idChanged();
                 }
             }
         }
-        private global::System.Int64 _user_id;
-        partial void Onuser_idChanging(global::System.Int64 value);
+        private global::System.String _user_id;
+        partial void Onuser_idChanging(global::System.String value);
         partial void Onuser_idChanged();
     
         /// <summary>

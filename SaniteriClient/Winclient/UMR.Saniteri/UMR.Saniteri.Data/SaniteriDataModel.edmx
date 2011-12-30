@@ -111,14 +111,14 @@
           <Property Name="event_type" Type="int" />
           <Property Name="event_description" Type="varchar" MaxLength="50" />
           <Property Name="event_data" Type="nvarchar(max)" />
-          <Property Name="tag_id" Type="bigint" />
+          <Property Name="tag_id" Type="varchar" MaxLength="20" />
           <Property Name="name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="can_users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="first_name" Type="nvarchar" MaxLength="50" />
           <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="title" Type="nvarchar" MaxLength="50" />
@@ -316,7 +316,7 @@
           <Property Type="Int32" Name="event_type" />
           <Property Type="String" Name="event_description" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="event_data" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="tag_id" />
+          <Property Type="String" Name="tag_id" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_eventcodes" Relationship="SaniteriEntities.FK_can_EventsLog_can_EventCodes" FromRole="can_transaction_log" ToRole="can_eventcodes" />
           <NavigationProperty Name="can_inventory" Relationship="SaniteriEntities.FK_can_transaction_log_can_inventory" FromRole="can_transaction_log" ToRole="can_inventory" />
@@ -325,7 +325,7 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Type="Int64" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="first_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="last_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="title" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -522,41 +522,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="SaniteriDataModel">
-        <EntityTypeShape EntityType="SaniteriEntities.can_command" Width="1.5" PointX="3" PointY="4.75" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.375" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="4.875" Height="4.4802050781250022" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="7.75" Height="1.7879850260416745" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_command" Width="1.5" PointX="3" PointY="4.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.375" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="4.875" Height="4.480205078125004" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="7.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_status" Width="1.5" PointX="6" PointY="6" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="10.375" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="10.375" Height="1.595683593749996" />
         <EntityTypeShape EntityType="SaniteriEntities.can_transaction_log" Width="1.5" PointX="6" PointY="1.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_users" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_users" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333246" />
         <AssociationConnector Association="SaniteriEntities.FK_can_command_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="5.8987939453125" />
-          <ConnectorPoint PointX="3" PointY="5.8987939453125" />
+          <ConnectorPoint PointX="2.25" PointY="5.8987939453125016" />
+          <ConnectorPoint PointX="3" PointY="5.8987939453125016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_EventsLog_can_EventCodes" >
-          <ConnectorPoint PointX="5.25" PointY="3.172841796875" />
-          <ConnectorPoint PointX="6" PointY="3.172841796875" />
+          <ConnectorPoint PointX="5.25" PointY="3.1728417968750016" />
+          <ConnectorPoint PointX="6" PointY="3.1728417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_maintenance_can_inventory" >
           <ConnectorPoint PointX="2.25" PointY="8.5526025390625016" />
           <ConnectorPoint PointX="3" PointY="8.5526025390625016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_status_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="7.3362939453125" />
-          <ConnectorPoint PointX="6" PointY="7.3362939453125" />
+          <ConnectorPoint PointX="2.25" PointY="7.3362939453125016" />
+          <ConnectorPoint PointX="6" PointY="7.3362939453125016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_transaction_log_can_inventory" >
           <ConnectorPoint PointX="1.5" PointY="4.875" />
-          <ConnectorPoint PointX="1.5" PointY="4.22068359375" />
-          <ConnectorPoint PointX="5.625" PointY="4.22068359375" />
-          <ConnectorPoint PointX="5.625" PointY="3.9635697083333272" />
-          <ConnectorPoint PointX="6" PointY="3.9635697083333272" />
+          <ConnectorPoint PointX="1.5" PointY="4.2206835937500031" />
+          <ConnectorPoint PointX="5.625" PointY="4.2206835937500031" />
+          <ConnectorPoint PointX="5.625" PointY="3.9635697083333281" />
+          <ConnectorPoint PointX="6" PointY="3.9635697083333281" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_Status_can_StatusCode" >
           <ConnectorPoint PointX="4.90625" PointY="10.375" />
-          <ConnectorPoint PointX="4.90625" PointY="7.5431494726562507" />
-          <ConnectorPoint PointX="6" PointY="7.5431494726562507" />
+          <ConnectorPoint PointX="4.90625" PointY="7.5431494726562445" />
+          <ConnectorPoint PointX="6" PointY="7.5431494726562445" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

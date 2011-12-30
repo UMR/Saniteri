@@ -38,6 +38,5 @@ namespace UMR.Saniteri
                 DialogManager.popup(msg);
             }
         }
-
     }
 }
