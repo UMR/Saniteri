@@ -23,5 +23,18 @@ namespace UMR.Saniteri.view
         {
             InitializeComponent();
         }
+
+        private void mainBdr_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var height = ((Border)sender).ActualHeight;
+            dataGrd.MaxHeight = height - 40;
+        }
+
+        private void Border_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var height = ((Border)sender).ActualHeight;
+            grdTransaction.MaxHeight = height - 50;
+            grdMaintenance.MaxHeight = height - 50;
+        }
     }
 }

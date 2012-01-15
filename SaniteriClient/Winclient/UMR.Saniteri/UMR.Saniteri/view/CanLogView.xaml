@@ -8,9 +8,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <DockPanel>
-        <Border Width="380" DockPanel.Dock="Left" Height="Auto" Margin="0,0,5,5" Padding="5" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray">
+        <Border Width="380" x:Name="mainBdr" DockPanel.Dock="Left" Margin="0,0,5,5" Padding="5" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" SizeChanged="mainBdr_SizeChanged">
             <StackPanel>
-                <search:SearchBox DockPanel.Dock="Bottom" Margin="0,1,0,1"  IsEnabled="{Binding searchItem.canSearch}" command="{Binding searchCommand}" labelText="Search"/>
+                <search:SearchBox DockPanel.Dock="Bottom" Margin="0,1,0,1" IsEnabled="{Binding searchItem.canSearch}" command="{Binding searchCommand}" labelText="Search"/>
                 <toolkit:DataGrid DockPanel.Dock="Top" x:Name="dataGrd"
                 BorderBrush="LightGray"
                 CanUserSortColumns="False"
@@ -25,7 +25,7 @@
                 command:CommandBehavior.CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}"
                 ItemsSource="{Binding CanConfigList, UpdateSourceTrigger=PropertyChanged}">
                     <toolkit:DataGrid.Columns>
-                        <toolkit:DataGridTextColumn Width="60" Binding="{Binding Path=can_id}" Header="Can ID"/>
+                        <toolkit:DataGridTextColumn Width="45" Binding="{Binding Path=can_id}" Header="Can ID"/>
                         <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=ip_address}" Header="IP Address"/>
                         <toolkit:DataGridTextColumn Width="80" Binding="{Binding Path=street}" Header="Street"/>
                         <toolkit:DataGridTextColumn Width="60"  Binding="{Binding Path=floor}" Header="Floor No"/>
@@ -34,7 +34,7 @@
                 </toolkit:DataGrid>
             </StackPanel>
         </Border>
-        <Border DockPanel.Dock="Top" Margin="0,0,0,5" Padding="5" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent" Height="Auto">
+        <Border DockPanel.Dock="Top" Margin="0,0,0,5" Padding="5" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent" Height="Auto" SizeChanged="Border_SizeChanged">
             <TabControl BorderBrush="LightGray">
                 <TabItem Header="Transaction Log" BorderBrush="LightGray" Padding="3">
                     <toolkit:DataGrid DockPanel.Dock="Top" x:Name="grdTransaction"
@@ -49,6 +49,7 @@
                             <toolkit:DataGridTextColumn Width="150" Binding="{Binding Path=event_time_stamp}" Header="Event Date"/>
                             <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=event_type}" Header="Event Type"/>
                             <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=event_description}" Header="Event Details"/>
+                            <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=name}" Header="Name"/>
                             <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=event_data}" Header="Event Data"/>
                         </toolkit:DataGrid.Columns>
                     </toolkit:DataGrid>

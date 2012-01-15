@@ -185,7 +185,7 @@ namespace UMR.DBUtility
             try
             {
                 ready = false;
-                message = "Database Creating...please wait";
+                message = "Creating Database...please wait";
                 resetConnectionInfo();
                 this.database.createDataBase(ApplicationData.applicationData.version);
                 if (database.databaseExists(DBName))

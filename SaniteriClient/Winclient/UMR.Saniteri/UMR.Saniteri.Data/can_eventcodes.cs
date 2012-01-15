@@ -94,7 +94,7 @@ namespace UMR.Saniteri.Data
                 if (columnName == "event_type")
                 {
                     int eType;
-                    if ((!int.TryParse(event_type.ToString(), out eType)) || eType <= 0)
+                    if ((!int.TryParse(event_type.ToString(), out eType)) || eType < 0)
                     {
                         result = "Event Type has to be set!";
                         _errorCollection["event_type"] = "Event Type has to be set!";

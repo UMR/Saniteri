@@ -23,5 +23,11 @@ namespace UMR.Saniteri.view
         {
             InitializeComponent();
         }
+
+        private void DockPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var height = ((DockPanel)sender).ActualHeight;
+            dataGrd.MaxHeight = height - 65;
+        }
     }
 }

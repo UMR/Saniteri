@@ -61,7 +61,14 @@ namespace UMR.Saniteri.DataFactory.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to USE [SaniteriMain]
+        ///GO
+        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (0, N&apos;Monitored Passage&apos;)
+        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (1, N&apos;Refuse Access&apos;)
+        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (2, N&apos;Maintenance Access&apos;)
+        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (3, N&apos;Refuse Bag Full&apos;)
+        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (4, N&apos;Lid Still Open&apos;)
+        ///INSERT [dbo].[can_eventcod [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SaniteriMain_DefaultData {
             get {
