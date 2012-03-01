@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_command_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_command", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_command), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_EventsLog_can_EventCodes", "can_eventcodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_eventcodes), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
+[assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_livestatus_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_livestatus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(UMR.Saniteri.Data.can_livestatus), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_maintenance_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_maintenance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_maintenance), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_status_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_status), true)]
 [assembly: EdmRelationshipAttribute("SaniteriEntities", "FK_can_transaction_log_can_inventory", "can_inventory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(UMR.Saniteri.Data.can_inventory), "can_transaction_log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(UMR.Saniteri.Data.can_transaction_log), true)]
@@ -126,6 +127,22 @@ namespace UMR.Saniteri.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<can_livestatus> can_livestatus
+        {
+            get
+            {
+                if ((_can_livestatus == null))
+                {
+                    _can_livestatus = base.CreateObjectSet<can_livestatus>("can_livestatus");
+                }
+                return _can_livestatus;
+            }
+        }
+        private ObjectSet<can_livestatus> _can_livestatus;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<can_maintenance> can_maintenance
         {
             get
@@ -228,6 +245,14 @@ namespace UMR.Saniteri.Data
         public void AddTocan_inventory(can_inventory can_inventory)
         {
             base.AddObject("can_inventory", can_inventory);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the can_livestatus EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTocan_livestatus(can_livestatus can_livestatus)
+        {
+            base.AddObject("can_livestatus", can_livestatus);
         }
     
         /// <summary>
@@ -975,6 +1000,44 @@ namespace UMR.Saniteri.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_livestatus_can_inventory", "can_livestatus")]
+        public can_livestatus can_livestatus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_livestatus>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_livestatus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_livestatus>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_livestatus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_livestatus> can_livestatusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_livestatus>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_livestatus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_livestatus>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_livestatus", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_maintenance_can_inventory", "can_maintenance")]
         public EntityCollection<can_maintenance> can_maintenance
         {
@@ -1031,6 +1094,294 @@ namespace UMR.Saniteri.Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<can_transaction_log>("SaniteriEntities.FK_can_transaction_log_can_inventory", "can_transaction_log", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SaniteriEntities", Name="can_livestatus")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class can_livestatus : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new can_livestatus object.
+        /// </summary>
+        /// <param name="can_id">Initial value of the can_id property.</param>
+        public static can_livestatus Createcan_livestatus(global::System.Int64 can_id)
+        {
+            can_livestatus can_livestatus = new can_livestatus();
+            can_livestatus.can_id = can_id;
+            return can_livestatus;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 can_id
+        {
+            get
+            {
+                return _can_id;
+            }
+            set
+            {
+                if (_can_id != value)
+                {
+                    Oncan_idChanging(value);
+                    ReportPropertyChanging("can_id");
+                    _can_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("can_id");
+                    Oncan_idChanged();
+                }
+            }
+        }
+        private global::System.Int64 _can_id;
+        partial void Oncan_idChanging(global::System.Int64 value);
+        partial void Oncan_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> need_service
+        {
+            get
+            {
+                return _need_service;
+            }
+            set
+            {
+                Onneed_serviceChanging(value);
+                ReportPropertyChanging("need_service");
+                _need_service = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("need_service");
+                Onneed_serviceChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _need_service;
+        partial void Onneed_serviceChanging(Nullable<global::System.Boolean> value);
+        partial void Onneed_serviceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> lid_open
+        {
+            get
+            {
+                return _lid_open;
+            }
+            set
+            {
+                Onlid_openChanging(value);
+                ReportPropertyChanging("lid_open");
+                _lid_open = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("lid_open");
+                Onlid_openChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _lid_open;
+        partial void Onlid_openChanging(Nullable<global::System.Boolean> value);
+        partial void Onlid_openChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> door_open
+        {
+            get
+            {
+                return _door_open;
+            }
+            set
+            {
+                Ondoor_openChanging(value);
+                ReportPropertyChanging("door_open");
+                _door_open = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("door_open");
+                Ondoor_openChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _door_open;
+        partial void Ondoor_openChanging(Nullable<global::System.Boolean> value);
+        partial void Ondoor_openChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String fault
+        {
+            get
+            {
+                return _fault;
+            }
+            set
+            {
+                OnfaultChanging(value);
+                ReportPropertyChanging("fault");
+                _fault = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("fault");
+                OnfaultChanged();
+            }
+        }
+        private global::System.String _fault;
+        partial void OnfaultChanging(global::System.String value);
+        partial void OnfaultChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> weight
+        {
+            get
+            {
+                return _weight;
+            }
+            set
+            {
+                OnweightChanging(value);
+                ReportPropertyChanging("weight");
+                _weight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("weight");
+                OnweightChanged();
+            }
+        }
+        private Nullable<global::System.Double> _weight;
+        partial void OnweightChanging(Nullable<global::System.Double> value);
+        partial void OnweightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String bag_info
+        {
+            get
+            {
+                return _bag_info;
+            }
+            set
+            {
+                Onbag_infoChanging(value);
+                ReportPropertyChanging("bag_info");
+                _bag_info = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("bag_info");
+                Onbag_infoChanged();
+            }
+        }
+        private global::System.String _bag_info;
+        partial void Onbag_infoChanging(global::System.String value);
+        partial void Onbag_infoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> power_status
+        {
+            get
+            {
+                return _power_status;
+            }
+            set
+            {
+                Onpower_statusChanging(value);
+                ReportPropertyChanging("power_status");
+                _power_status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("power_status");
+                Onpower_statusChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _power_status;
+        partial void Onpower_statusChanging(Nullable<global::System.Byte> value);
+        partial void Onpower_statusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> comm_status
+        {
+            get
+            {
+                return _comm_status;
+            }
+            set
+            {
+                Oncomm_statusChanging(value);
+                ReportPropertyChanging("comm_status");
+                _comm_status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("comm_status");
+                Oncomm_statusChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _comm_status;
+        partial void Oncomm_statusChanging(Nullable<global::System.Byte> value);
+        partial void Oncomm_statusChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SaniteriEntities", "FK_can_livestatus_can_inventory", "can_inventory")]
+        public can_inventory can_inventory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_inventory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_inventory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<can_inventory> can_inventoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<can_inventory>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_inventory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<can_inventory>("SaniteriEntities.FK_can_livestatus_can_inventory", "can_inventory", value);
                 }
             }
         }

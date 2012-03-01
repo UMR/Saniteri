@@ -22,8 +22,25 @@ namespace SaniteriWebService
     {
         // TODO: Implement the collection resource that will contain the SampleItem instances
 
+        [WebGet(UriTemplate = "LogIn?userID={userID}&password={password}", ResponseFormat = WebMessageFormat.Json)]
+        public bool LogIn(string userID, string password)
+        {
+            try
+            {
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.UnsupportedMediaType;
+                response.StatusDescription = e.Message;
+                return false;
+            }
+        }
+
         [WebGet(UriTemplate = "GetMaintenanceInfo?CanId={canId}&ServiceDate={serviceDate}", ResponseFormat = WebMessageFormat.Json)]
-        public MaintenanceDTO GetMaintenanceInfo(String canId, String serviceDate)
+        public MaintenanceDTO GetMaintenanceInfo(string canId, string serviceDate)
         {
             try
             {
@@ -41,7 +58,7 @@ namespace SaniteriWebService
 
 
         [WebGet(UriTemplate = "GetTransactionLog?CanId={canId}&EventTimeStamp={eventTimeStamp}", ResponseFormat = WebMessageFormat.Json)]
-        public TransactionLogDTO GetTransactionLog(String canId, String eventTimeStamp)
+        public TransactionLogDTO GetTransactionLog(string canId, string eventTimeStamp)
         {
             try
             {
@@ -58,8 +75,9 @@ namespace SaniteriWebService
 
 
         }
+        
         [WebGet(UriTemplate = "GetInventoryInfo?Id={id}", ResponseFormat = WebMessageFormat.Json)]
-        public InventoryDTO GetInventoryInfo(String id)
+        public InventoryDTO GetInventoryInfo(string id)
         {
             try
             {
@@ -75,11 +93,28 @@ namespace SaniteriWebService
             }
         }
 
+        [WebGet(UriTemplate = "GetAllInventoryInfo", ResponseFormat = WebMessageFormat.Json)]
+        public List<InventoryDTO> GetAllInventoryInfo()
+        {
+            try
+            {
+                List<InventoryDTO> inventoryDTO = SaniteriDAL.GetAllInventoryInfo();
+                return inventoryDTO;
+            }
+            catch (Exception e)
+            {
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.UnsupportedMediaType;
+                response.StatusDescription = e.Message;
+                return null;
+            }
+        }
+
         [WebGet(UriTemplate = "GetAllCanId", ResponseFormat = WebMessageFormat.Json)]
 
-        public List<String> GetAllCanId()
+        public List<string> GetAllCanId()
         {
-            List<String> listOfAllCanId = new List<string>();
+            List<string> listOfAllCanId = new List<string>();
             try
             {
                 listOfAllCanId = SaniteriDAL.GetAllCanId();
@@ -96,7 +131,7 @@ namespace SaniteriWebService
 
 
         [WebInvoke(UriTemplate = "InsertCanCommand", Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public Boolean InsertCanCommand(String commandId, String canId, String canLidStatus, String commandTimeStamp)
+        public Boolean InsertCanCommand(string commandId, string canId, string canLidStatus, string commandTimeStamp)
         {
             try
             {
@@ -122,13 +157,31 @@ namespace SaniteriWebService
 
 
         [WebGet(UriTemplate = "GetCanStatus?CanId={canId}&EventTime={eDate}", ResponseFormat = WebMessageFormat.Json)]
-        public CanStatus GetCanStatus(String canId, String eDate)
+        public CanStatus GetCanStatus(string canId, string eDate)
         {
             CanStatus canStatus = new CanStatus();
             try
             {
                 canStatus = SaniteriDAL.GetCanStatus(Int64.Parse(canId), DateTime.Parse(eDate));
                 return canStatus;
+            }
+
+            catch (Exception e)
+            {
+                OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+                response.StatusCode = System.Net.HttpStatusCode.UnsupportedMediaType;
+                response.StatusDescription = e.Message;
+                return null;
+            }
+        }
+
+        [WebGet(UriTemplate = "GetCanLiveStatus?CanId={canId}", ResponseFormat = WebMessageFormat.Json)]
+        public CanLiveStatus GetCanLiveStatus(string canID)
+        {
+            try
+            {
+                var _canLiveStatus = SaniteriDAL.GetCanLiveStatus(Int64.Parse(canID));
+                return _canLiveStatus;
             }
 
             catch (Exception e)

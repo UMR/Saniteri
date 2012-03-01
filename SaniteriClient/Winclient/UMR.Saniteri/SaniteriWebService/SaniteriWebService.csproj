@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\SaniteriDAL.cs" />
+    <Compile Include="DTO\CanLiveStatus.cs" />
     <Compile Include="DTO\CanStatus.cs" />
     <Compile Include="DTO\InventoryDTO.cs" />
     <Compile Include="DTO\MaintainenceDTO.cs" />

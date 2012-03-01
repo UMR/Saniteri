@@ -43,6 +43,35 @@ namespace SaniteriWebService.DAL
             }
         }
 
+        public static List<InventoryDTO> GetAllInventoryInfo()
+        {
+            try
+            {
+                using (var context = DatabaseManager.server.GetMainEntities())
+                {
+                    var inventoryDTO = context.can_inventory.Select(inv => new InventoryDTO
+                    {
+                        CanId = inv.can_id,
+                        ProductionDate = inv.production_date,
+                        InServiceDate = inv.in_service_date,
+                        Street = inv.street,
+                        Additional = inv.additional,
+                        City = inv.city,
+                        Zip = inv.floor,
+                        Room = inv.room,
+                        Custom1 = inv.custom_1,
+                        Custom2 = inv.custom_2,
+                        Custom3 = inv.custom_3
+                    }).ToList();
+                    return inventoryDTO;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static MaintenanceDTO GetMaintenanceInfo(Int64 canId, DateTime serviceDate)
         {
             try
@@ -138,11 +167,29 @@ namespace SaniteriWebService.DAL
                 canStatus.StatusType = _canStatus.status_type;
                 canStatus.eDate = _canStatus.edate;
                 canStatus.StatusDescription = _canStatus.status_description;
-
                 return canStatus;
             }
-        
         }
 
+        public static CanLiveStatus GetCanLiveStatus(Int64 canId)
+        {
+            var canLiveStatus = new CanLiveStatus();
+            using (var context = DatabaseManager.server.GetMainEntities())
+            {
+                var _canStatus = context.can_livestatus.Where(c => c.can_id == canId).FirstOrDefault();
+                if (_canStatus == null) return canLiveStatus;
+
+                canLiveStatus.CanID = _canStatus.can_id;
+                canLiveStatus.NeedService = _canStatus.need_service;
+                canLiveStatus.LidOpen = _canStatus.lid_open;
+                canLiveStatus.DoorOpen = _canStatus.door_open;
+                canLiveStatus.Fault = _canStatus.fault;
+                canLiveStatus.Weight = _canStatus.weight;
+                canLiveStatus.BagInfo = _canStatus.bag_info;
+                canLiveStatus.PowerStatus = _canStatus.power_status;
+                canLiveStatus.CommunicationStatus = _canStatus.comm_status;
+                return canLiveStatus;
+            }
+        }
     }
 }
