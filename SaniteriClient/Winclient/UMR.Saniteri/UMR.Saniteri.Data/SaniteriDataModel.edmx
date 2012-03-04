@@ -602,9 +602,9 @@
     <Diagrams>
       <Diagram Name="SaniteriDataModel">
         <EntityTypeShape EntityType="SaniteriEntities.can_command" Width="1.5" PointX="3" PointY="5" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_eventcodes" Width="1.5" PointX="3.75" PointY="2.375" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="SaniteriEntities.can_inventory" Width="1.5" PointX="0.75" PointY="6.875" Height="4.6725065104166674" />
-        <EntityTypeShape EntityType="SaniteriEntities.can_livestatus" Width="1.5" PointX="3" PointY="7.875" Height="2.9417936197916745" />
+        <EntityTypeShape EntityType="SaniteriEntities.can_livestatus" Width="1.5" PointX="3" PointY="7.875" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_maintenance" Width="1.5" PointX="3" PointY="11.625" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_status" Width="1.5" PointX="6" PointY="8" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="SaniteriEntities.can_statuscode" Width="1.5" PointX="3.75" PointY="14.375" Height="1.5956835937500031" />
@@ -623,8 +623,8 @@
           <ConnectorPoint PointX="6.75" PointY="3.75" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_livestatus_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="9.3458968098958373" />
-          <ConnectorPoint PointX="3" PointY="9.3458968098958373" />
+          <ConnectorPoint PointX="2.25" PointY="9.3458968098958337" />
+          <ConnectorPoint PointX="3" PointY="9.3458968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_maintenance_can_inventory" >
           <ConnectorPoint PointX="1.5" PointY="11.547506510416667" />
@@ -632,16 +632,16 @@
           <ConnectorPoint PointX="3" PointY="12.518992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_status_can_inventory" >
-          <ConnectorPoint PointX="2.25" PointY="11.213400065104171" />
-          <ConnectorPoint PointX="6.2604141666666671" PointY="11.213400065104171" />
-          <ConnectorPoint PointX="6.4270808333333331" PointY="11.213400065104171" />
-          <ConnectorPoint PointX="6.75" PointY="11.213400065104171" />
+          <ConnectorPoint PointX="2.25" PointY="11.213400065104167" />
+          <ConnectorPoint PointX="6.2604141666666671" PointY="11.213400065104167" />
+          <ConnectorPoint PointX="6.4270808333333331" PointY="11.213400065104167" />
+          <ConnectorPoint PointX="6.75" PointY="11.213400065104167" />
           <ConnectorPoint PointX="6.75" PointY="10.364889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_transaction_log_can_inventory" >
           <ConnectorPoint PointX="1.9062525" PointY="6.875" />
-          <ConnectorPoint PointX="1.9062525" PointY="4.485341796875" />
-          <ConnectorPoint PointX="6" PointY="4.485341796875" />
+          <ConnectorPoint PointX="1.9062525" PointY="4.4853417968750016" />
+          <ConnectorPoint PointX="6" PointY="4.4853417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="SaniteriEntities.FK_can_Status_can_StatusCode" >
           <ConnectorPoint PointX="5.25" PointY="15.172841796875002" />

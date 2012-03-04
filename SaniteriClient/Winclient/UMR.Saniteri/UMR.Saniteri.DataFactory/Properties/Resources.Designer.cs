@@ -63,11 +63,11 @@ namespace UMR.Saniteri.DataFactory.Properties {
         /// <summary>
         ///   Looks up a localized string similar to USE [SaniteriMain]
         ///GO
+        ////****** Object:  Table [dbo].[can_eventcodes]    Script Date: 03/04/2012 18:11:54 ******/
         ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (0, N&apos;Monitored Passage&apos;)
         ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (1, N&apos;Refuse Access&apos;)
         ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (2, N&apos;Maintenance Access&apos;)
         ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (3, N&apos;Refuse Bag Full&apos;)
-        ///INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (4, N&apos;Lid Still Open&apos;)
         ///INSERT [dbo].[can_eventcod [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SaniteriMain_DefaultData {
@@ -78,24 +78,23 @@ namespace UMR.Saniteri.DataFactory.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to GO
-        ////****** Object:  Table [dbo].[can_inventory]    Script Date: 03/01/2012 21:03:25 ******/
+        ////****** Object:  Table [dbo].[can_users]    Script Date: 03/04/2012 18:14:23 ******/
         ///SET ANSI_NULLS ON
         ///GO
         ///SET QUOTED_IDENTIFIER ON
         ///GO
-        ///SET ANSI_PADDING ON
+        ///SET ANSI_PADDING OFF
         ///GO
-        ///CREATE TABLE [dbo].[can_inventory](
-        ///	[can_id] [bigint] NOT NULL,
-        ///	[production_date] [date] NULL,
-        ///	[in_service_date] [date] NULL,
-        ///	[street] [varchar](50) NULL,
-        ///	[additional] [varchar](50) NULL,
-        ///	[city] [varchar](50) NULL,
-        ///	[state] [varchar](50) NULL,
-        ///	[zip] [varchar](50) NULL,
-        ///	[floor] [varchar](50) NULL,
-        ///	[room] [varchar](50) NU [rest of string was truncated]&quot;;.
+        ///CREATE TABLE [dbo].[can_users](
+        ///	[user_id] [varchar](20) NOT NULL,
+        ///	[first_name] [nvarchar](50) NULL,
+        ///	[last_name] [nvarchar](50) NULL,
+        ///	[title] [nvarchar](50) NULL,
+        ///	[options] [int] NULL,
+        /// CONSTRAINT [PK_can_users] PRIMARY KEY CLUSTERED 
+        ///(
+        ///	[user_id] ASC
+        ///)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SaniteriMain_SQLScript {
             get {
