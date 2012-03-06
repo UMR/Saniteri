@@ -142,13 +142,6 @@ INSERT [dbo].[can_statuscode] ([status_type], [description]) VALUES (6, N'Unknow
   </data>
   <data name="SaniteriMain_SQLScript" xml:space="preserve">
     <value>GO
-/****** Object:  Table [dbo].[can_users]    Script Date: 03/04/2012 18:14:23 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING OFF
-GO
 CREATE TABLE [dbo].[can_users](
 	[user_id] [varchar](20) NOT NULL,
 	[first_name] [nvarchar](50) NULL,
@@ -163,7 +156,7 @@ CREATE TABLE [dbo].[can_users](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[can_statuscode]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_statuscode]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +170,7 @@ CREATE TABLE [dbo].[can_statuscode](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +200,7 @@ CREATE TABLE [dbo].[can_inventory](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[can_eventcodes]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_eventcodes]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +214,7 @@ CREATE TABLE [dbo].[can_eventcodes](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_command]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_command]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -230,15 +223,13 @@ CREATE TABLE [dbo].[can_command](
 	[seqno] [int] IDENTITY(1,1) NOT NULL,
 	[command_id] [int] NULL,
 	[can_id] [bigint] NOT NULL,
-	[can_lid_status] [tinyint] NOT NULL,
-	[command_timestamp] [datetime] NOT NULL,
  CONSTRAINT [PK_can_command] PRIMARY KEY CLUSTERED 
 (
 	[seqno] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_status]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_status]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +246,7 @@ CREATE TABLE [dbo].[can_status](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_maintenance]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_maintenance]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -271,7 +262,7 @@ CREATE TABLE [dbo].[can_maintenance](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_livestatus]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_livestatus]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +283,7 @@ CREATE TABLE [dbo].[can_livestatus](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[can_transaction_log]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Table [dbo].[can_transaction_log]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -316,7 +307,7 @@ CREATE TABLE [dbo].[can_transaction_log](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Trigger [tr_Insert_can_status]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Trigger [tr_Insert_can_status]    Script Date: 03/05/2012 15:24:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -336,49 +327,49 @@ FOR INSERT AS
 			Update can_status set status_description = @Description where seqno = @SeqNo
 		END
 GO
-/****** Object:  Default [DF_can_EventsLog_seqno]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Default [DF_can_EventsLog_seqno]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_transaction_log] ADD  CONSTRAINT [DF_can_EventsLog_seqno]  DEFAULT (newid()) FOR [seqno]
 GO
-/****** Object:  Default [DF_can_Status_seqno]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  Default [DF_can_Status_seqno]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_status] ADD  CONSTRAINT [DF_can_Status_seqno]  DEFAULT (newid()) FOR [seqno]
 GO
-/****** Object:  ForeignKey [FK_can_EventsLog_can_EventCodes]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_EventsLog_can_EventCodes]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_transaction_log]  WITH CHECK ADD  CONSTRAINT [FK_can_EventsLog_can_EventCodes] FOREIGN KEY([event_type])
 REFERENCES [dbo].[can_eventcodes] ([event_type])
 GO
 ALTER TABLE [dbo].[can_transaction_log] CHECK CONSTRAINT [FK_can_EventsLog_can_EventCodes]
 GO
-/****** Object:  ForeignKey [FK_can_transaction_log_can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_transaction_log_can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_transaction_log]  WITH CHECK ADD  CONSTRAINT [FK_can_transaction_log_can_inventory] FOREIGN KEY([can_id])
 REFERENCES [dbo].[can_inventory] ([can_id])
 GO
 ALTER TABLE [dbo].[can_transaction_log] CHECK CONSTRAINT [FK_can_transaction_log_can_inventory]
 GO
-/****** Object:  ForeignKey [FK_can_status_can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_status_can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_status]  WITH CHECK ADD  CONSTRAINT [FK_can_status_can_inventory] FOREIGN KEY([can_id])
 REFERENCES [dbo].[can_inventory] ([can_id])
 GO
 ALTER TABLE [dbo].[can_status] CHECK CONSTRAINT [FK_can_status_can_inventory]
 GO
-/****** Object:  ForeignKey [FK_can_Status_can_StatusCode]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_Status_can_StatusCode]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_status]  WITH CHECK ADD  CONSTRAINT [FK_can_Status_can_StatusCode] FOREIGN KEY([status_type])
 REFERENCES [dbo].[can_statuscode] ([status_type])
 GO
 ALTER TABLE [dbo].[can_status] CHECK CONSTRAINT [FK_can_Status_can_StatusCode]
 GO
-/****** Object:  ForeignKey [FK_can_maintenance_can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_maintenance_can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_maintenance]  WITH CHECK ADD  CONSTRAINT [FK_can_maintenance_can_inventory] FOREIGN KEY([can_id])
 REFERENCES [dbo].[can_inventory] ([can_id])
 GO
 ALTER TABLE [dbo].[can_maintenance] CHECK CONSTRAINT [FK_can_maintenance_can_inventory]
 GO
-/****** Object:  ForeignKey [FK_can_livestatus_can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_livestatus_can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_livestatus]  WITH CHECK ADD  CONSTRAINT [FK_can_livestatus_can_inventory] FOREIGN KEY([can_id])
 REFERENCES [dbo].[can_inventory] ([can_id])
 GO
 ALTER TABLE [dbo].[can_livestatus] CHECK CONSTRAINT [FK_can_livestatus_can_inventory]
 GO
-/****** Object:  ForeignKey [FK_can_command_can_inventory]    Script Date: 03/04/2012 18:14:23 ******/
+/****** Object:  ForeignKey [FK_can_command_can_inventory]    Script Date: 03/05/2012 15:24:00 ******/
 ALTER TABLE [dbo].[can_command]  WITH CHECK ADD  CONSTRAINT [FK_can_command_can_inventory] FOREIGN KEY([can_id])
 REFERENCES [dbo].[can_inventory] ([can_id])
 GO

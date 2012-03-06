@@ -78,13 +78,6 @@ namespace UMR.Saniteri.DataFactory.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to GO
-        ////****** Object:  Table [dbo].[can_users]    Script Date: 03/04/2012 18:14:23 ******/
-        ///SET ANSI_NULLS ON
-        ///GO
-        ///SET QUOTED_IDENTIFIER ON
-        ///GO
-        ///SET ANSI_PADDING OFF
-        ///GO
         ///CREATE TABLE [dbo].[can_users](
         ///	[user_id] [varchar](20) NOT NULL,
         ///	[first_name] [nvarchar](50) NULL,
@@ -94,7 +87,12 @@ namespace UMR.Saniteri.DataFactory.Properties {
         /// CONSTRAINT [PK_can_users] PRIMARY KEY CLUSTERED 
         ///(
         ///	[user_id] ASC
-        ///)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,  [rest of string was truncated]&quot;;.
+        ///)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+        ///) ON [PRIMARY]
+        ///GO
+        ///SET ANSI_PADDING OFF
+        ///GO
+        ////****** Object:  Table [dbo].[can_statuscode]    Script Da [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SaniteriMain_SQLScript {
             get {

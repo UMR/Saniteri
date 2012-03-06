@@ -131,11 +131,11 @@ namespace SaniteriWebService
 
 
         [WebInvoke(UriTemplate = "InsertCanCommand", Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        public Boolean InsertCanCommand(string commandId, string canId, string canLidStatus, string commandTimeStamp)
+        public Boolean InsertCanCommand(string canId, string commandId)
         {
             try
             {
-                if (SaniteriDAL.InsertCanCommand(Int64.Parse(canId), Convert.ToInt32(canLidStatus)))
+                if (SaniteriDAL.InsertCanCommand(Int64.Parse(canId), Convert.ToInt32(commandId)))
                 {
                     return true;
                 }
@@ -143,7 +143,6 @@ namespace SaniteriWebService
                 {
                     return false;
                 }
-
             }
             catch (Exception e)
             {
