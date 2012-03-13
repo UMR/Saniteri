@@ -118,7 +118,7 @@ namespace SaniteriWebService.DAL
         }
 
 
-        public static Boolean InsertCanCommand(Int64 canId, int canLidStatus)
+        public static Boolean InsertCanCommand(Int64 canId, int commandId)
         {
             try
             {
@@ -127,10 +127,8 @@ namespace SaniteriWebService.DAL
                     var count = context.can_command.Count();
                     var newCommand = new can_command();
                     newCommand.seqno = count + 1;
-                    newCommand.command_id = null;
+                    newCommand.command_id = commandId;
                     newCommand.can_id = canId;
-                    newCommand.can_lid_status = Convert.ToByte(canLidStatus);
-                    newCommand.command_timestamp = DateTime.Now;
                     context.can_command.AddObject(newCommand);
                     context.SaveChanges();
                     return true;
