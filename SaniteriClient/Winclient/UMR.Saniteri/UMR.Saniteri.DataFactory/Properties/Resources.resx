@@ -130,8 +130,8 @@ INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (5, N'Lid Not
 INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (6, N'No Bag Tag')
 INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (7, N'New Bag Inserted')
 INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (8, N'Door not Closed')
-INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (9, N'Reserved 1')
-INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (10, N'Reserved 2')
+INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (9, N'Can Weight')
+INSERT [dbo].[can_eventcodes] ([event_type], [description]) VALUES (10, N'Tag Exit Area')
 /****** Object:  Table [dbo].[can_statuscode]    Script Date: 03/04/2012 18:11:54 ******/
 INSERT [dbo].[can_statuscode] ([status_type], [description]) VALUES (1, N'Can Lid is Open')
 INSERT [dbo].[can_statuscode] ([status_type], [description]) VALUES (2, N'Can Door is Open')
@@ -143,7 +143,7 @@ INSERT [dbo].[can_statuscode] ([status_type], [description]) VALUES (6, N'Unknow
   <data name="SaniteriMain_SQLScript" xml:space="preserve">
     <value>GO
 CREATE TABLE [dbo].[can_users](
-	[user_id] [varchar](20) NOT NULL,
+	[user_id] [varchar](50) NOT NULL,
 	[first_name] [nvarchar](50) NULL,
 	[last_name] [nvarchar](50) NULL,
 	[title] [nvarchar](50) NULL,
@@ -297,7 +297,7 @@ CREATE TABLE [dbo].[can_transaction_log](
 	[event_type] [int] NULL,
 	[event_description] [varchar](50) NULL,
 	[event_data] [nvarchar](max) NULL,
-	[tag_id] [varchar](20) NULL,
+	[tag_id] [varchar](50) NULL,
 	[name] [varchar](50) NULL,
  CONSTRAINT [PK_can_Transaction_Log_1] PRIMARY KEY CLUSTERED 
 (

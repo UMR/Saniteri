@@ -79,7 +79,7 @@ namespace UMR.Saniteri.DataFactory.Properties {
         /// <summary>
         ///   Looks up a localized string similar to GO
         ///CREATE TABLE [dbo].[can_users](
-        ///	[user_id] [varchar](20) NOT NULL,
+        ///	[user_id] [varchar](50) NOT NULL,
         ///	[first_name] [nvarchar](50) NULL,
         ///	[last_name] [nvarchar](50) NULL,
         ///	[title] [nvarchar](50) NULL,

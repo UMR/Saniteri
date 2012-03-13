@@ -128,14 +128,14 @@
           <Property Name="event_type" Type="int" />
           <Property Name="event_description" Type="varchar" MaxLength="50" />
           <Property Name="event_data" Type="nvarchar(max)" />
-          <Property Name="tag_id" Type="varchar" MaxLength="20" />
+          <Property Name="tag_id" Type="varchar" MaxLength="50" />
           <Property Name="name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="can_users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_id" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="first_name" Type="nvarchar" MaxLength="50" />
           <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="title" Type="nvarchar" MaxLength="50" />
@@ -364,7 +364,7 @@
           <Property Type="Int32" Name="event_type" />
           <Property Type="String" Name="event_description" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="event_data" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="tag_id" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tag_id" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="can_eventcodes" Relationship="SaniteriEntities.FK_can_EventsLog_can_EventCodes" FromRole="can_transaction_log" ToRole="can_eventcodes" />
           <NavigationProperty Name="can_inventory" Relationship="SaniteriEntities.FK_can_transaction_log_can_inventory" FromRole="can_transaction_log" ToRole="can_inventory" />
@@ -373,7 +373,7 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Type="String" Name="user_id" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="first_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="last_name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="title" MaxLength="50" FixedLength="false" Unicode="true" />
