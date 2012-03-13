@@ -527,11 +527,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.SmoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_03915981925228C713E32D42C30D6F4A"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.SmoExtended.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.SmoExtended.dll"
             "TargetName" = "8:"
@@ -558,11 +553,6 @@
             "AssemblyAsmDisplayName" = "8:UMR.Saniteri.DataFactory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_12C127842B87142181D286D32F6B6CC8"
-                    {
-                    "Name" = "8:UMR.Saniteri.DataFactory.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:UMR.Saniteri.DataFactory.dll"
             "TargetName" = "8:"
@@ -620,11 +610,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.Dmf, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1FFDAC961098AB8079937A44341EFBC4"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.Dmf.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.Dmf.dll"
             "TargetName" = "8:"
@@ -651,11 +636,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_28E66220FE531D02B2D3FBA3DAC2090E"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.Management.Sdk.Sfc.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.Management.Sdk.Sfc.dll"
             "TargetName" = "8:"
@@ -682,11 +662,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2ADDB5D9ED15BCF22D44CED10DF2C561"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.SqlEnum.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.SqlEnum.dll"
             "TargetName" = "8:"
@@ -744,11 +719,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7B65DB9E827FE736BC0FFBBF0B24DDA5"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.ConnectionInfo.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.ConnectionInfo.dll"
             "TargetName" = "8:"
@@ -806,11 +776,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.ServiceBrokerEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9939D3CC53BBFB891EE18843A3727781"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.ServiceBrokerEnum.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.ServiceBrokerEnum.dll"
             "TargetName" = "8:"
@@ -837,11 +802,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9FDC643583F877C8E4C3F8E17B3E8F32"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.Smo.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.Smo.dll"
             "TargetName" = "8:"
@@ -899,11 +859,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.RegSvrEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BE0761676B5F383E9F440C1570EAE320"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.RegSvrEnum.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SqlServer.RegSvrEnum.dll"
             "TargetName" = "8:"
@@ -930,11 +885,6 @@
             "AssemblyAsmDisplayName" = "8:UMR.Saniteri.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E98A17892B9D347C97DF4DB96AD3EA08"
-                    {
-                    "Name" = "8:UMR.Saniteri.Data.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:UMR.Saniteri.Data.dll"
             "TargetName" = "8:"
@@ -961,11 +911,6 @@
             "AssemblyAsmDisplayName" = "8:UMR.Saniteri.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_ED6E22779BBC1B3C3434985B9D8BFA47"
-                    {
-                    "Name" = "8:UMR.Saniteri.Common.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:UMR.Saniteri.Common.dll"
             "TargetName" = "8:"
@@ -1074,15 +1019,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SaniteriWebService"
-        "ProductCode" = "8:{C031EBE0-7121-4925-8A33-5DCD336ADAB9}"
-        "PackageCode" = "8:{6C849FCC-D1D2-4AB6-A6DB-0B2490D376F7}"
+        "ProductCode" = "8:{8A36AE70-F2DA-4011-B967-EA95F7DA7ECE}"
+        "PackageCode" = "8:{42F682FB-5D78-42D8-B621-445CFE628B37}"
         "UpgradeCode" = "8:{699EA64A-B481-4D8E-8159-0279C2A9E2D9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.4"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:UMR"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

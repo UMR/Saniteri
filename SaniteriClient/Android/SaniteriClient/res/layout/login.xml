@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/layoutLogIn"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:gravity="center"
+	android:paddingBottom="130dp">
+	<ImageView android:layout_width="fill_parent"
+		android:layout_height="160dp" android:src="@drawable/saniteri_logo"
+		android:layout_marginBottom="45dp"></ImageView>
+	<EditText android:id="@+id/txtUserId" android:singleLine="true"
+		android:layout_width="fill_parent" android:layout_height="45dp"
+		android:hint="User Name" android:layout_marginBottom="5dp"
+		android:layout_marginLeft="65dp" android:layout_marginRight="65dp">
+	</EditText>
+	<EditText android:id="@+id/txtPassword" android:singleLine="true"
+		android:password="true" android:layout_width="fill_parent"
+		android:layout_height="45dp" android:hint="Password"
+		android:layout_marginBottom="5dp" android:layout_marginLeft="65dp"
+		android:layout_marginRight="65dp"></EditText>
+	<Button android:id="@+id/btnLogIn" android:layout_width="120dp"
+		android:layout_height="45dp" android:text="Log In"></Button>
+</LinearLayout>	
+	

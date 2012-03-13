@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@color/white_color">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="44dp" android:gravity="center"
+		android:background="#D9F0A0">
+		<TextView android:layout_width="fill_parent" android:id="@+id/lblDeviceDetailHeader"
+			android:layout_height="44dp" android:gravity="center"
+			android:textStyle="bold" android:textSize="19sp" android:textColor="@color/black_color">
+		</TextView>
+	</LinearLayout>
+	<TabHost android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:id="@android:id/tabhost"
+		android:background="@color/white_color" android:paddingTop="6dp">
+		<TabWidget android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@android:id/tabs"
+			android:layout_marginTop="3dp" android:layout_marginLeft="2dp" />
+		<FrameLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:id="@android:id/tabcontent"
+			android:layout_gravity="center">
+			<LinearLayout android:id="@+id/layoutCanStatus"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"
+				android:orientation="vertical" android:paddingLeft="7dp"
+				android:paddingTop="55dp">
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Power"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblPowerInDeviceDetail"
+						android:layout_width="100dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="7dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Comm"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblCommStatusInDeviceDetail"
+						android:layout_width="100dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="7dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Weight"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblWeightInDeviceDetail"
+						android:layout_width="100dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="7dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Bag" android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblBagStatusInDeviceDetail"
+						android:layout_width="100dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="7dp"></TextView>
+
+				</LinearLayout>
+
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Lid Open:"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblLidOpenInDeviceDetail"
+						android:layout_width="120dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="8dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Door Open:"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblDoorOpenInDeviceDetail"
+						android:layout_width="120dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="8dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Need Service:"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblNeedServiceInDeviceDetail"
+						android:layout_width="120dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="8dp"></TextView>
+
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="25dp" android:orientation="horizontal">
+					<TextView android:layout_width="100dp"
+						android:layout_height="25dp" android:text="Fault:"
+						android:textColor="@color/black_color"></TextView>
+
+					<TextView android:id="@+id/lblFaultInDeviceDetail"
+						android:layout_width="120dp" android:layout_height="25dp"
+						android:gravity="center_vertical" android:textColor="@color/black_color"
+						android:paddingLeft="8dp"></TextView>
+
+				</LinearLayout>
+
+
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="85dp" android:orientation="vertical"
+					android:gravity="center">
+
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="40dp" android:gravity="center"
+						android:orientation="horizontal">
+						<Button android:background="@drawable/button_selector"
+							android:id="@+id/btnOpenLid" android:layout_width="0dp"
+							android:layout_weight=".50" android:layout_height="wrap_content"
+							android:text="Open Lid" android:layout_marginLeft="20dp"
+							android:layout_marginRight="20dp"></Button>
+						<Button android:background="@drawable/button_selector"
+							android:id="@+id/btnCloseLid" android:layout_width="0dp"
+							android:layout_weight=".50" android:layout_height="wrap_content"
+							android:text="Close Lid" android:layout_marginLeft="20dp"
+							android:layout_marginRight="20dp"></Button>
+					</LinearLayout>
+					<Button android:background="@drawable/button_selector"
+						android:id="@+id/btnOpenDoor" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:layout_marginTop="4dp"
+						android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+						android:text="Open Door"></Button>
+
+
+				</LinearLayout>
+
+			</LinearLayout>
+			<LinearLayout android:id="@+id/layoutCanLog"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"
+				android:orientation="vertical" android:gravity="center"
+				android:layout_gravity="center">
+
+
+			</LinearLayout>
+			<LinearLayout android:id="@+id/layoutCanActivity"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"
+				android:orientation="vertical" android:gravity="center"
+				android:layout_gravity="center">
+
+			</LinearLayout>
+
+		</FrameLayout>
+
+
+	</TabHost>
+
+</LinearLayout>
+	

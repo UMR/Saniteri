@@ -318,15 +318,11 @@ namespace UMR.Saniteri.Data
         /// </summary>
         /// <param name="seqno">Initial value of the seqno property.</param>
         /// <param name="can_id">Initial value of the can_id property.</param>
-        /// <param name="can_lid_status">Initial value of the can_lid_status property.</param>
-        /// <param name="command_timestamp">Initial value of the command_timestamp property.</param>
-        public static can_command Createcan_command(global::System.Int32 seqno, global::System.Int64 can_id, global::System.Byte can_lid_status, global::System.DateTime command_timestamp)
+        public static can_command Createcan_command(global::System.Int32 seqno, global::System.Int64 can_id)
         {
             can_command can_command = new can_command();
             can_command.seqno = seqno;
             can_command.can_id = can_id;
-            can_command.can_lid_status = can_lid_status;
-            can_command.command_timestamp = command_timestamp;
             return can_command;
         }
 
@@ -407,54 +403,6 @@ namespace UMR.Saniteri.Data
         private global::System.Int64 _can_id;
         partial void Oncan_idChanging(global::System.Int64 value);
         partial void Oncan_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte can_lid_status
-        {
-            get
-            {
-                return _can_lid_status;
-            }
-            set
-            {
-                Oncan_lid_statusChanging(value);
-                ReportPropertyChanging("can_lid_status");
-                _can_lid_status = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("can_lid_status");
-                Oncan_lid_statusChanged();
-            }
-        }
-        private global::System.Byte _can_lid_status;
-        partial void Oncan_lid_statusChanging(global::System.Byte value);
-        partial void Oncan_lid_statusChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime command_timestamp
-        {
-            get
-            {
-                return _command_timestamp;
-            }
-            set
-            {
-                Oncommand_timestampChanging(value);
-                ReportPropertyChanging("command_timestamp");
-                _command_timestamp = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("command_timestamp");
-                Oncommand_timestampChanged();
-            }
-        }
-        private global::System.DateTime _command_timestamp;
-        partial void Oncommand_timestampChanging(global::System.DateTime value);
-        partial void Oncommand_timestampChanged();
 
         #endregion
     

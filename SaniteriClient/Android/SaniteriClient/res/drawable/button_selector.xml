@@ -1,37 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" >
-        <shape>
-            <solid
-                android:color="@color/light_green_color" />
-            <stroke
-                android:width="1dip"
-                android:color="@color/dark_green_color" />
-            <corners
-                android:radius="7dip" />
-            <padding
-                android:left="7dip"
-                android:top="7dip"
-                android:right="7dip"
-                android:bottom="7dip" />
-        </shape>
-    </item>
-    <item>
-        <shape>
-            <gradient
-                android:startColor="@color/light_green_color"
-                android:endColor="@color/dark_green_color"
-                android:angle="270" />
-            <stroke
-                android:width="1dip"
-                android:color="@color/dark_green_color" />
-            <corners
-                android:radius="7dip" />
-            <padding	
-                android:left="7dip"
-                android:top="7dip"
-                android:right="7dip"
-                android:bottom="7dip" />
-        </shape>
-    </item>
+	<item android:state_pressed="true">
+		<shape>
+			<solid android:color="@color/light_green_color" />
+			<stroke android:width="2dip" android:color="#98C723" />
+			<corners android:radius="7dip" />
+			<padding android:left="7dip" android:top="7dip"
+				android:right="7dip" android:bottom="7dip" />
+		</shape>
+	</item>
+	<item>
+		<shape>
+			<gradient android:startColor="#D6EE9B" android:endColor="#98C723"
+				android:angle="270" />
+			<stroke android:width="2dip" android:color="#98C723" />
+			<corners android:radius="7dip" />
+			<padding android:left="7dip" android:top="7dip"
+				android:right="7dip" android:bottom="7dip" />
+		</shape>
+	</item>
 </selector>

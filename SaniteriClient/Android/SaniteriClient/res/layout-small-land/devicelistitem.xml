@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="50dp"
+	android:orientation="horizontal">
+	<LinearLayout android:layout_width="0dp"
+		android:layout_height="fill_parent" android:layout_weight=".35"
+		android:orientation="vertical">
+		<TextView android:id="@+id/lblUnitIdInListItem"
+			android:layout_width="fill_parent" android:layout_height="25dp"
+			android:background="@color/white_color" android:paddingLeft="3dp"
+			android:textColor="@color/black_color" android:textStyle="bold"
+			android:textSize="18sp"></TextView>
+		<View android:layout_width="fill_parent" android:layout_height="1dp"
+			android:background="#D9D9D9"></View>
+	</LinearLayout>
+	<View android:layout_width="0dp" android:layout_height="fill_parent"
+		android:layout_weight="0.01" android:background="#D9D9D9"></View>
+	<LinearLayout android:layout_width="0dp"
+		android:layout_height="fill_parent" android:layout_weight=".65"
+		android:orientation="vertical">
+		<TextView android:id="@+id/lblUnitLocationInListItem"
+			android:layout_width="fill_parent" android:paddingLeft="3dp"
+			android:layout_height="25dp" android:background="@color/white_color"
+			android:textColor="@color/black_color" android:textStyle="bold"
+			android:textSize="18sp"></TextView>
+		<View android:layout_width="fill_parent" android:layout_height="1dp"
+			android:background="#D9D9D9"></View>
+	</LinearLayout>
+</LinearLayout>
