@@ -128,7 +128,7 @@ public class Home extends TabActivity {
 
 		specHome.setContent(R.id.LayoutHome);
 		tabWidget = tabHost.getTabWidget();
-
+		
 		TabHost.TabSpec specCanStatus = tabHost.newTabSpec("CanStatus");
 		specCanStatus.setIndicator("Can Status", getResources().getDrawable(
 				R.drawable.tab_canstatus_selector));
@@ -195,9 +195,9 @@ public class Home extends TabActivity {
 			startActivity(intent);
 			break;
 
-		case R.id.menuitem_Refresh:
-			refresh();
-			break;
+//		case R.id.menuitem_Refresh:
+//			refresh();
+//			break;
 
 		default:
 			break;
