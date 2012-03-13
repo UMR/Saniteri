@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.ComponentModel;
 using System.Windows.Input;
 using UMR.Saniteri.Command;
@@ -13,9 +14,29 @@ namespace UMR.Saniteri.ViewModel
 {
     public class CanLogViewModel : INotifyPropertyChanged
     {
+        private Timer _logTimer;
+
         public CanLogViewModel()
         {
             LoadInDetails();
+            //initialize the timer for 5 second interval
+            //to refresh transaction and maintenance logs
+            _logTimer = new Timer(5000);
+            _logTimer.Elapsed += new ElapsedEventHandler(logTimer_elapsed);
+            _logTimer.Enabled = true;
+        }
+
+        /// <summary>
+        /// Elapsed event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void logTimer_elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (selectedCan != null)
+            {
+                assignLists(selectedCan);
+            }
         }
        
         private IList<can_inventory> _canConfigList;
@@ -108,14 +129,23 @@ namespace UMR.Saniteri.ViewModel
                 if (value != null)
                 {
                     _selectedCan = value;
-                    using (var context = DatabaseManager.server.GetMainEntities())
-                    {
-                        CanConfig = context.can_inventory.Where(r => r.can_id == value.can_id).FirstOrDefault<can_inventory>();
-                        CanEventsList = context.can_transaction_log.Where(r => r.can_id == value.can_id).ToList<can_transaction_log>();
-                        CanMaintenanceList = context.can_maintenance.Where(r => r.can_id == value.can_id).ToList<can_maintenance>();
-                    }
+                    assignLists(value);
                 }
             }
+        }
+
+        /// <summary>
+        /// Helper method to assign transaction and maintenance log data.
+        /// </summary>
+        /// <param name="canInv">The "can_inventory" or selected Can item</param>
+        private void assignLists(can_inventory canInv)
+        {
+            using (var context = DatabaseManager.server.GetMainEntities())
+            {
+                CanConfig = context.can_inventory.Where(r => r.can_id == canInv.can_id).FirstOrDefault<can_inventory>();
+                CanEventsList = context.can_transaction_log.Where(r => r.can_id == canInv.can_id).ToList<can_transaction_log>();
+                CanMaintenanceList = context.can_maintenance.Where(r => r.can_id == canInv.can_id).ToList<can_maintenance>();               
+            }           
         }
 
         public ICommand searchCommand
