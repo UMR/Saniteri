@@ -14,13 +14,13 @@
             
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border x:Name="mainBdr" Grid.Column="0" Margin="0,0,10,5" Padding="5" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray"  HorizontalAlignment="Stretch">
+        <Border x:Name="mainBdr" Grid.Column="0" Margin="0,0,10,5" Padding="5" CornerRadius="5" BorderThickness="2" 
+                SizeChanged="mainBdr_SizeChanged" BorderBrush="LightGray"  HorizontalAlignment="Stretch">
             <StackPanel HorizontalAlignment="Stretch">
-                <search:SearchBox  Margin="0,1,0,1" IsEnabled="{Binding searchItem.canSearch}" command="{Binding searchCommand}" SizeChanged="mainBdr_SizeChanged" labelText="Search" HorizontalAlignment="Stretch"/>
+                <search:SearchBox  Margin="0,1,0,1" IsEnabled="{Binding searchItem.canSearch}" command="{Binding searchCommand}" labelText="Search" HorizontalAlignment="Stretch"/>
                 <toolkit:DataGrid  x:Name="dataGrd"
                 BorderBrush="LightGray"
                 HorizontalAlignment="Stretch"
-                
                 CanUserResizeRows="False"
                 AutoGenerateColumns="False"
                 HorizontalScrollBarVisibility="Hidden"
@@ -50,7 +50,8 @@
                 </LinearGradientBrush>
             </GridSplitter.Background>
         </GridSplitter>
-        <Border Grid.Column="2" Margin="0,0,0,5" Padding="5" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent" Height="Auto" >
+        <Border Grid.Column="2" Margin="0,0,0,5" Padding="5" CornerRadius="5" BorderThickness="0" BorderBrush="Transparent" Height="Auto"
+                SizeChanged="Border_SizeChanged">
             <TabControl BorderBrush="LightGray">
                 <TabItem Header="Transaction Log" BorderBrush="LightGray" Padding="3">
                     <toolkit:DataGrid x:Name="grdTransaction"
@@ -59,8 +60,7 @@
                         CanUserResizeRows="False"
                         AutoGenerateColumns="False"
                         IsEnabled="{Binding IsEnable}"
-                        IsReadOnly="True" SelectionMode="Single"
-                        SizeChanged="Border_SizeChanged"
+                        IsReadOnly="True" SelectionMode="Single"                        
                         ItemsSource="{Binding CanEventsList, UpdateSourceTrigger=PropertyChanged}">
                         <toolkit:DataGrid.Columns>
                             <toolkit:DataGridTextColumn Width="150" Binding="{Binding Path=event_time_stamp}" Header="Event Date"/>
