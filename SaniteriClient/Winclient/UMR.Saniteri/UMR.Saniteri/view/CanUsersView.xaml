@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="UMR.Saniteri.view.CanUsersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:cControl="clr-namespace:UMR.Saniteri.CustomControls;assembly=UMR.Saniteri.CustomControls"
+             xmlns:search="clr-namespace:UMR.Saniteri.CustomControls;assembly=UMR.Saniteri.SearchBox"
+             xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"
+             xmlns:command ="clr-namespace:UMR.Saniteri.Command;assembly=UMR.Saniteri.Command"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <DockPanel LastChildFill="False">
+        <Border DockPanel.Dock="Top" Margin="0,0,0,5" Padding="10,0,0,0" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" Height="50">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <search:SearchBox Margin="0,1,0,0" Height="25" Width="220" IsEnabled="{Binding IsEnable}" command="{Binding searchCommand}" labelText="Search"/>
+            </StackPanel>
+        </Border>
+        <toolkit:DataGrid DockPanel.Dock="Top" Height="146" MaxHeight="275" x:Name="dataGrd" 
+                CanUserSortColumns="False"
+                CanUserResizeRows="False"
+                AutoGenerateColumns="False"
+                IsEnabled="{Binding IsEnable}"
+                IsReadOnly="True" SelectionMode="Single"
+                SelectedIndex="{Binding selectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                command:CommandBehavior.Event="SelectionChanged"
+                command:CommandBehavior.Command="{Binding selectionChangedCommand}"
+                command:CommandBehavior.CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}"
+                ItemsSource="{Binding CanUsersList, UpdateSourceTrigger=PropertyChanged}">
+            <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTextColumn Width="120" Binding="{Binding Path=user_id}" Header="User ID"/>
+                <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=first_name}" Header="First Name"/>
+                <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=last_name}" Header="Last Name"/>
+                <toolkit:DataGridTextColumn Width="130" Binding="{Binding Path=title}" Header="Title"/>
+                <toolkit:DataGridTextColumn Width="*" Binding="{Binding Path=options}" Header="Options"/>
+            </toolkit:DataGrid.Columns>
+        </toolkit:DataGrid>
+        <Border DockPanel.Dock="Top" Padding="5,5,5,15" Margin="0,15,0,0" CornerRadius="5" BorderThickness="2" BorderBrush="LightGray" Height="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" MinHeight="32" />
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="User ID:"/>
+                <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="First Name"/>
+                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Last Name:"/>
+                <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Content="Title:" />
+                <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="Options:"/>
+
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CanUser.user_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsEnabled="{Binding IsReadOnly, Mode=TwoWay}" MaxLength="50"/>
+                <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CanUser.first_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" MaxLength="50"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CanUser.last_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxLength="50"/>
+                <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding CanUser.title, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CanUser.options, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25" Width="220"  MaxLength="50"/>
+                <ToolBarTray Grid.Row="0" Grid.ColumnSpan="5">
+                    <ToolBar>
+                        <cControl:CustomToolBarButton Command="{Binding addCommand}" x:Name="btnNew" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Horizontal" ButtonText="New" EnabledButtonImage="\Resources\Images\New.png" ToolTip="Create new account" DisabledButtonImage="\Resources\Images\NewDisabled.png" />
+                        <cControl:CustomToolBarButton Command="{Binding deleteCommand}" x:Name="btnDelete" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Horizontal" ButtonText="Delete" EnabledButtonImage="\Resources\Images\Delete.png" ToolTip="Delete account" DisabledButtonImage="\Resources\Images\DeleteDisabled.png" />
+                        <Separator Focusable="False" />
+                        <cControl:CustomToolBarButton Command="{Binding saveCommand}" x:Name="btnSave" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Horizontal" ButtonText="Save" EnabledButtonImage="\Resources\Images\Save.png" ToolTip="Save account" DisabledButtonImage="\Resources\Images\SaveDisabled.png" />
+                        <cControl:CustomToolBarButton Command="{Binding cancelCommand}" x:Name="btnCancel" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Horizontal" ButtonText="Cancel" EnabledButtonImage="\Resources\Images\cancel.png" ToolTip="Cancal" DisabledButtonImage="\Resources\Images\cancelDisable.png" />
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+        </Border>
+    </DockPanel>
+</UserControl>

@@ -24,6 +24,9 @@
             <DataTemplate DataType="{x:Type vm:CanEventCodeViewModel}">
                 <views:CanEventConfigView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CanUsersViewModel}">
+                <views:CanUsersView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

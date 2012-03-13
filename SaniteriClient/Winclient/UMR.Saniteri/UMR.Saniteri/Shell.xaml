@@ -19,6 +19,7 @@
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem Header="Can Configuration" Tag="CanConfig" Click="MenuItem_Click"/>
+                <MenuItem Header="Can Users" Tag="CanUser" Click="MenuItem_Click"/>
                 <MenuItem Header="Transaction Log" Tag="transactionLog" Click="MenuItem_Click"/>
                 <MenuItem Header="Status" Tag="status" Click="MenuItem_Click"/>
                 <MenuItem Header="Status Type" Tag="statusCode" Click="MenuItem_Click"/>
@@ -34,6 +35,8 @@
                 <cControl:CustomToolBarButton x:Name="btnHome" Tag="Home" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Home" EnabledButtonImage="\Resources\Images\house.png" DisabledButtonImage="\Resources\Images\house.png" ToolTip="Home" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnCanConfig" Tag="CanConfig" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Can" EnabledButtonImage="\Resources\Images\coins.png" DisabledButtonImage="\Resources\Images\coins.png" ToolTip="Can Configuration" Click="btnToolBar_Click"/>
+                <Separator Focusable="False" />
+                <cControl:CustomToolBarButton x:Name="btnUser" Tag="CanUser" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Can Users" EnabledButtonImage="\Resources\Images\user.gif" DisabledButtonImage="\Resources\Images\user.gif" ToolTip="Create/Edit Can Users" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />
                 <cControl:CustomToolBarButton x:Name="btnLogs" Tag="transactionLog" IsEnabled="True" ShowButtonText="True" ShowButtonImage="True" ButtonLayout="Vertical" ButtonText="Logs" EnabledButtonImage="\Resources\Images\database_table.png" DisabledButtonImage="\Resources\Images\database_table.png" ToolTip="Transaction and Maintanance Log Details" Click="btnToolBar_Click"/>
                 <Separator Focusable="False" />

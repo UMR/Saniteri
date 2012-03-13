@@ -49,6 +49,7 @@
     <Compile Include="CanLogViewModel.cs" />
     <Compile Include="CanStatusCodeViewModel.cs" />
     <Compile Include="CanStatusViewModel.cs" />
+    <Compile Include="CanUsersViewModel.cs" />
     <Compile Include="DirtyEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

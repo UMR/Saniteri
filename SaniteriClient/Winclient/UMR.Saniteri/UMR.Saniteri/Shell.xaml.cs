@@ -97,6 +97,11 @@ namespace UMR.Saniteri
                     var _event = new CanEventCodeViewModel();
                     container.Content = _event;
                     break;
+                case "CanUser":
+                    var _canUser = new CanUsersViewModel();
+                    _canUser.OnDirty += new EventHandler(hm_OnDirty);
+                    container.Content = _canUser;
+                    break;
                 default:
                     container.Content = null;
                     break;
